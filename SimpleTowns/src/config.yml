@@ -1,0 +1,33 @@
+# SimpleTowns Config
+# Generated with 0.1 of the plugin
+# For help with the configuration file, please see the plugin BukkitDev page
+
+Localisation Filename: localisation.yml
+# Select worlds which SimpleTowns is active on - needed? could use perms, right? not sure.
+# Toggle dynmap - could be a separate plugin
+# Minimum chunks from other towns (0 effectively disables)
+# Maximum distance (in chunks) from other towns (negative values to disable)
+
+Towns:
+  Test Town:
+    Leaders:
+      AS1LV3RN1NJA
+    Citizens:
+      skillchickenz75
+    Chunks:
+      world:
+        - 1,1
+        - 2,3
+        - 1,2
+        - 2,2
+  Another:
+    Leaders:
+      skillchickenz75
+    Citizens:
+      AS1LV3RN1NJA
+    Chunks:
+      world:
+        - 3,1
+        - 3,2
+        - 3,3
+        - 3,4

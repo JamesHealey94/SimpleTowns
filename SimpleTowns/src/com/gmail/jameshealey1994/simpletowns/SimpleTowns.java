@@ -45,8 +45,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
         getServer().getPluginManager().registerEvents(new SimpleTownsListener(this), this);
 
         // Set command executors and default command
-        // Set command executors and default command
-        getCommand("spt").setExecutor(new SimpleTownsCommandExecutor(this, null));
+        getCommand("towns").setExecutor(new SimpleTownsCommandExecutor(this, null));
     }
 
     /**
@@ -86,10 +85,20 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
         this.localisation = localisation;
     }
 
+    /**
+     * Returns the Towns in the server.
+     * 
+     * @return      the Towns in the server
+     */
     public Set<Town> getTowns() {
         return towns;
     }
 
+    /**
+     * Sets the Towns in the server.
+     * 
+     * @param towns     the new Towns in the server
+     */
     public void setTowns(Set<Town> towns) {
         this.towns = towns;
     }
