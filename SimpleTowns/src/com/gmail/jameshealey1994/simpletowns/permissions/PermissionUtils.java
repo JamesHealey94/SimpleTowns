@@ -1,6 +1,6 @@
-package com.gmail.jameshealey1994.simpletowns.utils;
+package com.gmail.jameshealey1994.simpletowns.permissions;
 
-import com.gmail.jameshealey1994.simpletowns.commands.SimpleTownsCommand;
+import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;

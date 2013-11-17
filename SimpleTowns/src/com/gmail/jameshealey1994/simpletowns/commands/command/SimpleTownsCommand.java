@@ -1,4 +1,4 @@
-package com.gmail.jameshealey1994.simpletowns.commands;
+package com.gmail.jameshealey1994.simpletowns.commands.command;
 
 import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;

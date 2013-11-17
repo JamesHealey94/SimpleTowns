@@ -1,7 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns;
 
 import com.gmail.jameshealey1994.simpletowns.commands.DefaultSimpleTownsCommandEnvironment;
-import com.gmail.jameshealey1994.simpletowns.commands.SimpleTownsCommand;
+import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.SimpleTownsCommandEnvironment;
 import com.gmail.jameshealey1994.simpletowns.commands.SimpleTownsCommandExecutor;
 import com.gmail.jameshealey1994.simpletowns.listeners.SimpleTownsListener;

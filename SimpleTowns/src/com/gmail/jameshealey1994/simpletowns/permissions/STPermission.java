@@ -1,4 +1,4 @@
-package com.gmail.jameshealey1994.simpletowns.commands;
+package com.gmail.jameshealey1994.simpletowns.permissions;
 
 import org.bukkit.permissions.Permission;
 
@@ -7,7 +7,7 @@ import org.bukkit.permissions.Permission;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public enum SimpleTownsPermissions {
+public enum STPermission {
 
     /**
      * Permission for InfoCommand.
@@ -34,7 +34,7 @@ public enum SimpleTownsPermissions {
      *
      * @param name  the name of the permission
      */
-    SimpleTownsPermissions(String name) {
+    STPermission(String name) {
         this.name = name;
     }
 

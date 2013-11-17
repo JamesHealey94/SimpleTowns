@@ -1,8 +1,9 @@
 package com.gmail.jameshealey1994.simpletowns.commands;
 
+import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
 import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
-import com.gmail.jameshealey1994.simpletowns.utils.PermissionUtils;
+import com.gmail.jameshealey1994.simpletowns.permissions.PermissionUtils;
 import java.util.Arrays;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

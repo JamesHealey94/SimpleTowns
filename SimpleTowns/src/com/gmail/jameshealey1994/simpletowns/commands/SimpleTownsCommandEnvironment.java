@@ -1,5 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.commands;
 
+import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
+
 /**
  * Represents a plugin command environment (set of plugin commands).
  *
