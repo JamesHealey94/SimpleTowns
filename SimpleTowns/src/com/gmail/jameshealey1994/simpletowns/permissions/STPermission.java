@@ -12,17 +12,17 @@ public enum STPermission {
     /**
      * Permission for InfoCommand.
      */
-    INFO ("towns.info"),
+    INFO ("simpletowns.info"),
 
     /**
      * Permission for DebugCommand.
      */
-    DEBUG ("towns.debug"),
+    DEBUG ("simpletowns.debug"),
 
     /**
      * Permission for ReloadCommand.
      */
-    RELOAD ("towns.reload");
+    RELOAD ("simpletowns.reload");
 
     /**
      * The name of the permission.

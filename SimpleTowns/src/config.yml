@@ -3,6 +3,11 @@
 # For help with the configuration file, please see the plugin BukkitDev page
 
 Localisation Filename: localisation.yml
+Debug: false
+Logging:
+  Filename: log.txt
+  Enabled: true
+
 # Select worlds which SimpleTowns is active on - needed? could use perms, right? not sure.
 # Toggle dynmap - could be a separate plugin
 # Minimum chunks from other towns (0 effectively disables)

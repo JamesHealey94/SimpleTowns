@@ -4,3 +4,16 @@ website: https://github.com/JamesHealey94
 name: SimpleTowns
 main: com.gmail.jameshealey1994.simpletowns.SimpleTowns
 version: 0.1
+
+commands:
+    towns:
+        aliases: [town, simpletown, simpletowns]
+        usage: Command used incorrectly! Use /<command> help for help!
+
+permissions:
+    simpletowns.debug:
+        description: Allows you to switch debug mode on or off
+        default: false
+    simpletowns.reload:
+        description: Allows you to reload config values
+        default: false

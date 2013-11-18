@@ -1,5 +1,8 @@
 package com.gmail.jameshealey1994.simpletowns.commands;
 
+import com.gmail.jameshealey1994.simpletowns.commands.command.DebugCommand;
+import com.gmail.jameshealey1994.simpletowns.commands.command.HelpCommand;
+import com.gmail.jameshealey1994.simpletowns.commands.command.ReloadCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
 
 /**
@@ -16,15 +19,9 @@ public class DefaultSimpleTownsCommandEnvironment extends SimpleTownsCommandEnvi
      */
     public DefaultSimpleTownsCommandEnvironment() {
         super(new SimpleTownsCommand[] {
-            // TODO
-//            new HelpCommand(),
-//            new InfoCommand(),
-//            new ReloadCommand(),
-//            new SetCommand(),
-//            new SetServerDefaultCommand(),
-//            new SetWorldDefaultCommand(),
-//            new StatusCommand(),
-//            new DebugCommand()
+            new HelpCommand(),
+            new ReloadCommand(),
+            new DebugCommand()
         });
     }
 }

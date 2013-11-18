@@ -4,6 +4,7 @@ import com.gmail.jameshealey1994.simpletowns.commands.DefaultSimpleTownsCommandE
 import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.SimpleTownsCommandEnvironment;
 import com.gmail.jameshealey1994.simpletowns.commands.SimpleTownsCommandExecutor;
+import com.gmail.jameshealey1994.simpletowns.commands.command.HelpCommand;
 import com.gmail.jameshealey1994.simpletowns.listeners.SimpleTownsListener;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisable;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
@@ -24,12 +25,12 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
      * accessible from the current state of the plugin).
      */
     private SimpleTownsCommandEnvironment commandEnvironment = new DefaultSimpleTownsCommandEnvironment();
-    
+
     /**
      * The current localisation for the plugin.
      */
     private Localisation localisation = new Localisation(this);
-    
+
     /**
      * Towns from config TODO.
      */
@@ -45,7 +46,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
         getServer().getPluginManager().registerEvents(new SimpleTownsListener(this), this);
 
         // Set command executors and default command
-        getCommand("towns").setExecutor(new SimpleTownsCommandExecutor(this, null));
+        getCommand("towns").setExecutor(new SimpleTownsCommandExecutor(this, new HelpCommand()));
     }
 
     /**
@@ -87,7 +88,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
 
     /**
      * Returns the Towns in the server.
-     * 
+     *
      * @return      the Towns in the server
      */
     public Set<Town> getTowns() {
@@ -96,7 +97,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
 
     /**
      * Sets the Towns in the server.
-     * 
+     *
      * @param towns     the new Towns in the server
      */
     public void setTowns(Set<Town> towns) {
