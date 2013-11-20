@@ -1,7 +1,8 @@
 package com.gmail.jameshealey1994.simpletowns.listeners;
 
 import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
-import com.gmail.jameshealey1994.simpletowns.Town;
+import com.gmail.jameshealey1994.simpletowns.object.Town;
+import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -42,8 +43,8 @@ public class SimpleTownsListener implements Listener {
 //        plugin.getServer().getWorld("").getChunkAt();
 
         for (Town t : plugin.getTowns()) {
-            for (Chunk c : t.getChunks()) {
-                if (chunk.equals(c)) {
+            for (TownChunk c : t.getChunks()) {
+                if (chunk.equals(c)) { // TODO - Override TownChunk .equals so it works with Chunk?
                     if (t.getCitizens().contains(player.getName()) || t.getLeaders().contains(player.getName())) {
                         break;
                     } else {
@@ -66,7 +67,7 @@ public class SimpleTownsListener implements Listener {
         final Chunk chunk = event.getBlockAgainst().getChunk();
 
         for (Town t : plugin.getTowns()) {
-            for (Chunk c : t.getChunks()) {
+            for (TownChunk c : t.getChunks()) {
                 if (chunk.equals(c)) {
                     if (t.getCitizens().contains(player.getName()) || t.getLeaders().contains(player.getName())) {
                         break;

@@ -1,7 +1,6 @@
-package com.gmail.jameshealey1994.simpletowns;
+package com.gmail.jameshealey1994.simpletowns.object;
 
 import java.util.HashSet;
-import org.bukkit.Chunk;
 
 /**
  * Class representing a Town.
@@ -28,10 +27,10 @@ public class Town {
     private HashSet<String> citizens = new HashSet<>();
 
     /**
-     * The chunks belonging to the Town.
+     * The TownChunks belonging to the Town.
      * A chunk should only belong to 1 Town at a time.
      */
-    private HashSet<Chunk> chunks;
+    private HashSet<TownChunk> chunks = new HashSet<>();
 
     /**
      * Constructor - Initialises name, adds creator to leaders, and chunk to
@@ -43,7 +42,7 @@ public class Town {
      * @param chunk         the first chunk in the town, normally the chunk that
      *                      the creator is standing in when creating the town
      */
-    public Town(String name, String creator, Chunk chunk) {
+    public Town(String name, String creator, TownChunk chunk) {
         this.name = name;
         this.leaders.add(creator);
         this.chunks.add(chunk);
@@ -105,20 +104,20 @@ public class Town {
     }
 
     /**
-     * Returns the set of Chunks belonging to the Town.
+     * Returns the set of TownChunks belonging to the Town.
      *
-     * @return      the set of Chunks belonging to the Town
+     * @return      the set of TownChunks belonging to the Town
      */
-    public HashSet<Chunk> getChunks() {
+    public HashSet<TownChunk> getChunks() {
         return chunks;
     }
 
     /**
-     * Sets the new set of Chunks belonging to the Town.
+     * Sets the new set of TownChunks belonging to the Town.
      *
-     * @param chunks        the new set of Chunks belonging to the Town
+     * @param chunks        the new set of TownChunks belonging to the Town
      */
-    public void setChunks(HashSet<Chunk> chunks) {
+    public void setChunks(HashSet<TownChunk> chunks) {
         this.chunks = chunks;
     }
 

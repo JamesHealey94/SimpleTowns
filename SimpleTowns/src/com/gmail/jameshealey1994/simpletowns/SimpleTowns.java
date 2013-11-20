@@ -1,5 +1,6 @@
 package com.gmail.jameshealey1994.simpletowns;
 
+import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.commands.DefaultSimpleTownsCommandEnvironment;
 import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.SimpleTownsCommandEnvironment;

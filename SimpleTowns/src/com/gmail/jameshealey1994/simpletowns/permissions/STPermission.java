@@ -22,7 +22,12 @@ public enum STPermission {
     /**
      * Permission for ReloadCommand.
      */
-    RELOAD ("simpletowns.reload");
+    RELOAD ("simpletowns.reload"),
+
+    /**
+     * Permission for CreateCommand.
+     */
+    CREATE ("simpletowns.create");
 
     /**
      * The name of the permission.

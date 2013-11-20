@@ -72,6 +72,25 @@ public enum LocalisationEntry {
     DEBUG_ATTACKED_BY_PLAYER ("DebugAttackedByPlayer", "%1$s - attacker's name\n# %2$s - damage inflicted", "&7Attacked by %1$s for %2$s damage"),
 
     /**
+     * Message telling player that a specified town already exists.
+     * %1$s - town name
+     */
+    MSG_TOWN_ALREADY_EXISTS ("MsgTownAlreadyExists", "%1$s - town name", "&cTown named '%1$s' already exists!"),
+
+    /**
+     * Message to confirm to sender that a town has been created.
+     * %1$s - town name
+     */
+    MSG_TOWN_CREATED ("MsgTownCreated", "%1$s - town name", "&6Congratulations, '%1$s' created!"),
+
+    /**
+     * Message to be broadcast to server telling players that a town has been
+     * created.
+     * %1$s - town name
+     */
+    MSG_TOWN_CREATED_BROADCAST ("MsgTownCreatedBroadcast", "%1$s - town name", "&6New town '%1$s' created!"),
+
+    /**
      * Message telling player that they cannot attack, as they do not have PVP
      * enabled.
      */
