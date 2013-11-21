@@ -42,7 +42,7 @@ public class SimpleTownsListener implements Listener {
         final Chunk chunk = event.getBlock().getChunk();
 
         for (Town t : plugin.getTowns()) {
-            for (TownChunk c : t.getChunks()) {
+            for (TownChunk c : t.getTownChunks()) {
                 if (c.equalsChunk(chunk)) {
                     if (t.isMember(player)) {
                         break;
@@ -66,7 +66,7 @@ public class SimpleTownsListener implements Listener {
         final Chunk chunk = event.getBlockAgainst().getChunk();
 
         for (Town t : plugin.getTowns()) {
-            for (TownChunk c : t.getChunks()) {
+            for (TownChunk c : t.getTownChunks()) {
                 if (chunk.equals(c)) {
                     if (t.getCitizens().contains(player.getName()) || t.getLeaders().contains(player.getName())) {
                         break;

@@ -56,9 +56,9 @@ public class InfoCommand extends SimpleTownsCommand {
                 sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CITIZENS_ENTRY, new Object[] {s}));
             }
         }
-        if (!(town.getChunks().isEmpty())) {
+        if (!(town.getTownChunks().isEmpty())) {
             sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CHUNKS_HEADER));
-            for (TownChunk tc : town.getChunks()) {
+            for (TownChunk tc : town.getTownChunks()) {
                 sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CHUNKS_ENTRY, new Object[] {tc.getWorldname(), tc.getX(), tc.getZ()}));
             }
         }

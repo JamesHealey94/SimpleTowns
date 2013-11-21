@@ -81,7 +81,7 @@ public class CreateCommand extends SimpleTownsCommand {
         final TownChunk townchunk = new TownChunk(chunkX, chunkZ, worldname);
 
         for (Town t : plugin.getTowns()) {
-            for (TownChunk tc : t.getChunks()) {
+            for (TownChunk tc : t.getTownChunks()) {
                 if (tc.equalsChunk(chunk)) {
                     sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_ALREADY_CLAIMED, new Object[] {t.getName()}));
                     return true;

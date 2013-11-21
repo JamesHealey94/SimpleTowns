@@ -125,7 +125,7 @@ public class Town {
      *
      * @return      the set of TownChunks belonging to the Town
      */
-    public Set<TownChunk> getChunks() {
+    public Set<TownChunk> getTownChunks() {
         return chunks;
     }
 
@@ -134,7 +134,7 @@ public class Town {
      *
      * @param chunks        the new set of TownChunks belonging to the Town
      */
-    public void setChunks(Set<TownChunk> chunks) {
+    public void setTownChunks(Set<TownChunk> chunks) {
         this.chunks = chunks;
     }
 
