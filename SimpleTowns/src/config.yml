@@ -16,9 +16,12 @@ Logging:
 Towns:
   TestTown:
     Leaders:
-      AS1LV3RN1NJA
+      - AS1LV3RN1NJA
+      - anotherPlayer
+      - YetAnotherPlayer
     Citizens:
-      skillchickenz75
+      - skillchickenz75
+      - secondPlayer
     Chunks:
       world:
         - 1,1
@@ -27,9 +30,11 @@ Towns:
         - 2,2
   Another:
     Leaders:
-      skillchickenz75
+      - skillchickenz75
+      - secondPlayer
     Citizens:
-      AS1LV3RN1NJA
+      - AS1LV3RN1NJA
+      - anotherCitizen
     Chunks:
       world:
         - 3,1
