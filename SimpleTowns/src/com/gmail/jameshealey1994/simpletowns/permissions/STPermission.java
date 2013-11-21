@@ -27,7 +27,12 @@ public enum STPermission {
     /**
      * Permission for CreateCommand.
      */
-    CREATE ("simpletowns.create");
+    CREATE ("simpletowns.create"),
+
+    /**
+     * Permission for ListCommand.
+     */
+    LIST ("simpletowns.list");
 
     /**
      * The name of the permission.

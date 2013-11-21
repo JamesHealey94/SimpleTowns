@@ -174,6 +174,23 @@ public enum LocalisationEntry {
     DESCRIPTION_STATUS ("DescStatus", null, "Displays PVP status of [username] in [world]"),
 
     /**
+     * Displayed at the top of the List command.
+     */
+    LIST_HEADER ("ListHeader", null, "&7------ Towns ------"),
+
+    /**
+     * Displayed at for each town with the List command.
+     * %1$s - town name
+     */
+    LIST_ENTRY ("ListEntry", "%1$s - town name", "&7%1$s"),
+
+    /**
+     * Message displayed to the user if List command is performed but no towns
+     * exist.
+     */
+    MSG_NO_TOWNS ("MsgNoTowns", null, "&7No towns created yet!"),
+
+    /**
      * Displayed at the top of the Info command.
      */
     INFO_HEADER ("InfoHeader", null, "&7------ Default PVP Status ------"),
