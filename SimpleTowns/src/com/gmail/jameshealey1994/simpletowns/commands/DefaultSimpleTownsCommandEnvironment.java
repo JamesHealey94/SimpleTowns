@@ -3,6 +3,7 @@ package com.gmail.jameshealey1994.simpletowns.commands;
 import com.gmail.jameshealey1994.simpletowns.commands.command.CreateCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.command.DebugCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.command.HelpCommand;
+import com.gmail.jameshealey1994.simpletowns.commands.command.InfoCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.command.ListCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.command.ReloadCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
@@ -25,7 +26,8 @@ public class DefaultSimpleTownsCommandEnvironment extends SimpleTownsCommandEnvi
             new ReloadCommand(),
             new DebugCommand(),
             new CreateCommand(),
-            new ListCommand()
+            new ListCommand(),
+            new InfoCommand()
         });
     }
 }

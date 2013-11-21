@@ -108,4 +108,21 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
     public void setTowns(Set<Town> towns) {
         this.towns = towns;
     }
+
+    /**
+     * Returns Town with name equal to passed String.
+     * If a town is not found, null is returned.
+     *
+     * @param townname      string of possible town name
+     * @return              town with name equal to passed string, or null, if
+     *                      no such town is found
+     */
+    public Town getTown(String townname) {
+        for (Town t : getTowns()) {
+            if (t.getName().equalsIgnoreCase(townname)) {
+                return t;
+            }
+        }
+        return null;
+    }
 }

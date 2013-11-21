@@ -14,7 +14,7 @@ Logging:
 # Maximum distance (in chunks) from other towns (negative values to disable)
 
 Towns:
-  Test Town:
+  TestTown:
     Leaders:
       AS1LV3RN1NJA
     Citizens:

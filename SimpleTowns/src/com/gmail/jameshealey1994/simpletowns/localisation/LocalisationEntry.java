@@ -24,6 +24,17 @@ public enum LocalisationEntry {
     ERR_SPECIFY_STATUS("MsgSpecifyPVPStatus", null, "&cPlease specify a status ('true' or 'false')"),
 
     /**
+     * Message telling user to specify a valid town.
+     */
+    ERR_SPECIFY_TOWN ("MsgSpecifyTown", null, "&cPlease specify a town"),
+
+    /**
+     * Message telling user that the town specified cannot be found.
+     * %1$s - invalid town name
+     */
+    ERR_TOWN_NOT_FOUND ("MsgTownNotFound", "%1$s - invalid town name", "&cCannot find town '%1$s'"),
+
+    /**
      * Message telling user that the player specified cannot be found.
      * %1$s - invalid player name
      */
@@ -192,14 +203,44 @@ public enum LocalisationEntry {
 
     /**
      * Displayed at the top of the Info command.
+     * %1$s - town name
      */
-    INFO_HEADER ("InfoHeader", null, "&7------ Default PVP Status ------"),
+    INFO_HEADER ("InfoHeader", "%1$s - town name", "&7------ %1$s Info ------"),
 
     /**
-     * The server's default PVP status.
-     * %1$s - server's default PVP status
+     * Displayed above a list of leaders of the town in the Info command.
      */
-    INFO_SERVER ("InfoServer", "%1$s - server's default PVP status", "&dServer: %1$s"),
+    INFO_TOWN_LEADERS_HEADER ("InfoTownLeadersHeader", null, "&dTown Leaders"),
+
+    /**
+     * Displayed for each leader in a Town in the Info command.
+     * %1$s - leader name
+     */
+    INFO_TOWN_LEADERS_ENTRY ("InfoTownLeadersEntry", "%1$s - leader name", "&d - %1$s"),
+
+    /**
+     * Displayed above the citizens in a Town in the Info command.
+     */
+    INFO_TOWN_CITIZENS_HEADER ("InfoTownCitizensHeader", null, "&dTown Citizens"),
+
+    /**
+     * Displayed for each citizen in a Town in the Info command.
+     * %1$s - citizen name
+     */
+    INFO_TOWN_CITIZENS_ENTRY ("InfoTownCitizensEntry", "%1$s - citizen name", "&d - %1$s"),
+
+    /**
+     * Displayed above the chunks for a town in the Info command.
+     */
+    INFO_TOWN_CHUNKS_HEADER ("InfoTownChunksHeader", null, "&dTown Chunks"),
+
+    /**
+     * Displayed for each chunk in a town in the Info command.
+     * %1$s - world name
+     * %2$s - chunk x
+     * %1$s - chunk z
+     */
+    INFO_TOWN_CHUNKS_ENTRY ("InfoTownChunksEntry", "%1$s - world name\n# %2$s - chunk x\n# %3$s - chunk z", "&d - %1$s (%2$s, %3$s)"),
 
     /**
      * A world and it's default PVP status.
