@@ -205,7 +205,7 @@ public enum LocalisationEntry {
      * Displayed at the top of the Info command.
      * %1$s - town name
      */
-    INFO_HEADER ("InfoHeader", "%1$s - town name", "&7------ %1$s Info ------"),
+    INFO_HEADER ("InfoHeader", "%1$s - town name", "&7------ Town Info - %1$s ------"),
 
     /**
      * Displayed above a list of leaders of the town in the Info command.
