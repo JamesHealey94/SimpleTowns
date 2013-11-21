@@ -52,7 +52,7 @@ public class InfoCommand extends SimpleTownsCommand {
         }
         if (!(town.getCitizens().isEmpty())) {
             sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CITIZENS_HEADER));
-            for (String s : town.getLeaders()) {
+            for (String s : town.getCitizens()) {
                 sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CITIZENS_ENTRY, new Object[] {s}));
             }
         }
