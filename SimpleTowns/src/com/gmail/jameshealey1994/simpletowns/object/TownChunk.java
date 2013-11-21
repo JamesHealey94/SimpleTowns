@@ -1,5 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.object;
 
+import org.bukkit.Chunk;
+
 /**
  * Class representing a Chunk belonging to a Town.
  *
@@ -14,10 +16,10 @@ public class TownChunk {
     private final int x;
 
     /**
-     * The y coordinate of the TownChunk.
+     * The z coordinate of the TownChunk.
      * Chunk coordinate, not actual coordinate.
      */
-    private final int y;
+    private final int z;
 
     /**
      * The name of the world of the TownChunk.
@@ -25,15 +27,15 @@ public class TownChunk {
     private final String worldname;
 
     /**
-     * Constructor - Initialises x, y, and worldname.
+     * Constructor - Initialises x, z, and worldname.
      *
      * @param x             The x coordinate of the TownChunk
-     * @param y             The y coordinate of the TownChunk
+     * @param z             The z coordinate of the TownChunk
      * @param worldname     The name of the world of the TownChunk
      */
-    public TownChunk(int x, int y, String worldname) {
+    public TownChunk(int x, int z, String worldname) {
         this.x = x;
-        this.y = y;
+        this.z = z;
         this.worldname = worldname;
     }
 
@@ -56,11 +58,23 @@ public class TownChunk {
     }
 
     /**
-     * Get the value of y.
+     * Get the value of z.
      *
-     * @return      the value of y
+     * @return      the value of z
      */
-    public int getY() {
-        return y;
+    public int getZ() {
+        return z;
+    }
+
+    /**
+     * Compares TownChunk to a passed Chunk.
+     * If the passed object is a Chunk, the worldname, X, and Z of the chunk are
+     * all compared.
+     *
+     * @param c     Chunk being compared
+     * @return      If the passed chunk is equal to the current TownChunk object
+     */
+    public boolean equalsChunk(Chunk c) {
+        return (c.getWorld().getName().equals(getWorldname()) && c.getX() == getX() && c.getZ() == getZ());
     }
 }

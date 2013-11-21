@@ -40,12 +40,11 @@ public class SimpleTownsListener implements Listener {
     public void onBlockBreakEvent(BlockBreakEvent event) {
         final Player player = event.getPlayer();
         final Chunk chunk = event.getBlock().getChunk();
-//        plugin.getServer().getWorld("").getChunkAt();
 
         for (Town t : plugin.getTowns()) {
             for (TownChunk c : t.getChunks()) {
-                if (chunk.equals(c)) { // TODO - Override TownChunk .equals so it works with Chunk?
-                    if (t.getCitizens().contains(player.getName()) || t.getLeaders().contains(player.getName())) {
+                if (c.equalsChunk(chunk)) {
+                    if (t.isMember(player)) {
                         break;
                     } else {
                         player.sendMessage("You aren't allowed to build here!"); // TODO - Change

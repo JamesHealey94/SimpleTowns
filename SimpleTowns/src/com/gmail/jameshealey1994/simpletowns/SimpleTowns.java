@@ -9,6 +9,7 @@ import com.gmail.jameshealey1994.simpletowns.commands.command.HelpCommand;
 import com.gmail.jameshealey1994.simpletowns.listeners.SimpleTownsListener;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisable;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
+import com.gmail.jameshealey1994.simpletowns.utils.TownConfigUtils;
 import java.util.HashSet;
 import java.util.Set;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,7 +34,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
     private Localisation localisation = new Localisation(this);
 
     /**
-     * Towns from config TODO.
+     * Towns from config.
      */
     private Set<Town> towns = new HashSet<>();
 
@@ -42,6 +43,9 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
 
         // Save a copy of the default config.yml if one is not there
         saveDefaultConfig();
+
+        // Load towns from config
+        this.towns = TownConfigUtils.getTownsFromConfig(this);
 
         // Register events
         getServer().getPluginManager().registerEvents(new SimpleTownsListener(this), this);

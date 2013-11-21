@@ -1,6 +1,8 @@
 package com.gmail.jameshealey1994.simpletowns.object;
 
 import java.util.HashSet;
+import java.util.Set;
+import org.bukkit.entity.Player;
 
 /**
  * Class representing a Town.
@@ -18,19 +20,19 @@ public class Town {
      * The usernames of the leaders of the Town.
      * A Player should only be a citizen or a leader, not both.
      */
-    private HashSet<String> leaders = new HashSet<>();
+    private Set<String> leaders = new HashSet<>();
 
     /**
      * The usernames of the citizens of the Town.
      * A Player should only be a citizen or a leader, not both.
      */
-    private HashSet<String> citizens = new HashSet<>();
+    private Set<String> citizens = new HashSet<>();
 
     /**
      * The TownChunks belonging to the Town.
      * A chunk should only belong to 1 Town at a time.
      */
-    private HashSet<TownChunk> chunks = new HashSet<>();
+    private Set<TownChunk> chunks = new HashSet<>();
 
     /**
      * Constructor - Initialises name, adds creator to leaders, and chunk to
@@ -46,6 +48,21 @@ public class Town {
         this.name = name;
         this.leaders.add(creator);
         this.chunks.add(chunk);
+    }
+
+    /**
+     * Constructor - Initialises all fields.
+     *
+     * @param name          the name of the Town
+     * @param leaders       the leaders of the Town
+     * @param citizens      the citizens of the Town
+     * @param chunks        the TownChunks of the Town
+     */
+    public Town(String name, Set<String> leaders, Set<String> citizens, Set<TownChunk> chunks) {
+        this.name = name;
+        this.leaders = leaders;
+        this.citizens = citizens;
+        this.chunks = chunks;
     }
 
     /**
@@ -71,7 +88,7 @@ public class Town {
      *
      * @return      the usernames of the leaders of the Town
      */
-    public HashSet<String> getLeaders() {
+    public Set<String> getLeaders() {
         return leaders;
     }
 
@@ -80,7 +97,7 @@ public class Town {
      *
      * @param leaders       the new usernames of the leaders of the Town
      */
-    public void setLeaders(HashSet<String> leaders) {
+    public void setLeaders(Set<String> leaders) {
         this.leaders = leaders;
     }
 
@@ -90,7 +107,7 @@ public class Town {
      *
      * @return      the usernames of the citizens of the Town
      */
-    public HashSet<String> getCitizens() {
+    public Set<String> getCitizens() {
         return citizens;
     }
 
@@ -99,7 +116,7 @@ public class Town {
      *
      * @param citizens      the new usernames of the citizens of the Town
      */
-    public void setCitizens(HashSet<String> citizens) {
+    public void setCitizens(Set<String> citizens) {
         this.citizens = citizens;
     }
 
@@ -108,7 +125,7 @@ public class Town {
      *
      * @return      the set of TownChunks belonging to the Town
      */
-    public HashSet<TownChunk> getChunks() {
+    public Set<TownChunk> getChunks() {
         return chunks;
     }
 
@@ -117,8 +134,18 @@ public class Town {
      *
      * @param chunks        the new set of TownChunks belonging to the Town
      */
-    public void setChunks(HashSet<TownChunk> chunks) {
+    public void setChunks(Set<TownChunk> chunks) {
         this.chunks = chunks;
     }
 
+    /**
+     * Returns if the passed Player is a member of the Town.
+     * Members can be citizens or leaders
+     *
+     * @param player        player to be checked
+     * @return              if the passed Player is a member of the Town
+     */
+    public boolean isMember(Player player) {
+        return (getCitizens().contains(player.getName()) || getLeaders().contains(player.getName()));
+    }
 }

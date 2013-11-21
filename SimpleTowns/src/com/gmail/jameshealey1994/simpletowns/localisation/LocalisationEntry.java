@@ -72,10 +72,42 @@ public enum LocalisationEntry {
     DEBUG_ATTACKED_BY_PLAYER ("DebugAttackedByPlayer", "%1$s - attacker's name\n# %2$s - damage inflicted", "&7Attacked by %1$s for %2$s damage"),
 
     /**
+     * Message logged to file when a new town is created.
+     * %1$s - town name
+     * %2$s - player name
+     */
+    LOG_TOWN_CREATED ("LogTownCreated", "%1$s - town name\n# %2$s - player name", "New town '%1$s' created by '%2$s'"),
+
+    /**
+     * Message logged to file when a new leader is added to a town.
+     * %1$s - town name
+     * %2$s - leader name
+     * %3$s - player name
+     */
+    LOG_TOWN_LEADER_ADDED ("LogTownLeaderAdded", "%1$s - town name\n# %2$s - leader name\n# %3$s - player name", "Player '%1$s' added as town leader to '%2$s' by '%3$s'"),
+
+    /**
+     * Message logged to file when a new chunk is claimed.
+     * %1$s - town name
+     * %2$s - player name
+     * %3$s - world name
+     * %4$s - chunk X
+     * %5$s - chunk Z
+     */
+    LOG_CHUNK_CLAIMED ("LogChunkClaimed", "%1$s - town name\n# %2$s - player name\n# %3$s - world name\n# %4$s - chunk X\n# %5$s - chunk Z", "Chunk (%4$s, %5$s) in world %3$s claimed for town '%1$s' by player '%2$s'"),
+
+    /**
      * Message telling player that a specified town already exists.
      * %1$s - town name
      */
     MSG_TOWN_ALREADY_EXISTS ("MsgTownAlreadyExists", "%1$s - town name", "&cTown named '%1$s' already exists!"),
+
+    /**
+     * Message telling player that a chunk they tried to claim already belongs
+     * to a town.
+     * %1$s - town name
+     */
+    MSG_CHUNK_ALREADY_CLAIMED ("MsgChunkAlreadyClaimed", "%1$s - town name", "&cChunk already claimed by town '%1$s'"),
 
     /**
      * Message to confirm to sender that a town has been created.
@@ -91,81 +123,9 @@ public enum LocalisationEntry {
     MSG_TOWN_CREATED_BROADCAST ("MsgTownCreatedBroadcast", "%1$s - town name", "&6New town '%1$s' created!"),
 
     /**
-     * Message telling player that they cannot attack, as they do not have PVP
-     * enabled.
-     */
-    MSG_ATTACK_CANCELLED_PVP_NOT_ENABLED ("MsgAttackCancelledPVPNotEnabled", null, "&7Attack cancelled - You do not have PVP enabled"),
-
-    /**
-     * Message telling player that they cannot attack, as they the player they
-     * are attacking does not have PVP enabled.
-     * %1$s - attacked player's name
-     */
-    MSG_ATTACK_CANCELLED_PLAYER_DOES_NOT_HAVE_PVP_ENABLED ("MsgAttackCancelledPlayerDoesNotHavePVPEnabled", "%1$s - attacked player's name", "&7Attack cancelled - %1$s does not have PVP enabled"),
-
-    /**
-     * Message telling user that they cannot switch their PVP status, as they
-     * still have time until their cooldown is up.
-     * %1$s - seconds remaining
-     * %2$s - world name
-     */
-    MSG_CHANGE_CANCELLED_DUE_TO_COOLDOWN("MsgChangeCancelledDueToCooldown", "%1$s - seconds remaining\n# %2$s - world name", "&7Change cancelled - '%1$s' seconds till you can change your PVP status in '%2$s'"),
-
-    /**
-     * Message telling user the default PVP status of the server has been set.
-     * %1$s - server's default PVP status
-     */
-    MSG_SERVER_PVP_SET ("MsgServerDefaultSet", "%1$s - server's default PVP status", "&7Server default PVP status set to '%1$s'"),
-
-    /**
-     * Message telling user the default PVP status of a world has been set.
-     * %1$s - world name
-     * %2$s - world's default PVP status
-     */
-    MSG_WORLD_PVP_SET("MsgWorldPVPSet", "%1$s - world name\n# %2$s - world's default PVP status", "&7Default PVP status of '%1$s' set to '%2$s'"),
-
-    /**
-     * Message telling player their PVP status in a world.
-     * %1$s - world name
-     * %2$s - PVP status
-     */
-    MSG_YOU_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS ("MsgYouSetYourPVPStatusInWORLDNAMEToSTATUS", "%1$s - world name\n# %2$s - PVP status", "&7You set your PVP status in '%1$s' to '%2$s'"),
-
-    /**
-     * Message telling user they set the PVP status of a player in a world.
-     * %1$s - player name
-     * %2$s - world name
-     * %3$s - PVP status
-     */
-    MSG_YOU_SET_THE_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_TO_STATUS ("MsgYouSetThePVPStatusOfPLAYERNAMEInWORLDNAMEToSTATUS", "%1$s - player name\n# %2$s - world name\n# %3$s - PVP status", "&7You set the PVP status of '%1$s' in '%2$s' to '%3$s'"),
-
-    /**
-     * Message telling player that a user set their PVP status in a world.
-     * %1$s - sender name
-     * %2$s - world name
-     * %3$s - PVP status
-     */
-    MSG_SENDERNAME_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS ("MsgSENDERNAMESetYourPVPStatusInWORLDNAMEToSTATUS", "%1$s - sender name\n# %2$s - world name\n# %3$s - PVP status", "&7%1$s set your PVP status in '%2$s' to '%3$s'"),
-
-    /**
      * Message telling user the configuration has been reloaded.
      */
     MSG_CONFIG_RELOADED ("MsgConfigReloaded", null, "&7Configuration reloaded."),
-
-    /**
-     * Message telling player their PVP status in a world.
-     * %1$s - world name
-     * %2$s - PVP status
-     */
-    MSG_YOUR_PVP_STATUS_IN_WORLDNAME_IS_STATUS ("MsgYourPVPStatusInWORLDNAMEIsSTATUS", "%1$s - world name\n# %2$s - PVP status", "&7Your PVP status in '%1$s' is '%2$s'"),
-
-    /**
-     * Message telling user the PVP status of a player in a world.
-     * %1$s - player name
-     * %2$s - world name
-     * %3$s - PVP status
-     */
-    MSG_CURRENT_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_IS_STATUS ("MsgCurrentPVPStatusOfPLAYERNAMEInWORLDNAMEIsSTATUS", "%1$s - player name\n# %2$s - world name\n# %3$s - PVP status", "&7PVP status of '%1$s' in '%2$s' is '%3$s'"),
 
     /**
      * Message telling user the debug status has been set to a new value.
