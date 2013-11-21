@@ -30,9 +30,9 @@ public abstract class TownConfigUtils {
         final Set<String> townKeys = new HashSet(plugin.getConfig().getConfigurationSection(CONFIG_STRING).getKeys(false));
         for (String townname : townKeys) {
             try {
-                final Set<String> leaders = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + townname + ".Leaders"));
-                final Set<String> citizens = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + townname + ".Citizens"));
-                final Set<String> chunkWorlds = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + townname + ".Chunks"));
+                final Set<String> leaders = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Leaders"));
+                final Set<String> citizens = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Citizens"));
+                final Set<String> chunkWorlds = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Chunks"));
                 final Set<TownChunk> chunks = new HashSet();
                 for (String world : chunkWorlds) {
                     final Set<String> chunkKeys = new HashSet(plugin.getConfig().getList(townname + ".Chunks." + world));
