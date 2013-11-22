@@ -32,22 +32,22 @@ public abstract class TownConfigUtils {
             try {
                 final Set<String> leaders = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Leaders"));
                 final Set<String> citizens = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Citizens"));
-                final Set<String> chunkWorlds = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Chunks"));
+                final Set<String> chunkWorlds = new HashSet(plugin.getConfig().getConfigurationSection(CONFIG_STRING + "." + townname + ".Chunks").getKeys(false));
                 final Set<TownChunk> chunks = new HashSet();
                 for (String world : chunkWorlds) {
-                    final Set<String> chunkKeys = new HashSet(plugin.getConfig().getList(townname + ".Chunks." + world));
+                    final Set<String> chunkKeys = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Chunks." + world));
                     for (String chunk : chunkKeys) {
                         final int chunkX = Integer.parseInt(chunk.substring(0, chunk.indexOf(",")));
-                        final int chunkZ = Integer.parseInt(chunk.substring(chunk.indexOf(",")));
+                        final int chunkZ = Integer.parseInt(chunk.substring(chunk.indexOf(",") + 1));
                         final TownChunk townchunk = new TownChunk(chunkX, chunkZ, world);
                         chunks.add(townchunk);
                     }
                 }
                 final Town town = new Town(townname, leaders, citizens, chunks);
                 townsFromConfig.add(town);
-            } catch (NumberFormatException ex) { // TODO expand
-                plugin.getLogger().log(Level.WARNING, "NumberFormatException getting towns from config: {0}", ex.getMessage());
-            }
+            } catch (NumberFormatException ex) {
+                plugin.getLogger().log(Level.WARNING, "{0} getting towns from config: {1}", new Object[] {ex.getClass().getName(), ex.getMessage()});
+            } // TODO more catch statements?
         }
         return townsFromConfig;
     }

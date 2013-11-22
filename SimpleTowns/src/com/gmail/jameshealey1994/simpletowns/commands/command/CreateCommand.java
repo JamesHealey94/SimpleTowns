@@ -68,7 +68,7 @@ public class CreateCommand extends SimpleTownsCommand {
 
         // Check town doesn't already exist
         if (doesTownExist(plugin, townname)) {
-            sender.sendMessage(localisation.get(LocalisationEntry.MSG_TOWN_ALREADY_EXISTS, new Object[] {townname}));
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_ALREADY_EXISTS, new Object[] {townname}));
             return true;
         }
 
@@ -91,7 +91,7 @@ public class CreateCommand extends SimpleTownsCommand {
 
         // Create town
         final String path = "Towns.";
-        plugin.getConfig().set(path + townname + ".Leaders", leadername);
+        plugin.getConfig().set(path + townname + ".Leaders", Arrays.asList(leadername));
 
         // Log to file
         Logger.log(localisation.get(LocalisationEntry.LOG_TOWN_CREATED, new Object[] {townname, player.getName()}), plugin);

@@ -63,6 +63,13 @@ public enum LocalisationEntry {
     ERR_TOO_MANY_ARGUMENTS ("MsgTooManyArguments", null, "&cToo many arguments"),
 
     /**
+     * Message telling player that they cannot perform an action as they are not
+     * a leader in a certain town.
+     * %1$s - town name
+     */
+    ERR_NOT_LEADER ("MsgNotLeader", "%1$s - town name", "&cPermission denied - You are not a town leader in '%1$s'"),
+
+    /**
      * Message telling player they attacked another player, and how much damage
      * they inflicted on that player.
      * Only shown when in debug mode.
@@ -111,7 +118,13 @@ public enum LocalisationEntry {
      * Message telling player that a specified town already exists.
      * %1$s - town name
      */
-    MSG_TOWN_ALREADY_EXISTS ("MsgTownAlreadyExists", "%1$s - town name", "&cTown named '%1$s' already exists!"),
+    ERR_TOWN_ALREADY_EXISTS ("MsgTownAlreadyExists", "%1$s - town name", "&cTown named '%1$s' already exists!"),
+
+    /**
+     * Message telling player that they just claimed a chunk for a town.
+     * %1$s - town name
+     */
+    MSG_CHUNK_CLAIMED ("MsgChunkClaimed", "%1$s - town name", "&7Chunk claimed for '%1$s'"),
 
     /**
      * Message telling player that a chunk they tried to claim already belongs

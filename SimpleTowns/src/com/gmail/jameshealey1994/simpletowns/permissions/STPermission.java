@@ -30,6 +30,11 @@ public enum STPermission {
     CREATE ("simpletowns.create"),
 
     /**
+     * Permission for ClaimCommand.
+     */
+    CLAIM ("simpletowns.claim"),
+
+    /**
      * Permission for ListCommand.
      */
     LIST ("simpletowns.list");
