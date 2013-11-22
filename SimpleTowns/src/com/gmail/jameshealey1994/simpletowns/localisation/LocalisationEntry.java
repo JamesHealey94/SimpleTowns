@@ -158,6 +158,12 @@ public enum LocalisationEntry {
     MSG_DEBUG_SET_TO_STATUS ("MsgDebugSetToSTATUS", "%1$s - debug status", "&7Debug status set to '%1$s'"),
 
     /**
+     * Message telling user the log status has been set to a new value.
+     * %1$s - logging status
+     */
+    MSG_LOG_STATUS_SET ("MsgLogStatusSet", "%1$s - loggin status", "&7Logging status set to '%1$s'"),
+
+    /**
      * Description for Help command.
      */
     DESCRIPTION_HELP ("DescHelp", null, "Shows help menu"),

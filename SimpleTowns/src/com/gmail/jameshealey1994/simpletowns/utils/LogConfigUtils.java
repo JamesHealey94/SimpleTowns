@@ -1,5 +1,6 @@
 package com.gmail.jameshealey1994.simpletowns.utils;
 
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
 /**
@@ -34,6 +35,18 @@ public abstract class LogConfigUtils {
     public static boolean isEnabled(Plugin plugin) {
         return  plugin.getConfig().getBoolean(CONFIG_STRING + ".Enabled",
                 DEFAULT_ENABLED);
+    }
+
+    /**
+     * Sets the logging mode for the plugin, then saves the config file.
+     *
+     * @param sender        sender of the status
+     * @param status        new status
+     * @param plugin        plugin with associated config file
+     */
+    public static void setEnabled(CommandSender sender, boolean status, Plugin plugin) {
+        plugin.getConfig().set(CONFIG_STRING + ".Enabled", status);
+        plugin.saveConfig();
     }
 
     /**

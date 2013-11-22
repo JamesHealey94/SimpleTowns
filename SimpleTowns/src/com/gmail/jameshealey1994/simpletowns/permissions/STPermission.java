@@ -20,6 +20,11 @@ public enum STPermission {
     DEBUG ("simpletowns.debug"),
 
     /**
+     * Permission for LogCommand.
+     */
+    LOG ("simpletowns.log"),
+
+    /**
      * Permission for ReloadCommand.
      */
     RELOAD ("simpletowns.reload"),
