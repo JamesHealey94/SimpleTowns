@@ -4,6 +4,7 @@ import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
 import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
+import com.gmail.jameshealey1994.simpletowns.utils.TownConfigUtils;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -28,6 +29,7 @@ public class ReloadCommand extends SimpleTownsCommand {
     @Override
     public boolean execute(SimpleTowns plugin, CommandSender sender, String commandLabel, String[] args) {
         plugin.reloadConfig();
+        plugin.setTowns(TownConfigUtils.getTownsFromConfig(plugin));
         sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CONFIG_RELOADED));
         return true;
     }
