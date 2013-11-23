@@ -1,17 +1,19 @@
 package com.gmail.jameshealey1994.simpletowns;
 
 import com.gmail.jameshealey1994.simpletowns.object.Town;
-import com.gmail.jameshealey1994.simpletowns.commands.DefaultSimpleTownsCommandEnvironment;
-import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
-import com.gmail.jameshealey1994.simpletowns.commands.SimpleTownsCommandEnvironment;
-import com.gmail.jameshealey1994.simpletowns.commands.SimpleTownsCommandExecutor;
+import com.gmail.jameshealey1994.simpletowns.commands.DefaultSTCommandEnvironment;
+import com.gmail.jameshealey1994.simpletowns.commands.command.STCommand;
+import com.gmail.jameshealey1994.simpletowns.commands.STCommandEnvironment;
+import com.gmail.jameshealey1994.simpletowns.commands.STCommandExecutor;
 import com.gmail.jameshealey1994.simpletowns.commands.command.HelpCommand;
-import com.gmail.jameshealey1994.simpletowns.listeners.SimpleTownsListener;
+import com.gmail.jameshealey1994.simpletowns.listeners.STListener;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisable;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
-import com.gmail.jameshealey1994.simpletowns.utils.TownConfigUtils;
+import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
+import com.gmail.jameshealey1994.simpletowns.utils.TownUtils;
 import java.util.HashSet;
 import java.util.Set;
+import org.bukkit.Chunk;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -26,7 +28,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
      * The current command environment for the plugin (subset of commands
      * accessible from the current state of the plugin).
      */
-    private SimpleTownsCommandEnvironment commandEnvironment = new DefaultSimpleTownsCommandEnvironment();
+    private STCommandEnvironment commandEnvironment = new DefaultSTCommandEnvironment();
 
     /**
      * The current localisation for the plugin.
@@ -45,13 +47,13 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
         saveDefaultConfig();
 
         // Load towns from config
-        this.towns = TownConfigUtils.getTownsFromConfig(this);
+        this.towns = TownUtils.getTownsFromConfig(this);
 
         // Register events
-        getServer().getPluginManager().registerEvents(new SimpleTownsListener(this), this);
+        getServer().getPluginManager().registerEvents(new STListener(this), this);
 
         // Set command executors and default command
-        getCommand("towns").setExecutor(new SimpleTownsCommandExecutor(this, new HelpCommand()));
+        getCommand("towns").setExecutor(new STCommandExecutor(this, new HelpCommand()));
     }
 
     /**
@@ -59,7 +61,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
      *
      * @return      commands belonging to the plugin
      */
-    public SimpleTownsCommand[] getCommands() {
+    public STCommand[] getCommands() {
         return commandEnvironment.getCommands();
     }
 
@@ -68,7 +70,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
      *
      * @return      the current command environment for the plugin
      */
-    public SimpleTownsCommandEnvironment getCommandEnvironment() {
+    public STCommandEnvironment getCommandEnvironment() {
         return commandEnvironment;
     }
 
@@ -77,7 +79,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
      *
      * @param commandEnvironment    the new command environment for the plugin
      */
-    public void setCommandEnvironment(SimpleTownsCommandEnvironment commandEnvironment) {
+    public void setCommandEnvironment(STCommandEnvironment commandEnvironment) {
         this.commandEnvironment = commandEnvironment;
     }
 
@@ -121,6 +123,25 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
         for (Town t : getTowns()) {
             if (t.getName().equalsIgnoreCase(townname)) {
                 return t;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns Town that owns the passed Chunk.
+     * If a town is not found, null is returned.
+     *
+     * @param chunk     chunk possibly owned by a Town
+     * @return          town that owns the passed Chunk, or null, if no such
+     *                  town is found
+     */
+    public Town getTown(Chunk chunk) {
+        for (Town t : getTowns()) {
+            for (TownChunk tc : t.getTownChunks()) {
+                if (tc.equalsChunk(chunk)) {
+                    return t;
+                }
             }
         }
         return null;

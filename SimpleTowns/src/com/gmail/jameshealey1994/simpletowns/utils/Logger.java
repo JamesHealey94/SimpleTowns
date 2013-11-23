@@ -16,8 +16,9 @@ public abstract class Logger {
      * @param plugin        plugin with config
      */
     public static void log(String message, Plugin plugin) {
-        if (LogConfigUtils.isEnabled(plugin)) {
+        if (LogUtils.isEnabled(plugin)) {
             // TODO
+            // current date and time + message
         }
     }
 }

@@ -16,7 +16,7 @@ import org.bukkit.command.CommandSender;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class InfoCommand extends SimpleTownsCommand {
+public class InfoCommand extends STCommand {
 
     /**
      * Constructor to add aliases and permissions.
@@ -39,27 +39,27 @@ public class InfoCommand extends SimpleTownsCommand {
 
         final Town town = plugin.getTown(args[0]);
         if (town == null) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_NOT_FOUND, new Object[] {args[0]}));
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_NOT_FOUND, args[0]));
             return true;
         }
 
-        sender.sendMessage(localisation.get(LocalisationEntry.INFO_HEADER, new Object[] {town.getName()}));
+        sender.sendMessage(localisation.get(LocalisationEntry.INFO_HEADER, town.getName()));
         if (!(town.getLeaders().isEmpty())) {
             sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_LEADERS_HEADER));
             for (String s : town.getLeaders()) {
-                sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_LEADERS_ENTRY, new Object[] {s}));
+                sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_LEADERS_ENTRY, s));
             }
         }
         if (!(town.getCitizens().isEmpty())) {
             sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CITIZENS_HEADER));
             for (String s : town.getCitizens()) {
-                sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CITIZENS_ENTRY, new Object[] {s}));
+                sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CITIZENS_ENTRY, s));
             }
         }
         if (!(town.getTownChunks().isEmpty())) {
             sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CHUNKS_HEADER));
             for (TownChunk tc : town.getTownChunks()) {
-                sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CHUNKS_ENTRY, new Object[] {tc.getWorldname(), tc.getX(), tc.getZ()}));
+                sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CHUNKS_ENTRY, tc.getWorldname(), tc.getX(), tc.getZ()));
             }
         }
         return true;

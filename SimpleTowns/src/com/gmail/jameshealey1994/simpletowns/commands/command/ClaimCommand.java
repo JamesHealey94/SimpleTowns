@@ -19,7 +19,7 @@ import org.bukkit.entity.Player;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class ClaimCommand extends SimpleTownsCommand {
+public class ClaimCommand extends STCommand {
 
     /**
      * Constructor to add aliases and permissions.
@@ -50,31 +50,27 @@ public class ClaimCommand extends SimpleTownsCommand {
 
         // Check town exists
         if (town == null) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_NOT_FOUND, new Object[] {townname}));
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_NOT_FOUND, townname));
             return true;
         }
 
         // Check they're a leader of that town.
         if (!(town.getLeaders().contains(sender.getName()))) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_NOT_LEADER, new Object[] {townname}));
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_NOT_LEADER, townname));
             return true;
         }
 
         // Check there isn't already a town in that chunk
         final Chunk chunk = player.getLocation().getChunk();
+        final Town chunkOwner = plugin.getTown(chunk);
+        if (chunkOwner != null) {
+            sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_ALREADY_CLAIMED, chunkOwner.getName()));
+        }
+
         final int chunkX = chunk.getX();
         final int chunkZ = chunk.getZ();
         final String worldname = chunk.getWorld().getName();
         final TownChunk townchunk = new TownChunk(chunkX, chunkZ, worldname);
-
-        for (Town t : plugin.getTowns()) {
-            for (TownChunk tc : t.getTownChunks()) {
-                if (tc.equalsChunk(chunk)) {
-                    sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_ALREADY_CLAIMED, new Object[] {t.getName()}));
-                    return true;
-                }
-            }
-        }
 
         final String path = "Towns.";
 
@@ -86,13 +82,13 @@ public class ClaimCommand extends SimpleTownsCommand {
         plugin.getTown(townname).getTownChunks().add(townchunk);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_CHUNK_CLAIMED, new Object[] {townname, sender.getName(), worldname, chunkX, chunkZ}), plugin);
+        Logger.log(localisation.get(LocalisationEntry.LOG_CHUNK_CLAIMED, townname, sender.getName(), worldname, chunkX, chunkZ), plugin);
 
         // Save config
         plugin.saveConfig();
 
         // Send confimation message to sender
-        sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_CLAIMED, new Object[] {townname})); // TODO change new Object[] to varargs.
+        sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_CLAIMED, townname));
         return true;
     }
 

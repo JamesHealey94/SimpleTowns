@@ -12,7 +12,7 @@ import org.bukkit.plugin.Plugin;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public abstract class TownConfigUtils {
+public abstract class TownUtils {
 
     /**
      * The path to the values in the config this class is interacting with.
@@ -26,16 +26,16 @@ public abstract class TownConfigUtils {
      * @return              towns from config
      */
     public static Set<Town> getTownsFromConfig(Plugin plugin) {
-        final Set<Town> townsFromConfig = new HashSet();
-        final Set<String> townKeys = new HashSet(plugin.getConfig().getConfigurationSection(CONFIG_STRING).getKeys(false));
+        final Set<Town> townsFromConfig = new HashSet<>();
+        final Set<String> townKeys = new HashSet<>(plugin.getConfig().getConfigurationSection(CONFIG_STRING).getKeys(false));
         for (String townname : townKeys) {
             try {
-                final Set<String> leaders = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Leaders"));
-                final Set<String> citizens = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Citizens"));
-                final Set<String> chunkWorlds = new HashSet(plugin.getConfig().getConfigurationSection(CONFIG_STRING + "." + townname + ".Chunks").getKeys(false));
-                final Set<TownChunk> chunks = new HashSet();
+                final Set<String> leaders = new HashSet<>(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Leaders"));
+                final Set<String> citizens = new HashSet<>(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Citizens"));
+                final Set<String> chunkWorlds = new HashSet<>(plugin.getConfig().getConfigurationSection(CONFIG_STRING + "." + townname + ".Chunks").getKeys(false));
+                final Set<TownChunk> chunks = new HashSet<>();
                 for (String world : chunkWorlds) {
-                    final Set<String> chunkKeys = new HashSet(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Chunks." + world));
+                    final Set<String> chunkKeys = new HashSet<>(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Chunks." + world));
                     for (String chunk : chunkKeys) {
                         final int chunkX = Integer.parseInt(chunk.substring(0, chunk.indexOf(",")));
                         final int chunkZ = Integer.parseInt(chunk.substring(chunk.indexOf(",") + 1));

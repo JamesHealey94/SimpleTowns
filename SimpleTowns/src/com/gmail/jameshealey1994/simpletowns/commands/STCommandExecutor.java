@@ -1,6 +1,6 @@
 package com.gmail.jameshealey1994.simpletowns.commands;
 
-import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
+import com.gmail.jameshealey1994.simpletowns.commands.command.STCommand;
 import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.permissions.PermissionUtils;
@@ -14,7 +14,7 @@ import org.bukkit.command.CommandSender;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class SimpleTownsCommandExecutor implements CommandExecutor {
+public class STCommandExecutor implements CommandExecutor {
 
     /**
      * Plugin the commands are executed for.
@@ -25,7 +25,7 @@ public class SimpleTownsCommandExecutor implements CommandExecutor {
      * The default command, executed when no arguments are given.
      * Can be null, in which case no command is executed.
      */
-    private SimpleTownsCommand defaultCommand;
+    private STCommand defaultCommand;
 
     /**
      * Constructor to set plugin instance variable.
@@ -33,7 +33,7 @@ public class SimpleTownsCommandExecutor implements CommandExecutor {
      * @param plugin            plugin used to set internal plugin value
      * @param defaultCommand    default command, executed when no args are given
      */
-    public SimpleTownsCommandExecutor(SimpleTowns plugin, SimpleTownsCommand defaultCommand) {
+    public STCommandExecutor(SimpleTowns plugin, STCommand defaultCommand) {
         this.plugin = plugin;
         this.defaultCommand = defaultCommand;
     }
@@ -41,7 +41,7 @@ public class SimpleTownsCommandExecutor implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {
         if (args.length > 0) {
-            for (SimpleTownsCommand command : plugin.getCommands()) {
+            for (STCommand command : plugin.getCommands()) {
                 if (command.getAliases().contains(args[0].toLowerCase())) {
                     if (PermissionUtils.canExecute(command, sender)) {
                         return command.execute(plugin, sender, args[0], Arrays.copyOfRange(args, 1, args.length));

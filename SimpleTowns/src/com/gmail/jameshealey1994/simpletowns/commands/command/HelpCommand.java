@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class HelpCommand extends SimpleTownsCommand {
+public class HelpCommand extends STCommand {
 
     /**
      * Constructor to add aliases and permissions.
@@ -26,12 +26,11 @@ public class HelpCommand extends SimpleTownsCommand {
     public boolean execute(SimpleTowns plugin, CommandSender sender, String commandLabel, String[] args) {
         final Localisation localisation = plugin.getLocalisation();
 
-        sender.sendMessage(localisation.get(LocalisationEntry.HELP_HEADER,
-                new Object[] {plugin.getDescription().getFullName()}));
+        sender.sendMessage(localisation.get(LocalisationEntry.HELP_HEADER, plugin.getDescription().getFullName()));
 
-        for (SimpleTownsCommand command : plugin.getCommands()) {
+        for (STCommand command : plugin.getCommands()) {
             if (PermissionUtils.canExecute(command, sender, true)) {
-                sender.sendMessage(localisation.get(LocalisationEntry.HELP_ENTRY, new Object[] {command.aliases.get(0), command.getDescription(localisation)}));
+                sender.sendMessage(localisation.get(LocalisationEntry.HELP_ENTRY, command.aliases.get(0), command.getDescription(localisation)));
             }
         }
         return true;

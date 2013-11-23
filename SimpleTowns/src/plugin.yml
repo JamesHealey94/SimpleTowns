@@ -11,6 +11,24 @@ commands:
         usage: Command used incorrectly! Use /<command> help for help!
 
 permissions:
+    simpletowns.create:
+        description: Allows you to create new towns
+        default: false
+    simpletowns.claim:
+        description: Allows you to claim chunks for towns you are a leader of
+        default: false
+    simpletowns.delete:
+        description: Allows you to delete towns for which you are a leader
+        default: false
+    simpletowns.info:
+        description: Allows you to view information on a certain town
+        default: false
+    simpletowns.list:
+        description: Allows you to view a list of towns
+        default: false
+    simpletowns.log:
+        description: Allows you to switch logging mode on or off
+        default: false
     simpletowns.debug:
         description: Allows you to switch debug mode on or off
         default: false

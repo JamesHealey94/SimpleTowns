@@ -4,7 +4,7 @@ import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
 import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
-import com.gmail.jameshealey1994.simpletowns.utils.TownConfigUtils;
+import com.gmail.jameshealey1994.simpletowns.utils.TownUtils;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -15,7 +15,7 @@ import org.bukkit.command.CommandSender;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class ReloadCommand extends SimpleTownsCommand {
+public class ReloadCommand extends STCommand {
 
     /**
      * Constructor to add aliases and permissions.
@@ -29,7 +29,7 @@ public class ReloadCommand extends SimpleTownsCommand {
     @Override
     public boolean execute(SimpleTowns plugin, CommandSender sender, String commandLabel, String[] args) {
         plugin.reloadConfig();
-        plugin.setTowns(TownConfigUtils.getTownsFromConfig(plugin));
+        plugin.setTowns(TownUtils.getTownsFromConfig(plugin));
         sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CONFIG_RELOADED));
         return true;
     }

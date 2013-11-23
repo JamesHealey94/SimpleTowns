@@ -5,7 +5,7 @@ import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.utils.BooleanParser;
-import com.gmail.jameshealey1994.simpletowns.utils.LogConfigUtils;
+import com.gmail.jameshealey1994.simpletowns.utils.LogUtils;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -16,7 +16,7 @@ import org.bukkit.command.CommandSender;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class LogCommand extends SimpleTownsCommand {
+public class LogCommand extends STCommand {
 
     /**
      * Constructor to add aliases and permissions.
@@ -37,14 +37,14 @@ public class LogCommand extends SimpleTownsCommand {
             return false;
         }
 
-        final boolean current = LogConfigUtils.isEnabled(plugin);
+        final boolean current = LogUtils.isEnabled(plugin);
         final Boolean status = BooleanParser.parse(args[0], current);
         if (status == null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;
         }
-        LogConfigUtils.setEnabled(sender, status, plugin);
-        sender.sendMessage(localisation.get(LocalisationEntry.MSG_LOG_STATUS_SET, new Object[] {LogConfigUtils.isEnabled(plugin)}));
+        LogUtils.setEnabled(sender, status, plugin);
+        sender.sendMessage(localisation.get(LocalisationEntry.MSG_LOG_STATUS_SET, LogUtils.isEnabled(plugin)));
         return true;
     }
 

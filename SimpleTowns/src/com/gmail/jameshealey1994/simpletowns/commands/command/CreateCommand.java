@@ -20,7 +20,7 @@ import org.bukkit.entity.Player;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class CreateCommand extends SimpleTownsCommand {
+public class CreateCommand extends STCommand {
 
     /**
      * Constructor to add aliases and permissions.
@@ -68,7 +68,7 @@ public class CreateCommand extends SimpleTownsCommand {
 
         // Check town doesn't already exist
         if (doesTownExist(plugin, townname)) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_ALREADY_EXISTS, new Object[] {townname}));
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_ALREADY_EXISTS, townname));
             return true;
         }
 
@@ -83,7 +83,7 @@ public class CreateCommand extends SimpleTownsCommand {
         for (Town t : plugin.getTowns()) {
             for (TownChunk tc : t.getTownChunks()) {
                 if (tc.equalsChunk(chunk)) {
-                    sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_ALREADY_CLAIMED, new Object[] {t.getName()}));
+                    sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_ALREADY_CLAIMED, t.getName()));
                     return true;
                 }
             }
@@ -94,24 +94,24 @@ public class CreateCommand extends SimpleTownsCommand {
         plugin.getConfig().set(path + townname + ".Leaders", Arrays.asList(leadername));
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_TOWN_CREATED, new Object[] {townname, player.getName()}), plugin);
-        Logger.log(localisation.get(LocalisationEntry.LOG_TOWN_LEADER_ADDED, new Object[] {townname, leadername, player.getName()}), plugin);
+        Logger.log(localisation.get(LocalisationEntry.LOG_TOWN_CREATED, townname, player.getName()), plugin);
+        Logger.log(localisation.get(LocalisationEntry.LOG_TOWN_LEADER_ADDED, townname, leadername, player.getName()), plugin);
 
         // Add first chunk to town
         plugin.getConfig().set(path + townname + ".Chunks." + worldname, Arrays.asList(chunkX + "," + chunkZ));
         plugin.getTowns().add(new Town(townname, leadername, townchunk));
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_CHUNK_CLAIMED, new Object[] {townname, player.getName(), worldname, chunkX, chunkZ}), plugin);
+        Logger.log(localisation.get(LocalisationEntry.LOG_CHUNK_CLAIMED, townname, player.getName(), worldname, chunkX, chunkZ), plugin);
 
         // Save config
         plugin.saveConfig();
 
         // Send confimation message to sender
-        sender.sendMessage(localisation.get(LocalisationEntry.MSG_TOWN_CREATED, new Object[] {townname}));
+        sender.sendMessage(localisation.get(LocalisationEntry.MSG_TOWN_CREATED, townname));
 
-        // Broadcast to server? TODO add config value
-        plugin.getServer().broadcastMessage(localisation.get(LocalisationEntry.MSG_TOWN_CREATED_BROADCAST, new Object[] {townname}));
+        // Broadcast to server?
+        plugin.getServer().broadcastMessage(localisation.get(LocalisationEntry.MSG_TOWN_CREATED_BROADCAST, townname));
 
         return true;
     }

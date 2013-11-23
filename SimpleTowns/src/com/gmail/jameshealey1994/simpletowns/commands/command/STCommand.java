@@ -12,7 +12,7 @@ import org.bukkit.permissions.Permission;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public abstract class SimpleTownsCommand {
+public abstract class STCommand {
 
     /**
      * Aliases for the command.

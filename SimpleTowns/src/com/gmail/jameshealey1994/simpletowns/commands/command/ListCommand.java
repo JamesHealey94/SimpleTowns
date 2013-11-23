@@ -15,7 +15,7 @@ import org.bukkit.command.CommandSender;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class ListCommand extends SimpleTownsCommand {
+public class ListCommand extends STCommand {
 
     /**
      * Constructor to add aliases and permissions.
@@ -37,7 +37,7 @@ public class ListCommand extends SimpleTownsCommand {
 
         sender.sendMessage(localisation.get(LocalisationEntry.LIST_HEADER));
         for (Town t : plugin.getTowns()) {
-            sender.sendMessage(localisation.get(LocalisationEntry.LIST_ENTRY, new Object[] {t.getName()}));
+            sender.sendMessage(localisation.get(LocalisationEntry.LIST_ENTRY, t.getName()));
             // TODO pages?
         }
         return true;

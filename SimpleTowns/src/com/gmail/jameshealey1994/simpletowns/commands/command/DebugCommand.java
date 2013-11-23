@@ -5,7 +5,7 @@ import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.utils.BooleanParser;
-import com.gmail.jameshealey1994.simpletowns.utils.DebugConfigUtils;
+import com.gmail.jameshealey1994.simpletowns.utils.DebugUtils;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -16,7 +16,7 @@ import org.bukkit.command.CommandSender;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class DebugCommand extends SimpleTownsCommand {
+public class DebugCommand extends STCommand {
 
     /**
      * Constructor to add aliases and permissions.
@@ -36,14 +36,14 @@ public class DebugCommand extends SimpleTownsCommand {
             return false;
         }
 
-        final boolean current = DebugConfigUtils.getDebugEnabled(plugin);
+        final boolean current = DebugUtils.isEnabled(plugin);
         final Boolean debugStatus = BooleanParser.parse(args[0], current);
         if (debugStatus == null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;
         }
-        DebugConfigUtils.setDebugEnabled(sender, debugStatus, plugin);
-        sender.sendMessage(localisation.get(LocalisationEntry.MSG_DEBUG_SET_TO_STATUS, new Object[] {DebugConfigUtils.getDebugEnabled(plugin)}));
+        DebugUtils.setEnabled(sender, debugStatus, plugin);
+        sender.sendMessage(localisation.get(LocalisationEntry.MSG_DEBUG_SET_TO_STATUS, DebugUtils.isEnabled(plugin)));
         return true;
     }
 

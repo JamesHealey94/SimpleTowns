@@ -8,7 +8,7 @@ import com.gmail.jameshealey1994.simpletowns.commands.command.InfoCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.command.ListCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.command.LogCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.command.ReloadCommand;
-import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
+import com.gmail.jameshealey1994.simpletowns.commands.command.STCommand;
 
 /**
  * Represents the default command environment for the SimpleTowns plugin.
@@ -16,14 +16,14 @@ import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand
  * @author Saul Johnson
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class DefaultSimpleTownsCommandEnvironment extends SimpleTownsCommandEnvironment {
+public class DefaultSTCommandEnvironment extends STCommandEnvironment {
 
     /**
      * Initialises a new instance of the default command environment for the
      * SimpleTowns plugin.
      */
-    public DefaultSimpleTownsCommandEnvironment() {
-        super(new SimpleTownsCommand[] {
+    public DefaultSTCommandEnvironment() {
+        super(new STCommand[] {
             new HelpCommand(),
             new ReloadCommand(),
             new DebugCommand(),

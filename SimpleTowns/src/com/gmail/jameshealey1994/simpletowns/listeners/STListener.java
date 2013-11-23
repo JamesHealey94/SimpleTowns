@@ -15,7 +15,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class SimpleTownsListener implements Listener {
+public class STListener implements Listener {
 
     /**
      * Plugin associated with the Listener.
@@ -27,7 +27,7 @@ public class SimpleTownsListener implements Listener {
      *
      * @param plugin    plugin associated with the listener
      */
-    public SimpleTownsListener(SimpleTowns plugin) {
+    public STListener(SimpleTowns plugin) {
         this.plugin = plugin;
     }
 

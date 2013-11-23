@@ -1,6 +1,6 @@
 package com.gmail.jameshealey1994.simpletowns.permissions;
 
-import com.gmail.jameshealey1994.simpletowns.commands.command.SimpleTownsCommand;
+import com.gmail.jameshealey1994.simpletowns.commands.command.STCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
@@ -21,7 +21,7 @@ public abstract class PermissionUtils {
      * @param sender    the sender of the command
      * @return          if there's a chance the sender can execute the command
      */
-    public static boolean canExecute(SimpleTownsCommand command, CommandSender sender) {
+    public static boolean canExecute(STCommand command, CommandSender sender) {
         return ((!(sender instanceof Player))
                 || ((sender instanceof Player) && (canExecute(command, sender, true))));
     }
@@ -35,7 +35,7 @@ public abstract class PermissionUtils {
      *                      console, else false
      * @return              if a player has permissions for the command
      */
-    public static boolean canExecute(SimpleTownsCommand command, CommandSender sender, boolean allowConsole) {
+    public static boolean canExecute(STCommand command, CommandSender sender, boolean allowConsole) {
         if (sender instanceof Player) {
             if (command.getPermissions().isEmpty()) {
                 return true;
