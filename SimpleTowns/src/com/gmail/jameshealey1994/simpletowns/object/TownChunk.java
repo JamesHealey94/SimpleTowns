@@ -75,6 +75,38 @@ public class TownChunk {
      * @return      If the passed chunk is equal to the current TownChunk object
      */
     public boolean equalsChunk(Chunk c) {
-        return (c.getWorld().getName().equals(getWorldname()) && c.getX() == getX() && c.getZ() == getZ());
+        return (c.getWorld().getName().equals(getWorldname())
+                && c.getX() == getX()
+                && c.getZ() == getZ());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 29 * hash + this.x;
+        hash = 29 * hash + this.z;
+        hash = 29 * hash + this.worldname.hashCode();
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TownChunk other = (TownChunk) obj;
+        if (this.x != other.x) {
+            return false;
+        }
+        if (this.z != other.z) {
+            return false;
+        }
+        if (!this.worldname.equalsIgnoreCase(other.worldname)) {
+            return false;
+        }
+        return true;
     }
 }

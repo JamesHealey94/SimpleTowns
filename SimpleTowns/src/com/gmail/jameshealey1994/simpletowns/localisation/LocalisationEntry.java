@@ -70,6 +70,14 @@ public enum LocalisationEntry {
     ERR_NOT_LEADER ("MsgNotLeader", "%1$s - town name", "&cPermission denied - You are not a town leader in '%1$s'"),
 
     /**
+     * Message telling user that no town owns a specific chunk.
+     * %1$s - world name
+     * %2$s - chunk X
+     * %3$s - chunk Z
+     */
+    ERR_NO_TOWN_OWNS_CHUNK ("MsgNoTownOwnsChunk", "%1$s - world name\n# %2$s - chunk X\n# %3$s - chunk Z", "&cNo town owns chunk: '%1$s (%2$s,%3$s)'"),
+
+    /**
      * Message telling player they attacked another player, and how much damage
      * they inflicted on that player.
      * Only shown when in debug mode.
@@ -115,6 +123,16 @@ public enum LocalisationEntry {
     LOG_CHUNK_CLAIMED ("LogChunkClaimed", "%1$s - town name\n# %2$s - player name\n# %3$s - world name\n# %4$s - chunk X\n# %5$s - chunk Z", "Chunk (%4$s, %5$s) in world %3$s claimed for town '%1$s' by player '%2$s'"),
 
     /**
+     * Message logged to file when a chunk is unclaimed.
+     * %1$s - town name
+     * %2$s - player name
+     * %3$s - world name
+     * %4$s - chunk X
+     * %5$s - chunk Z
+     */
+    LOG_CHUNK_UNCLAIMED ("LogChunkUnclaimed", "%1$s - town name\n# %2$s - player name\n# %3$s - world name\n# %4$s - chunk X\n# %5$s - chunk Z", "Chunk (%4$s, %5$s) in world %3$s unclaimed from town '%1$s' by player '%2$s'"),
+
+    /**
      * Message telling player that a specified town already exists.
      * %1$s - town name
      */
@@ -125,6 +143,12 @@ public enum LocalisationEntry {
      * %1$s - town name
      */
     MSG_CHUNK_CLAIMED ("MsgChunkClaimed", "%1$s - town name", "&7Chunk claimed for '%1$s'"),
+
+    /**
+     * Message telling player that they just unclaimed a chunk.
+     * %1$s - town name
+     */
+    MSG_CHUNK_UNCLAIMED ("MsgChunkUnClaimed", "%1$s - town name", "&7Chunk unclaimed! No longer owned by town '%1$s'"),
 
     /**
      * Message telling player that a chunk they tried to claim already belongs
@@ -184,19 +208,9 @@ public enum LocalisationEntry {
     DESCRIPTION_DEBUG ("DescDebug", null, "Changes debug status"),
 
     /**
-     * Description for Set command.
+     * Description for Unclaim command.
      */
-    DESCRIPTION_SET ("DescSet", null, "Changes PVP status for [username] in [world] to <on / off>"),
-
-    /**
-     * Description for Set Server Default command.
-     */
-    DESCRIPTION_SET_SERVER_DEFAULT ("DescSetServerDefault", null, "Sets default PVP status for server to <on / off>"),
-
-    /**
-     * Description for Set World Default command.
-     */
-    DESCRIPTION_SET_WORLD_DEFAULT ("DescSetWorldDefault", null, "Sets default PVP status for [world] to <on / off>"),
+    DESCRIPTION_UNCLAIM ("DescUnclaim", null, "Removes a town's claim to a chunk"),
 
     /**
      * Description for Status command.

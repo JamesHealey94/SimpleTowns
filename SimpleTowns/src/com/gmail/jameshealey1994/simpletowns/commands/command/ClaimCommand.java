@@ -65,6 +65,7 @@ public class ClaimCommand extends STCommand {
         final Town chunkOwner = plugin.getTown(chunk);
         if (chunkOwner != null) {
             sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_ALREADY_CLAIMED, chunkOwner.getName()));
+            return true;
         }
 
         final int chunkX = chunk.getX();

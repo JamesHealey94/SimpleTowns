@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.object;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import org.bukkit.entity.Player;
 
@@ -147,5 +148,39 @@ public class Town {
      */
     public boolean isMember(Player player) {
         return (getCitizens().contains(player.getName()) || getLeaders().contains(player.getName()));
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 71 * hash + Objects.hashCode(this.name);
+        hash = 71 * hash + Objects.hashCode(this.leaders);
+        hash = 71 * hash + Objects.hashCode(this.citizens);
+        hash = 71 * hash + Objects.hashCode(this.chunks);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Town other = (Town) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.leaders, other.leaders)) {
+            return false;
+        }
+        if (!Objects.equals(this.citizens, other.citizens)) {
+            return false;
+        }
+        if (!Objects.equals(this.chunks, other.chunks)) {
+            return false;
+        }
+        return true;
     }
 }

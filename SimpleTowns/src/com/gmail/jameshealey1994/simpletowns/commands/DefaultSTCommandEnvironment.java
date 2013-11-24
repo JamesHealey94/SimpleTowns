@@ -1,14 +1,6 @@
 package com.gmail.jameshealey1994.simpletowns.commands;
 
-import com.gmail.jameshealey1994.simpletowns.commands.command.ClaimCommand;
-import com.gmail.jameshealey1994.simpletowns.commands.command.CreateCommand;
-import com.gmail.jameshealey1994.simpletowns.commands.command.DebugCommand;
-import com.gmail.jameshealey1994.simpletowns.commands.command.HelpCommand;
-import com.gmail.jameshealey1994.simpletowns.commands.command.InfoCommand;
-import com.gmail.jameshealey1994.simpletowns.commands.command.ListCommand;
-import com.gmail.jameshealey1994.simpletowns.commands.command.LogCommand;
-import com.gmail.jameshealey1994.simpletowns.commands.command.ReloadCommand;
-import com.gmail.jameshealey1994.simpletowns.commands.command.STCommand;
+import com.gmail.jameshealey1994.simpletowns.commands.command.*;
 
 /**
  * Represents the default command environment for the SimpleTowns plugin.
@@ -29,6 +21,7 @@ public class DefaultSTCommandEnvironment extends STCommandEnvironment {
             new DebugCommand(),
             new CreateCommand(),
             new ClaimCommand(),
+            new UnclaimCommand(),
             new ListCommand(),
             new InfoCommand(),
             new LogCommand()
