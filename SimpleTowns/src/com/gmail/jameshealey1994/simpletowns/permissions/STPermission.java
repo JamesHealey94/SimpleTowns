@@ -50,11 +50,11 @@ public enum STPermission {
     private String name;
 
     /**
-     * Constructor.
+     * Private constructor.
      *
      * @param name  the name of the permission
      */
-    STPermission(String name) {
+    private STPermission(String name) {
         this.name = name;
     }
 

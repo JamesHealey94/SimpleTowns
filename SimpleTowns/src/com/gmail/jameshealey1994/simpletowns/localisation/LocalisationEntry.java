@@ -313,7 +313,7 @@ public enum LocalisationEntry {
     private String defaultValue;
 
     /**
-     * Constructor.
+     * Private constructor.
      *
      * @param name          name of the entry, as found in the localisation file
      * @param usage         usage for the entry, used as a comment in the
@@ -321,7 +321,7 @@ public enum LocalisationEntry {
      * @param defaultValue  default value of the entry, as found in the
      *                      localisation file
      */
-    LocalisationEntry(String name, String usage, String defaultValue) {
+    private LocalisationEntry(String name, String usage, String defaultValue) {
         this.name = name;
         this.usage = usage;
         this.defaultValue = defaultValue;
