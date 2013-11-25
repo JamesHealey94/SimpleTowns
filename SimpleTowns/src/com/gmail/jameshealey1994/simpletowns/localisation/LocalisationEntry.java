@@ -198,11 +198,6 @@ public enum LocalisationEntry {
     DESCRIPTION_HELP ("DescHelp", null, "Shows help menu"),
 
     /**
-     * Description for Info command.
-     */
-    DESCRIPTION_INFO ("DescInfo", null, "Displays default PVP status of server and worlds"),
-
-    /**
      * Description for Reload command.
      */
     DESCRIPTION_RELOAD ("DescReload", null, "Reloads config values"),
@@ -210,7 +205,17 @@ public enum LocalisationEntry {
     /**
      * Description for Debug command.
      */
-    DESCRIPTION_DEBUG ("DescDebug", null, "Changes debug status"),
+    DESCRIPTION_DEBUG ("DescDebug", null, "Switch debug mode on or off"),
+
+    /**
+     * Description for Create command.
+     */
+    DESCRIPTION_CREATE ("DescCreate", null, "Creates a town with current chunk"),
+
+    /**
+     * Description for Claim command.
+     */
+    DESCRIPTION_CLAIM ("DescClaim", null, "Claims current chunk for town"),
 
     /**
      * Description for Unclaim command.
@@ -218,9 +223,19 @@ public enum LocalisationEntry {
     DESCRIPTION_UNCLAIM ("DescUnclaim", null, "Removes a town's claim to a chunk"),
 
     /**
-     * Description for Status command.
+     * Description for List command.
      */
-    DESCRIPTION_STATUS ("DescStatus", null, "Displays PVP status of [username] in [world]"),
+    DESCRIPTION_LIST ("DescList", null, "Display a list of towns"),
+
+    /**
+     * Description for Info command.
+     */
+    DESCRIPTION_INFO ("DescInfo", null, "Display information about a town"),
+
+    /**
+     * Description for Log command.
+     */
+    DESCRIPTION_LOG ("DescLog", null, "Switch logging on or off"),
 
     /**
      * Displayed at the top of the List command.

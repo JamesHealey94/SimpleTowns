@@ -45,6 +45,6 @@ public class ListCommand extends STCommand {
 
     @Override
     public String getDescription(Localisation localisation) {
-        return localisation.get(LocalisationEntry.DESCRIPTION_DEBUG);
+        return localisation.get(LocalisationEntry.DESCRIPTION_LIST);
     }
 }
