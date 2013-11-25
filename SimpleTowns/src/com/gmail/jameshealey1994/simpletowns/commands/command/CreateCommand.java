@@ -45,6 +45,10 @@ public class CreateCommand extends STCommand {
         final String leadername;
 
         switch (args.length) {
+            case 0: {
+                sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_TOWN_NAME));
+                return false;
+            }
             case 1: {
                 // ... townname
                 townname = args[0];

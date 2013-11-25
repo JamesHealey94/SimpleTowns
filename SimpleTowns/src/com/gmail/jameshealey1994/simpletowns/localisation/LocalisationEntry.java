@@ -29,6 +29,11 @@ public enum LocalisationEntry {
     ERR_SPECIFY_TOWN ("MsgSpecifyTown", null, "&cPlease specify a town"),
 
     /**
+     * Message telling user to specify a valid town name.
+     */
+    ERR_SPECIFY_TOWN_NAME ("MsgSpecifyTownName", null, "&cPlease specify a town name"),
+
+    /**
      * Message telling user that the town specified cannot be found.
      * %1$s - invalid town name
      */
