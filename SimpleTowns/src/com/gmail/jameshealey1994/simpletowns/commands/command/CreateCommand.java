@@ -62,6 +62,7 @@ public class CreateCommand extends STCommand {
                 break;
             }
             default: {
+                sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_NAMES_MUST_BE_A_SINGLE_WORD));
                 return false;
             }
         }
@@ -71,7 +72,7 @@ public class CreateCommand extends STCommand {
         // TODO validate leadername?
 
         // Check town doesn't already exist
-        if (doesTownExist(plugin, townname)) {
+        if (plugin.getTown(townname) != null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_ALREADY_EXISTS, townname));
             return true;
         }
@@ -79,19 +80,17 @@ public class CreateCommand extends STCommand {
         // Check there isn't already a town in that chunk
         final Player player = (Player) sender;
         final Chunk chunk = player.getLocation().getChunk();
+
+        final Town town = plugin.getTown(chunk);
+        if (town != null) {
+            sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_ALREADY_CLAIMED, town.getName()));
+            return true;
+        }
+
         final int chunkX = chunk.getX();
         final int chunkZ = chunk.getZ();
         final String worldname = chunk.getWorld().getName();
         final TownChunk townchunk = new TownChunk(chunkX, chunkZ, worldname);
-
-        for (Town t : plugin.getTowns()) {
-            for (TownChunk tc : t.getTownChunks()) {
-                if (tc.equalsChunk(chunk)) {
-                    sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_ALREADY_CLAIMED, t.getName()));
-                    return true;
-                }
-            }
-        }
 
         // Create town
         final String path = "Towns.";
@@ -123,21 +122,5 @@ public class CreateCommand extends STCommand {
     @Override
     public String getDescription(Localisation localisation) {
         return localisation.get(LocalisationEntry.DESCRIPTION_CREATE);
-    }
-
-    /**
-     * Returns if Town with passed name already exists.
-     *
-     * @param plugin        plugin with associated list of Towns
-     * @param townname      townname to be checked
-     * @return              if Town with passed name already exists
-     */
-    private boolean doesTownExist(SimpleTowns plugin, final String townname) {
-        for (Town t : plugin.getTowns()) {
-            if (t.getName().equalsIgnoreCase(townname)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

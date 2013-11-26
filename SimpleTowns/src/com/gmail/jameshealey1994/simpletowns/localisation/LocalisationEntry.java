@@ -34,6 +34,11 @@ public enum LocalisationEntry {
     ERR_SPECIFY_TOWN_NAME ("MsgSpecifyTownName", null, "&cPlease specify a town name"),
 
     /**
+     * Message telling user that town names must be a single word.
+     */
+    ERR_TOWN_NAMES_MUST_BE_A_SINGLE_WORD ("MsgTownNamesMustBeASingleWorld", null, "&cTown names must be a single word"),
+
+    /**
      * Message telling user that the town specified cannot be found.
      * %1$s - invalid town name
      */
@@ -173,7 +178,7 @@ public enum LocalisationEntry {
      * Message to confirm to sender that a town has been created.
      * %1$s - town name
      */
-    MSG_TOWN_CREATED ("MsgTownCreated", "%1$s - town name", "&6Congratulations, '%1$s' created!"),
+    MSG_TOWN_CREATED ("MsgTownCreated", "%1$s - town name", "&6Congratulations, you created Town '%1$s'!"),
 
     /**
      * Message to confirm to sender that a town has been deleted.
