@@ -35,6 +35,11 @@ public enum STPermission {
     CREATE ("simpletowns.create"),
 
     /**
+     * Permission for DeleteCommand.
+     */
+    DELETE ("simpletowns.delete"),
+
+    /**
      * Permission for ClaimCommand.
      */
     CLAIM ("simpletowns.claim"),

@@ -110,6 +110,13 @@ public enum LocalisationEntry {
     LOG_TOWN_CREATED ("LogTownCreated", "%1$s - town name\n# %2$s - player name", "New town '%1$s' created by '%2$s'"),
 
     /**
+     * Message logged to file when a town is deleted.
+     * %1$s - town name
+     * %2$s - player name
+     */
+    LOG_TOWN_DELETED ("LogTownDeleted", "%1$s - town name\n# %2$s - player name", "Town '%1$s' deleted by '%2$s'"),
+
+    /**
      * Message logged to file when a new leader is added to a town.
      * %1$s - town name
      * %2$s - leader name
@@ -169,11 +176,24 @@ public enum LocalisationEntry {
     MSG_TOWN_CREATED ("MsgTownCreated", "%1$s - town name", "&6Congratulations, '%1$s' created!"),
 
     /**
+     * Message to confirm to sender that a town has been deleted.
+     * %1$s - town name
+     */
+    MSG_TOWN_DELETED ("MsgTownDeleted", "%1$s - town name", "&dYou deleted Town '%1$s'"),
+
+    /**
      * Message to be broadcast to server telling players that a town has been
      * created.
      * %1$s - town name
      */
     MSG_TOWN_CREATED_BROADCAST ("MsgTownCreatedBroadcast", "%1$s - town name", "&6New town '%1$s' created!"),
+
+    /**
+     * Message to be broadcast to server telling players that a town has been
+     * deleted.
+     * %1$s - town name
+     */
+    MSG_TOWN_DELETED_BROADCAST ("MsgTownDeletedBroadcast", "%1$s - town name", "&6Town '%1$s' deleted"),
 
     /**
      * Message telling user the configuration has been reloaded.
@@ -211,6 +231,11 @@ public enum LocalisationEntry {
      * Description for Create command.
      */
     DESCRIPTION_CREATE ("DescCreate", null, "Creates a town with current chunk"),
+
+    /**
+     * Description for Delete command.
+     */
+    DESCRIPTION_DELETE ("DescDelete", null, "Deletes a specified town"),
 
     /**
      * Description for Claim command.
