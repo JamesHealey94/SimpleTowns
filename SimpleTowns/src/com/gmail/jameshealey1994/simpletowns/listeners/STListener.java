@@ -44,7 +44,7 @@ public class STListener implements Listener {
         for (Town t : plugin.getTowns()) {
             for (TownChunk c : t.getTownChunks()) {
                 if (c.equalsChunk(chunk)) {
-                    if (t.isMember(player)) {
+                    if (t.hasMember(player.getName())) {
                         break;
                     } else {
                         player.sendMessage("You aren't allowed to build here!"); // TODO - Change

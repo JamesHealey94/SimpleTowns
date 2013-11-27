@@ -143,11 +143,11 @@ public class Town {
      * Returns if the passed Player is a member of the Town.
      * Members can be citizens or leaders
      *
-     * @param player        player to be checked
-     * @return              if the passed Player is a member of the Town
+     * @param playername        name of player to be checked
+     * @return                  if the passed Player is a member of the Town
      */
-    public boolean isMember(Player player) {
-        return (getCitizens().contains(player.getName()) || getLeaders().contains(player.getName()));
+    public boolean hasMember(String playername) {
+        return (getCitizens().contains(playername) || getLeaders().contains(playername));
     }
 
     @Override

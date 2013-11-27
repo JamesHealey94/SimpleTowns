@@ -45,9 +45,9 @@ public abstract class TownUtils {
                 }
                 final Town town = new Town(townname, leaders, citizens, chunks);
                 townsFromConfig.add(town);
-            } catch (NumberFormatException ex) {
+            } catch (NumberFormatException | NullPointerException ex) {
                 plugin.getLogger().log(Level.WARNING, "{0} getting towns from config: {1}", new Object[] {ex.getClass().getName(), ex.getMessage()});
-            } // TODO more catch statements?
+            }
         }
         return townsFromConfig;
     }

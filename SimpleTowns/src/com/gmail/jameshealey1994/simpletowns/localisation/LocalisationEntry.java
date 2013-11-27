@@ -67,6 +67,14 @@ public enum LocalisationEntry {
     ERR_SPECIFY_PLAYER ("MsgSpecifyPlayer", null, "&cPlease specify a player"),
 
     /**
+     * Message telling user that a certain player is already a member of a
+     * certain town.
+     * %1$s - player name
+     * %2$s - town name
+     */
+    ERR_PLAYER_ALREADY_MEMBER ("MsgPlayerAlreadyMember", "%1$s - player name\n# %2$s - town name", "&cPlayer '%1$s' is already a member of Town '%2$s'"),
+
+    /**
      * Message telling user that they have sent too many arguments
      * for a command.
      */
@@ -150,10 +158,32 @@ public enum LocalisationEntry {
     LOG_CHUNK_UNCLAIMED ("LogChunkUnclaimed", "%1$s - town name\n# %2$s - player name\n# %3$s - world name\n# %4$s - chunk X\n# %5$s - chunk Z", "Chunk (%4$s, %5$s) in world %3$s unclaimed from town '%1$s' by player '%2$s'"),
 
     /**
+     * Message logged to file when a citizen is added to a town.
+     * %1$s - town name
+     * %2$s - sender name
+     * %3$s - citizen name
+     */
+    LOG_CITIZEN_ADDED ("LogCitizenAdded", "%1$s - town name\n# %2$s - sender name\n# %3$s - citizen name", "Citizen '%1$s' added to '%2$s' by '%3$s'"),
+
+    /**
      * Message telling player that a specified town already exists.
      * %1$s - town name
      */
     ERR_TOWN_ALREADY_EXISTS ("MsgTownAlreadyExists", "%1$s - town name", "&cTown named '%1$s' already exists!"),
+
+    /**
+     * Message telling player that they just added a citizen to a town.
+     * %1$s - town name
+     * %2$s - citizen name
+     */
+    MSG_CITIZEN_ADDED ("MsgCitizenAdded", "%1$s - town name\n# %2$s - citizen name", "&7Added Player '%2$s' to Town '%1$s' as a Citizen"),
+
+    /**
+     * Message telling player that they were just added to a town as a citizen.
+     * %1$s - town name
+     * %2$s - sender name
+     */
+    MSG_ADDED_AS_CITIZEN ("MsgAddedAsCitizen", "%1$s - town name\n# %2$s - sender name", "&7You were added to Town '%1$s' as a Citizen by '%2$s'"),
 
     /**
      * Message telling player that they just claimed a chunk for a town.
@@ -251,6 +281,11 @@ public enum LocalisationEntry {
      * Description for Unclaim command.
      */
     DESCRIPTION_UNCLAIM ("DescUnclaim", null, "Removes a town's claim to a chunk"),
+
+    /**
+     * Description for Add command.
+     */
+    DESCRIPTION_ADD ("DescAdd", null, "Adds citizen to a town"),
 
     /**
      * Description for List command.
