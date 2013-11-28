@@ -24,6 +24,7 @@ public class AddCommand extends STCommand {
     public AddCommand() {
         this.aliases.add("add");
         this.aliases.add("addplayer");
+        this.aliases.add("addmember");
         this.aliases.add("addcitizen");
     }
 
@@ -109,7 +110,7 @@ public class AddCommand extends STCommand {
         // Send message to citizen, if they're online
         final Player citizen = plugin.getServer().getPlayer(playername);
         if (citizen != null) {
-            sender.sendMessage(localisation.get(LocalisationEntry.MSG_ADDED_AS_CITIZEN, town.getName(), sender.getName()));
+            citizen.sendMessage(localisation.get(LocalisationEntry.MSG_ADDED_AS_CITIZEN, town.getName(), sender.getName()));
         }
         return true;
     }
