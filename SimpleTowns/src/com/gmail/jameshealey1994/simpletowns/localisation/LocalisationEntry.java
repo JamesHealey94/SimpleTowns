@@ -88,6 +88,14 @@ public enum LocalisationEntry {
     ERR_NOT_LEADER ("MsgNotLeader", "%1$s - town name", "&cPermission denied - You are not a town leader in '%1$s'"),
 
     /**
+     * Message telling user that a certain player is not a member of a certain
+     * town.
+     * %1$s - player name
+     * %2$s - town name
+     */
+    ERR_PLAYER_NOT_MEMBER ("MsgPlayerNotMember", "%1$s - player name\n# %2$s - town name", "&cPlayer '%1$s' is not a member of Town '%2$s'"),
+
+    /**
      * Message telling user that no town owns a specific chunk.
      * %1$s - world name
      * %2$s - chunk X
@@ -166,10 +174,32 @@ public enum LocalisationEntry {
     LOG_CITIZEN_ADDED ("LogCitizenAdded", "%1$s - town name\n# %2$s - sender name\n# %3$s - citizen name", "Citizen '%1$s' added to '%2$s' by '%3$s'"),
 
     /**
+     * Message logged to file when a citizen is added to a town.
+     * %1$s - town name
+     * %2$s - sender name
+     * %3$s - member name
+     */
+    LOG_TOWN_MEMBER_REMOVED ("LogTownMemberRemoved", "%1$s - town name\n# %2$s - sender name\n# %3$s - member name", "Player '%3$s' removed from Town '%1$s' by '%2$s'"),
+
+    /**
      * Message telling player that a specified town already exists.
      * %1$s - town name
      */
     ERR_TOWN_ALREADY_EXISTS ("MsgTownAlreadyExists", "%1$s - town name", "&cTown named '%1$s' already exists!"),
+
+    /**
+     * Message telling sender that a player has been removed from a town.
+     * %1$s - town name
+     * %2$s - member name
+     */
+    MSG_MEMBER_REMOVED ("MsgMemberRemoved", "%1$s - town name\n# %2$s - member name", "&7Player '%2$s' removed from Town '%1$s'"),
+
+    /**
+     * Message telling user they have been removed from a town.
+     * %1$s - town name
+     * %2$s - sender name
+     */
+    MSG_REMOVED_MEMBER ("MsgRemovedMember", "%1$s - town name\n# %2$s - sender name", "&7You have been removed from Town '%1$s' by '%2$s'"),
 
     /**
      * Message telling player that they just added a citizen to a town.
@@ -286,6 +316,11 @@ public enum LocalisationEntry {
      * Description for Add command.
      */
     DESCRIPTION_ADD ("DescAdd", null, "Adds citizen to a town"),
+
+    /**
+     * Description for Remove command.
+     */
+    DESCRIPTION_REMOVE ("DescRemove", null, "Removes a member from a town"),
 
     /**
      * Description for List command.
