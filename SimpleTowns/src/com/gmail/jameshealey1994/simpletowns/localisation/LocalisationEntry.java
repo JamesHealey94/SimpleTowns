@@ -75,6 +75,14 @@ public enum LocalisationEntry {
     ERR_PLAYER_ALREADY_MEMBER ("MsgPlayerAlreadyMember", "%1$s - player name\n# %2$s - town name", "&cPlayer '%1$s' is already a member of Town '%2$s'"),
 
     /**
+     * Message telling user that a certain player is already a leader of a
+     * certain town.
+     * %1$s - player name
+     * %2$s - town name
+     */
+    ERR_PLAYER_ALREADY_LEADER ("MsgPlayerAlreadyLeader", "%1$s - player name\n# %2$s - town name", "&cPlayer '%1$s' is already a leader in Town '%2$s'"),
+
+    /**
      * Message telling user that they have sent too many arguments
      * for a command.
      */
@@ -174,6 +182,14 @@ public enum LocalisationEntry {
     LOG_CITIZEN_ADDED ("LogCitizenAdded", "%1$s - town name\n# %2$s - sender name\n# %3$s - citizen name", "Citizen '%1$s' added to '%2$s' by '%3$s'"),
 
     /**
+     * Message logged to file when a citizen is promoted to leader in a town.
+     * %1$s - town name
+     * %2$s - sender name
+     * %3$s - citizen name
+     */
+    LOG_CITIZEN_PROMOTED ("LogCitizenPromoted", "%1$s - town name\n# %2$s - sender name\n# %3$s - citizen name", "Citizen '%1$s' promoted to Leader in Town '%2$s' by '%3$s'"),
+
+    /**
      * Message logged to file when a citizen is added to a town.
      * %1$s - town name
      * %2$s - sender name
@@ -214,6 +230,22 @@ public enum LocalisationEntry {
      * %2$s - sender name
      */
     MSG_ADDED_AS_CITIZEN ("MsgAddedAsCitizen", "%1$s - town name\n# %2$s - sender name", "&7You were added to Town '%1$s' as a Citizen by '%2$s'"),
+
+
+    /**
+     * Message telling player that they just promoted a citizen to leader in a
+     * town.
+     * %1$s - town name
+     * %2$s - citizen name
+     */
+    MSG_CITIZEN_PROMOTED ("MsgCitizenPromoted", "%1$s - town name\n# %2$s - citizen name", "&7Promoted Player '%2$s' to Leader in Town '%1$s'"),
+
+    /**
+     * Message telling player that they were just promoted to leader in a town.
+     * %1$s - town name
+     * %2$s - sender name
+     */
+    MSG_PROMOTED ("MsgPromoted", "%1$s - town name\n# %2$s - sender name", "&7You were promoted to leader in Town '%1$s' by '%2$s'"),
 
     /**
      * Message telling player that they just claimed a chunk for a town.
@@ -321,6 +353,11 @@ public enum LocalisationEntry {
      * Description for Remove command.
      */
     DESCRIPTION_REMOVE ("DescRemove", null, "Removes a member from a town"),
+
+    /**
+     * Description for Promote command.
+     */
+    DESCRIPTION_PROMOTE ("DescPromote", null, "Promotes a citizen to a leader in a town"),
 
     /**
      * Description for List command.
