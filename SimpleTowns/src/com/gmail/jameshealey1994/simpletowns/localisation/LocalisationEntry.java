@@ -82,6 +82,15 @@ public enum LocalisationEntry {
      */
     ERR_PLAYER_ALREADY_LEADER ("MsgPlayerAlreadyLeader", "%1$s - player name\n# %2$s - town name", "&cPlayer '%1$s' is already a leader in Town '%2$s'"),
 
+
+    /**
+     * Message telling user that a certain player is already a citizen in a
+     * certain town.
+     * %1$s - player name
+     * %2$s - town name
+     */
+    ERR_PLAYER_ALREADY_CITIZEN ("MsgPlayerAlreadyCitizen", "%1$s - player name\n# %2$s - town name", "&cPlayer '%1$s' is already a citizen in Town '%2$s'"),
+
     /**
      * Message telling user that they have sent too many arguments
      * for a command.
@@ -187,7 +196,15 @@ public enum LocalisationEntry {
      * %2$s - sender name
      * %3$s - citizen name
      */
-    LOG_CITIZEN_PROMOTED ("LogCitizenPromoted", "%1$s - town name\n# %2$s - sender name\n# %3$s - citizen name", "Citizen '%1$s' promoted to Leader in Town '%2$s' by '%3$s'"),
+    LOG_CITIZEN_PROMOTED ("LogCitizenPromoted", "%1$s - town name\n# %2$s - sender name\n# %3$s - citizen name", "Citizen '%3$s' promoted to Leader in Town '%1$s' by '%2$s'"),
+
+    /**
+     * Message logged to file when a leader is demoted to citizen in a town.
+     * %1$s - town name
+     * %2$s - sender name
+     * %3$s - leader name
+     */
+    LOG_LEADER_DEMOTED ("LogLeaderDemoted", "%1$s - town name\n# %2$s - sender name\n# %3$s - leader name", "Leader '%3$s' demoted to Citizen in Town '%1$s' by '%2$s'"),
 
     /**
      * Message logged to file when a citizen is added to a town.
@@ -231,7 +248,6 @@ public enum LocalisationEntry {
      */
     MSG_ADDED_AS_CITIZEN ("MsgAddedAsCitizen", "%1$s - town name\n# %2$s - sender name", "&7You were added to Town '%1$s' as a Citizen by '%2$s'"),
 
-
     /**
      * Message telling player that they just promoted a citizen to leader in a
      * town.
@@ -246,6 +262,21 @@ public enum LocalisationEntry {
      * %2$s - sender name
      */
     MSG_PROMOTED ("MsgPromoted", "%1$s - town name\n# %2$s - sender name", "&7You were promoted to leader in Town '%1$s' by '%2$s'"),
+
+    /**
+     * Message telling player that they just demoted a leader to citizen in a
+     * town.
+     * %1$s - town name
+     * %2$s - leader name
+     */
+    MSG_LEADER_DEMOTED ("MsgLeaderDemoted", "%1$s - town name\n# %2$s - leader name", "&7Demoted Player '%2$s' to Citizen in Town '%1$s'"),
+
+    /**
+     * Message telling player that they were just demoted to citizen in a town.
+     * %1$s - town name
+     * %2$s - sender name
+     */
+    MSG_DEMOTED ("MsgDemoted", "%1$s - town name\n# %2$s - sender name", "&7You were demoted to citizen in Town '%1$s' by '%2$s'"),
 
     /**
      * Message telling player that they just claimed a chunk for a town.
@@ -358,6 +389,11 @@ public enum LocalisationEntry {
      * Description for Promote command.
      */
     DESCRIPTION_PROMOTE ("DescPromote", null, "Promotes a citizen to a leader in a town"),
+
+    /**
+     * Description for Demote command.
+     */
+    DESCRIPTION_DEMOTE ("DescDemote", null, "Demotes a leader to a citizen in a town"),
 
     /**
      * Description for List command.
