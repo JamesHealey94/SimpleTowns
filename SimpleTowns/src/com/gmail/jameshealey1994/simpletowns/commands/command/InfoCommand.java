@@ -7,11 +7,12 @@ import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
  * Class representing an Info command.
  * Allows you to view information about a town
- *
+ * /... info            Display information about current town
  * /... info <town>     Display information about a town
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
@@ -32,12 +33,25 @@ public class InfoCommand extends STCommand {
     public boolean execute(SimpleTowns plugin, CommandSender sender, String commandLabel, String[] args) {
         final Localisation localisation = plugin.getLocalisation();
 
+        final Town town;
+
         if (args.length == 0) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_TOWN));
-            return false;
+            if (sender instanceof Player) {
+                final Player player = (Player) sender;
+                town = plugin.getTown(player.getLocation().getChunk());
+
+                if (town == null) {
+                    sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_TOWN_NAME));
+                    return false;
+                }
+            } else {
+                sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_TOWN_NAME));
+                return false;
+            }
+        } else {
+            town = plugin.getTown(args[0]);
         }
 
-        final Town town = plugin.getTown(args[0]);
         if (town == null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_NOT_FOUND, args[0]));
             return true;
