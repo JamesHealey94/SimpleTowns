@@ -109,7 +109,7 @@ public class PromoteCommand extends STCommand {
         final String leadersPath = basePath + ".Leaders";
         final List<String> leaders = plugin.getConfig().getStringList(leadersPath);
         leaders.add(playername);
-        plugin.getConfig().set(leadersPath, citizens);
+        plugin.getConfig().set(leadersPath, leaders);
         plugin.getTown(town.getName()).getLeaders().add(playername);
 
         // Log to file
