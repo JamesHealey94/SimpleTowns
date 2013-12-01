@@ -84,7 +84,7 @@ public class RemoveCommand extends STCommand {
             return true;
         }
 
-        // Check player is a member of town (citizen or leader) TODO needed?
+        // Check player is a member of town (citizen or leader)
         if (!town.hasMember(playername)) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_MEMBER, playername, town.getName()));
             return true;

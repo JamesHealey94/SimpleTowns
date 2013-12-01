@@ -6,6 +6,7 @@ import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.utils.BooleanParser;
 import com.gmail.jameshealey1994.simpletowns.utils.LogUtils;
+import com.gmail.jameshealey1994.simpletowns.utils.Logger;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -43,7 +44,16 @@ public class LogCommand extends STCommand {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;
         }
+        if (current && !status) { // If logging was enabled, and it's being disabled
+            Logger.log(localisation.get(LocalisationEntry.LOG_LOGGING_DISABLED, sender.getName()), plugin);
+        }
+        
         LogUtils.setEnabled(sender, status, plugin);
+        
+        if (!current && status) { // If logging was disabled, and it's been enabled
+            Logger.log(localisation.get(LocalisationEntry.LOG_LOGGING_ENABLED, sender.getName()), plugin);
+        }
+        
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_LOG_STATUS_SET, LogUtils.isEnabled(plugin)));
         return true;
     }

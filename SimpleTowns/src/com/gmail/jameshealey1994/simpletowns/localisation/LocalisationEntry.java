@@ -82,7 +82,6 @@ public enum LocalisationEntry {
      */
     ERR_PLAYER_ALREADY_LEADER ("MsgPlayerAlreadyLeader", "%1$s - player name\n# %2$s - town name", "&cPlayer '%1$s' is already a leader in Town '%2$s'"),
 
-
     /**
      * Message telling user that a certain player is already a citizen in a
      * certain town.
@@ -160,7 +159,7 @@ public enum LocalisationEntry {
      * %2$s - leader name
      * %3$s - player name
      */
-    LOG_TOWN_LEADER_ADDED ("LogTownLeaderAdded", "%1$s - town name\n# %2$s - leader name\n# %3$s - player name", "Player '%1$s' added as town leader to '%2$s' by '%3$s'"),
+    LOG_TOWN_LEADER_ADDED ("LogTownLeaderAdded", "%1$s - town name\n# %2$s - leader name\n# %3$s - player name", "Player '%2$s' added as Leader to Town '%1$s' by '%3$s'"),
 
     /**
      * Message logged to file when a new chunk is claimed.
@@ -170,7 +169,7 @@ public enum LocalisationEntry {
      * %4$s - chunk X
      * %5$s - chunk Z
      */
-    LOG_CHUNK_CLAIMED ("LogChunkClaimed", "%1$s - town name\n# %2$s - player name\n# %3$s - world name\n# %4$s - chunk X\n# %5$s - chunk Z", "Chunk (%4$s, %5$s) in world %3$s claimed for town '%1$s' by player '%2$s'"),
+    LOG_CHUNK_CLAIMED ("LogChunkClaimed", "%1$s - town name\n# %2$s - player name\n# %3$s - world name\n# %4$s - chunk X\n# %5$s - chunk Z", "Chunk (%4$s, %5$s) in World '%3$s' claimed for Town '%1$s' by Player '%2$s'"),
 
     /**
      * Message logged to file when a chunk is unclaimed.
@@ -180,7 +179,7 @@ public enum LocalisationEntry {
      * %4$s - chunk X
      * %5$s - chunk Z
      */
-    LOG_CHUNK_UNCLAIMED ("LogChunkUnclaimed", "%1$s - town name\n# %2$s - player name\n# %3$s - world name\n# %4$s - chunk X\n# %5$s - chunk Z", "Chunk (%4$s, %5$s) in world %3$s unclaimed from town '%1$s' by player '%2$s'"),
+    LOG_CHUNK_UNCLAIMED ("LogChunkUnclaimed", "%1$s - town name\n# %2$s - player name\n# %3$s - world name\n# %4$s - chunk X\n# %5$s - chunk Z", "Chunk (%4$s, %5$s) in World %3$s unclaimed from Town '%1$s' by Player '%2$s'"),
 
     /**
      * Message logged to file when a citizen is added to a town.
@@ -188,7 +187,7 @@ public enum LocalisationEntry {
      * %2$s - sender name
      * %3$s - citizen name
      */
-    LOG_CITIZEN_ADDED ("LogCitizenAdded", "%1$s - town name\n# %2$s - sender name\n# %3$s - citizen name", "Citizen '%1$s' added to '%2$s' by '%3$s'"),
+    LOG_CITIZEN_ADDED ("LogCitizenAdded", "%1$s - town name\n# %2$s - sender name\n# %3$s - citizen name", "Citizen '%2$s' added to '%1$s' by '%3$s'"),
 
     /**
      * Message logged to file when a citizen is promoted to leader in a town.
@@ -213,6 +212,18 @@ public enum LocalisationEntry {
      * %3$s - member name
      */
     LOG_TOWN_MEMBER_REMOVED ("LogTownMemberRemoved", "%1$s - town name\n# %2$s - sender name\n# %3$s - member name", "Player '%3$s' removed from Town '%1$s' by '%2$s'"),
+
+    /**
+     * Message logged to file when the logger is enabled by a user.
+     * %1$s - sender name
+     */
+    LOG_LOGGING_ENABLED ("LogLoggingEnabled", "%1$s - sender name", "Logging enabled by '%1$s'"),
+
+    /**
+     * Message logged to file when the logger is disabled by a user.
+     * %1$s - sender name
+     */
+    LOG_LOGGING_DISABLED ("LogLoggingDisabled", "%1$s - sender name", "Logging disabled by '%1$s'"),
 
     /**
      * Message telling player that a specified town already exists.
@@ -261,7 +272,7 @@ public enum LocalisationEntry {
      * %1$s - town name
      * %2$s - sender name
      */
-    MSG_PROMOTED ("MsgPromoted", "%1$s - town name\n# %2$s - sender name", "&7You were promoted to leader in Town '%1$s' by '%2$s'"),
+    MSG_PROMOTED ("MsgPromoted", "%1$s - town name\n# %2$s - sender name", "&7You were promoted to Leader in Town '%1$s' by '%2$s'"),
 
     /**
      * Message telling player that they just demoted a leader to citizen in a
@@ -276,7 +287,7 @@ public enum LocalisationEntry {
      * %1$s - town name
      * %2$s - sender name
      */
-    MSG_DEMOTED ("MsgDemoted", "%1$s - town name\n# %2$s - sender name", "&7You were demoted to citizen in Town '%1$s' by '%2$s'"),
+    MSG_DEMOTED ("MsgDemoted", "%1$s - town name\n# %2$s - sender name", "&7You were demoted to Citizen in Town '%1$s' by '%2$s'"),
 
     /**
      * Message telling player that they just claimed a chunk for a town.
@@ -288,14 +299,14 @@ public enum LocalisationEntry {
      * Message telling player that they just unclaimed a chunk.
      * %1$s - town name
      */
-    MSG_CHUNK_UNCLAIMED ("MsgChunkUnClaimed", "%1$s - town name", "&7Chunk unclaimed! No longer owned by town '%1$s'"),
+    MSG_CHUNK_UNCLAIMED ("MsgChunkUnClaimed", "%1$s - town name", "&7Chunk unclaimed! No longer owned by Town '%1$s'"),
 
     /**
      * Message telling player that a chunk they tried to claim already belongs
      * to a town.
      * %1$s - town name
      */
-    MSG_CHUNK_ALREADY_CLAIMED ("MsgChunkAlreadyClaimed", "%1$s - town name", "&cChunk already claimed by town '%1$s'"),
+    MSG_CHUNK_ALREADY_CLAIMED ("MsgChunkAlreadyClaimed", "%1$s - town name", "&cChunk already claimed by Town '%1$s'"),
 
     /**
      * Message to confirm to sender that a town has been created.
@@ -314,7 +325,7 @@ public enum LocalisationEntry {
      * created.
      * %1$s - town name
      */
-    MSG_TOWN_CREATED_BROADCAST ("MsgTownCreatedBroadcast", "%1$s - town name", "&6New town '%1$s' created!"),
+    MSG_TOWN_CREATED_BROADCAST ("MsgTownCreatedBroadcast", "%1$s - town name", "&6New Town '%1$s' created!"),
 
     /**
      * Message to be broadcast to server telling players that a town has been
@@ -467,13 +478,6 @@ public enum LocalisationEntry {
      * %1$s - chunk z
      */
     INFO_TOWN_CHUNKS_ENTRY ("InfoTownChunksEntry", "%1$s - world name\n# %2$s - chunk x\n# %3$s - chunk z", "&d - %1$s (%2$s, %3$s)"),
-
-    /**
-     * A world and it's default PVP status.
-     * %1$s - world name
-     * %2$s - world's default PVP status
-     */
-    INFO_WORLD ("InfoWorld", "%1$s - world name\n# %2$s - world's default PVP status", "&d%1$s: %2$s"),
 
     /**
      * Displayed at the top of the Help command.

@@ -87,7 +87,7 @@ public class PromoteCommand extends STCommand {
 
         // Check player is a member of the town
         if (!town.hasMember(playername)) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_MEMBER));
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_MEMBER, playername, town.getName()));
             return true;
         }
 
