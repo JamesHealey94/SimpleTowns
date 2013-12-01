@@ -91,12 +91,14 @@ public class AddCommand extends STCommand {
             return true;
         }
 
-        // Add citizen to town
+        // Add citizen to town locally
+        town.getCitizens().add(playername);
+        
+        // Add citizen to town in config
         final String path = "Towns." + town.getName() + ".Citizens";
         final List<String> citizens = plugin.getConfig().getStringList(path);
         citizens.add(playername);
         plugin.getConfig().set(path, citizens);
-        plugin.getTown(town.getName()).getCitizens().add(playername);
 
         // Log to file
         Logger.log(localisation.get(LocalisationEntry.LOG_CITIZEN_ADDED, town.getName(), sender.getName(), playername), plugin);

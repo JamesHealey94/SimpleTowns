@@ -41,7 +41,7 @@ public class STListener implements Listener {
         final Player player = event.getPlayer();
         final Chunk chunk = event.getBlock().getChunk();
 
-        for (Town t : plugin.getTowns()) {
+        for (Town t : plugin.getTowns().values()) {
             for (TownChunk c : t.getTownChunks()) {
                 if (c.equalsChunk(chunk)) {
                     if (t.hasMember(player.getName())) {
@@ -65,7 +65,7 @@ public class STListener implements Listener {
         final Player player = event.getPlayer();
         final Chunk chunk = event.getBlockAgainst().getChunk();
 
-        for (Town t : plugin.getTowns()) {
+        for (Town t : plugin.getTowns().values()) {
             for (TownChunk c : t.getTownChunks()) {
                 if (chunk.equals(c)) {
                     if (t.getCitizens().contains(player.getName()) || t.getLeaders().contains(player.getName())) {

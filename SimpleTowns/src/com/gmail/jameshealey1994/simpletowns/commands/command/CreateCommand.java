@@ -102,7 +102,7 @@ public class CreateCommand extends STCommand {
 
         // Add first chunk to town
         plugin.getConfig().set(path + townname + ".Chunks." + worldname, Arrays.asList(chunkX + "," + chunkZ));
-        plugin.getTowns().add(new Town(townname, leadername, townchunk));
+        plugin.getTowns().put(townname.toLowerCase(), new Town(townname, leadername, townchunk));
 
         // Log to file
         Logger.log(localisation.get(LocalisationEntry.LOG_CHUNK_CLAIMED, townname, player.getName(), worldname, chunkX, chunkZ), plugin);
@@ -113,7 +113,7 @@ public class CreateCommand extends STCommand {
         // Send confimation message to sender
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_TOWN_CREATED, townname));
 
-        // Broadcast to server?
+        // Broadcast to server
         plugin.getServer().broadcastMessage(localisation.get(LocalisationEntry.MSG_TOWN_CREATED_BROADCAST, townname));
 
         return true;

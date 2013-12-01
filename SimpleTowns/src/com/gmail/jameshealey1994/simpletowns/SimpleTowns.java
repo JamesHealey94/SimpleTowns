@@ -11,8 +11,8 @@ import com.gmail.jameshealey1994.simpletowns.localisation.Localisable;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
 import com.gmail.jameshealey1994.simpletowns.utils.TownUtils;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 import org.bukkit.Chunk;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,7 +38,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
     /**
      * Towns from config.
      */
-    private Set<Town> towns = new HashSet<>();
+    private Map<String, Town> towns = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -98,7 +98,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
      *
      * @return      the Towns in the server
      */
-    public Set<Town> getTowns() {
+    public Map<String, Town> getTowns() {
         return towns;
     }
 
@@ -107,7 +107,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
      *
      * @param towns     the new Towns in the server
      */
-    public void setTowns(Set<Town> towns) {
+    public void setTowns(Map<String, Town> towns) {
         this.towns = towns;
     }
 
@@ -115,17 +115,12 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
      * Returns Town with name equal to passed String.
      * If a town is not found, null is returned.
      *
-     * @param townname      string of possible town name
+     * @param townname      possible town name
      * @return              town with name equal to passed string, or null, if
      *                      no such town is found
      */
     public Town getTown(String townname) {
-        for (Town t : getTowns()) {
-            if (t.getName().equalsIgnoreCase(townname)) {
-                return t;
-            }
-        }
-        return null;
+        return towns.get(townname.toLowerCase());
     }
 
     /**
@@ -137,7 +132,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
      *                  town is found
      */
     public Town getTown(Chunk chunk) {
-        for (Town t : getTowns()) {
+        for (Town t : towns.values()) {
             for (TownChunk tc : t.getTownChunks()) {
                 if (tc.equalsChunk(chunk)) {
                     return t;

@@ -2,7 +2,9 @@ package com.gmail.jameshealey1994.simpletowns.utils;
 
 import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import org.bukkit.plugin.Plugin;
@@ -25,8 +27,8 @@ public abstract class TownUtils {
      * @param plugin        plugin with config
      * @return              towns from config
      */
-    public static Set<Town> getTownsFromConfig(Plugin plugin) {
-        final Set<Town> townsFromConfig = new HashSet<>();
+    public static Map<String, Town> getTownsFromConfig(Plugin plugin) {
+        final Map<String, Town> townsFromConfig = new HashMap<>();
         final Set<String> townKeys = new HashSet<>(plugin.getConfig().getConfigurationSection(CONFIG_STRING).getKeys(false));
         for (String townname : townKeys) {
             try {
@@ -44,7 +46,7 @@ public abstract class TownUtils {
                     }
                 }
                 final Town town = new Town(townname, leaders, citizens, chunks);
-                townsFromConfig.add(town);
+                townsFromConfig.put(townname.toLowerCase(), town);
             } catch (NumberFormatException | NullPointerException ex) {
                 plugin.getLogger().log(Level.WARNING, "{0} getting towns from config: {1}", new Object[] {ex.getClass().getName(), ex.getMessage()});
             }

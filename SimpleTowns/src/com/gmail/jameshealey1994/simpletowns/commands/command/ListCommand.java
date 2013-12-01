@@ -36,7 +36,7 @@ public class ListCommand extends STCommand {
         }
 
         sender.sendMessage(localisation.get(LocalisationEntry.LIST_HEADER));
-        for (Town t : plugin.getTowns()) {
+        for (Town t : plugin.getTowns().values()) {
             sender.sendMessage(localisation.get(LocalisationEntry.LIST_ENTRY, t.getName()));
             // TODO pages?
         }
