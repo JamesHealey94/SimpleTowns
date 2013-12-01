@@ -3,7 +3,6 @@ package com.gmail.jameshealey1994.simpletowns.object;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import org.bukkit.entity.Player;
 
 /**
  * Class representing a Town.
@@ -169,7 +168,7 @@ public class Town {
             return false;
         }
         final Town other = (Town) obj;
-        if (!Objects.equals(this.name, other.name)) {
+        if (!this.name.equalsIgnoreCase(other.name)) {
             return false;
         }
         if (!Objects.equals(this.leaders, other.leaders)) {

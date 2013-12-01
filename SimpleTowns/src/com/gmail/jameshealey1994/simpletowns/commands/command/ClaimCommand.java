@@ -45,18 +45,17 @@ public class ClaimCommand extends STCommand {
         }
 
         final Player player = (Player) sender;
-        final String townname = args[0];
-        final Town town = plugin.getTown(townname);
+        final Town town = plugin.getTown(args[0]);
 
         // Check town exists
         if (town == null) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_NOT_FOUND, townname));
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_NOT_FOUND, args[0]));
             return true;
         }
 
         // Check they're a leader of that town.
         if (!(town.getLeaders().contains(sender.getName()))) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_NOT_LEADER, townname));
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_NOT_LEADER, town.getName()));
             return true;
         }
 
@@ -77,19 +76,19 @@ public class ClaimCommand extends STCommand {
 
         // Add chunk to town
         final String chunkString = chunkX + "," + chunkZ;
-        final List<String> chunks = plugin.getConfig().getStringList(path + townname + ".Chunks." + worldname);
+        final List<String> chunks = plugin.getConfig().getStringList(path + town.getName() + ".Chunks." + worldname);
         chunks.add(chunkString);
-        plugin.getConfig().set(path + townname + ".Chunks." + worldname, chunks);
-        plugin.getTown(townname).getTownChunks().add(townchunk);
+        plugin.getConfig().set(path + town.getName() + ".Chunks." + worldname, chunks);
+        town.getTownChunks().add(townchunk);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_CHUNK_CLAIMED, townname, sender.getName(), worldname, chunkX, chunkZ), plugin);
+        Logger.log(localisation.get(LocalisationEntry.LOG_CHUNK_CLAIMED, town.getName(), sender.getName(), worldname, chunkX, chunkZ), plugin);
 
         // Save config
         plugin.saveConfig();
 
         // Send confimation message to sender
-        sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_CLAIMED, townname));
+        sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_CLAIMED, town.getName()));
         return true;
     }
 

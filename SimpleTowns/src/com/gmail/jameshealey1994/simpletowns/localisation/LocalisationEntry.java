@@ -179,7 +179,7 @@ public enum LocalisationEntry {
      * %4$s - chunk X
      * %5$s - chunk Z
      */
-    LOG_CHUNK_UNCLAIMED ("LogChunkUnclaimed", "%1$s - town name\n# %2$s - player name\n# %3$s - world name\n# %4$s - chunk X\n# %5$s - chunk Z", "Chunk (%4$s, %5$s) in World %3$s unclaimed from Town '%1$s' by Player '%2$s'"),
+    LOG_CHUNK_UNCLAIMED ("LogChunkUnclaimed", "%1$s - town name\n# %2$s - player name\n# %3$s - world name\n# %4$s - chunk X\n# %5$s - chunk Z", "Chunk (%4$s, %5$s) in World '%3$s' unclaimed from Town '%1$s' by Player '%2$s'"),
 
     /**
      * Message logged to file when a citizen is added to a town.
