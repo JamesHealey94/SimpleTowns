@@ -27,6 +27,7 @@ public class DefaultSTCommandEnvironment extends STCommandEnvironment {
             new RemoveCommand(),
             new PromoteCommand(),
             new DemoteCommand(),
+            new RenameCommand(),
             new ListCommand(),
             new InfoCommand(),
             new LogCommand()

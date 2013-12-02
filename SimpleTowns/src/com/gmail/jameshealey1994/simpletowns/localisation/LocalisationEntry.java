@@ -154,6 +154,14 @@ public enum LocalisationEntry {
     LOG_TOWN_DELETED ("LogTownDeleted", "%1$s - town name\n# %2$s - player name", "Town '%1$s' deleted by '%2$s'"),
 
     /**
+     * Message logged to file when a town is renamed.
+     * %1$s - old town name
+     * %2$s - new town name
+     * %2$s - sender name
+     */
+    LOG_TOWN_RENAMED ("LogTownRenamed", "%1$s - old town name\n# %2$s - new town name\n# %3$s - sender name", "Town '%1$s' renamed to '%2$s' by '%3$s'"),
+
+    /**
      * Message logged to file when a new leader is added to a town.
      * %1$s - town name
      * %2$s - leader name
@@ -321,6 +329,13 @@ public enum LocalisationEntry {
     MSG_TOWN_DELETED ("MsgTownDeleted", "%1$s - town name", "&dYou deleted Town '%1$s'"),
 
     /**
+     * Message to confirm to sender that has been renamed.
+     * %1$s - old town name
+     * %2$s - new town name
+     */
+    MSG_RENAMED_TOWN ("MsgRenamedTown", "%1$s - old town name\n# %2$s - new town name", "&dTown '%1$s' renamed to '%2$s'"),
+
+    /**
      * Message to be broadcast to server telling players that a town has been
      * created.
      * %1$s - town name
@@ -405,6 +420,11 @@ public enum LocalisationEntry {
      * Description for Demote command.
      */
     DESCRIPTION_DEMOTE ("DescDemote", null, "Demotes a leader to a citizen in a town"),
+
+    /**
+     * Description for Rename command.
+     */
+    DESCRIPTION_RENAME ("DescRename", null, "Renames a town"),
 
     /**
      * Description for List command.
