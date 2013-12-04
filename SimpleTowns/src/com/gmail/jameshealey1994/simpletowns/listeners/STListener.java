@@ -96,6 +96,6 @@ public class STListener implements Listener {
      */
     private boolean canBuild(Player player, Chunk chunk) {
         final Town town = plugin.getTown(chunk);
-        return (town != null && !town.hasMember(player.getName()));
+        return town == null || town.hasMember(player.getName());
     }
 }
