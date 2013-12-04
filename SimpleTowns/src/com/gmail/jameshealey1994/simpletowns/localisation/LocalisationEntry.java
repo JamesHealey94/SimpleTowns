@@ -336,6 +336,32 @@ public enum LocalisationEntry {
     MSG_RENAMED_TOWN ("MsgRenamedTown", "%1$s - old town name\n# %2$s - new town name", "&dTown '%1$s' renamed to '%2$s'"),
 
     /**
+     * Message telling player they cannot break blocks as they're not a member
+     * of the current town.
+     * %1$s - town name
+     */
+    MSG_ONLY_TOWN_MEMBERS_CAN_BREAK_BLOCKS ("MsgOnlyTownMembersCanBreakBlocks", "%1$s - town name", "&cOnly members of Town '%1$s' can break blocks here"),
+
+    /**
+     * Message telling player they cannot place blocks as they're not a member
+     * of the current town.
+     * %1$s - town name
+     */
+    MSG_ONLY_TOWN_MEMBERS_CAN_PLACE_BLOCKS ("MsgOnlyTownMembersCanPlaceBlocks", "%1$s - town name", "&cOnly members of Town '%1$s' can place blocks here"),
+
+    /**
+     * Message telling player they entered a town.
+     * %1$s - town name
+     */
+    MSG_ENTERED_TOWN ("MsgEnteredTown", "%1$s - town name", "&7Entered Town '&6%1$s&7'"),
+
+    /**
+     * Message telling player they exited a town.
+     * %1$s - town name
+     */
+    MSG_EXITED_TOWN ("MsgExitedTown", "%1$s - town name", "&7Exited Town '%1$s'"),
+
+    /**
      * Message to be broadcast to server telling players that a town has been
      * created.
      * %1$s - town name

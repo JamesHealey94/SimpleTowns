@@ -1,6 +1,8 @@
 package com.gmail.jameshealey1994.simpletowns.listeners;
 
 import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
+import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
+import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
 import java.util.Objects;
 import org.bukkit.Chunk;
@@ -43,7 +45,7 @@ public class STListener implements Listener {
         final Player player = event.getPlayer();
         final Chunk chunk = event.getBlock().getChunk();
         if (!canBuild(player, chunk)) {
-            player.sendMessage("You aren't allowed to build here!"); // TODO - Change
+            player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_BREAK_BLOCKS, plugin.getTown(chunk).getName()));
             event.setCancelled(true);
         }
     }
@@ -58,7 +60,7 @@ public class STListener implements Listener {
         final Player player = event.getPlayer();
         final Chunk chunk = event.getBlockPlaced().getLocation().getChunk();
         if (!canBuild(player, chunk)) {
-            player.sendMessage("You aren't allowed to build here!"); // TODO - Change
+            player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_PLACE_BLOCKS, plugin.getTown(chunk).getName()));
             event.setCancelled(true);
         }
     }
@@ -73,11 +75,13 @@ public class STListener implements Listener {
         final Town exited = plugin.getTown(event.getFrom().getChunk());
         final Town entered = plugin.getTown(event.getTo().getChunk());
         if (!Objects.equals(exited, entered)) {
+            final Player player = event.getPlayer();
+            final Localisation localisation = plugin.getLocalisation();
             if (exited != null) {
-                event.getPlayer().sendMessage("exited " + exited.getName());
+                player.sendMessage(localisation.get(LocalisationEntry.MSG_EXITED_TOWN, exited.getName()));
             }
             if (entered != null) {
-                event.getPlayer().sendMessage("entered " + entered.getName());
+                player.sendMessage(localisation.get(LocalisationEntry.MSG_ENTERED_TOWN, entered.getName()));
             }
         }
     }
@@ -92,9 +96,6 @@ public class STListener implements Listener {
      */
     private boolean canBuild(Player player, Chunk chunk) {
         final Town town = plugin.getTown(chunk);
-        if (town != null && !town.hasMember(player.getName())) {
-            return false;
-        }
-        return true;
+        return (town != null && !town.hasMember(player.getName()));
     }
 }
