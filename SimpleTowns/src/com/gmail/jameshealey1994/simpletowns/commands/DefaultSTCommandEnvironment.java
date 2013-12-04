@@ -11,16 +11,11 @@ import com.gmail.jameshealey1994.simpletowns.commands.command.*;
 public class DefaultSTCommandEnvironment extends STCommandEnvironment {
 
     /**
-     * Initialises a new instance of the default command environment for the
-     * SimpleTowns plugin.
+     * Initialises a new instance of the default command environment.
      */
     public DefaultSTCommandEnvironment() {
         super(new STCommand[] {
-            new HelpCommand(),
-            new ReloadCommand(),
-            new DebugCommand(),
             new CreateCommand(),
-            new DeleteCommand(),
             new ClaimCommand(),
             new UnclaimCommand(),
             new AddCommand(),
@@ -30,7 +25,11 @@ public class DefaultSTCommandEnvironment extends STCommandEnvironment {
             new RenameCommand(),
             new ListCommand(),
             new InfoCommand(),
-            new LogCommand()
+            new DeleteCommand(),
+            new HelpCommand(),
+            new ReloadCommand(),
+            new LogCommand(),
+            new DebugCommand()
         });
     }
 }
