@@ -114,23 +114,31 @@ public class Localisation {
      *
      * @return      the file containing localisation values
      */
-    private File getFile() {
-        final File file = new File(plugin.getDataFolder(), getFilename());
-        if (!(file.exists())) {
-            createDefaultConfig();
+    public File getFile() {
+        final File folder = plugin.getDataFolder();
+        if (!folder.exists()) {
+            folder.mkdir();
+            plugin.saveDefaultConfig();
         }
+
+        final File file = new File(folder, getFilename());
+        if (!(file.exists())) {
+            createDefaultConfig(file);
+        }
+
         return file;
     }
 
     /**
      * Fills the file specified in the config with default localisation values.
+     *
+     * @param file      file to contain default localisation values
      */
-    private void createDefaultConfig() {
+    private void createDefaultConfig(File file) {
         final String title = "# " + plugin.getName() + " localisation configuration\n";
         final String info = "# Generated with " + plugin.getDescription().getVersion() + " of the plugin\n";
-        final File file = new File(plugin.getDataFolder(), getFilename());
 
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8))) {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
             writer.write(title);
             writer.write(info);
             for (LocalisationEntry entry : LocalisationEntry.values()) {
