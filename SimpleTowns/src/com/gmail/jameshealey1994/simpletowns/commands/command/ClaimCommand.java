@@ -1,11 +1,11 @@
 package com.gmail.jameshealey1994.simpletowns.commands.command;
 
 import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
-import com.gmail.jameshealey1994.simpletowns.object.Town;
-import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
+import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
+import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.utils.Logger;
 import java.util.List;
 import org.bukkit.Chunk;

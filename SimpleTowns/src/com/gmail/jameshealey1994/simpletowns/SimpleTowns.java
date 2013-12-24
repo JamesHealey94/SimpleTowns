@@ -1,14 +1,14 @@
 package com.gmail.jameshealey1994.simpletowns;
 
-import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.commands.DefaultSTCommandEnvironment;
-import com.gmail.jameshealey1994.simpletowns.commands.command.STCommand;
 import com.gmail.jameshealey1994.simpletowns.commands.STCommandEnvironment;
 import com.gmail.jameshealey1994.simpletowns.commands.STCommandExecutor;
 import com.gmail.jameshealey1994.simpletowns.commands.command.HelpCommand;
+import com.gmail.jameshealey1994.simpletowns.commands.command.STCommand;
 import com.gmail.jameshealey1994.simpletowns.listeners.STListener;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisable;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
+import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
 import com.gmail.jameshealey1994.simpletowns.utils.TownUtils;
 import java.util.HashMap;

@@ -8,7 +8,6 @@ Logging:
   Filename: log.txt
   Enabled: true
 
-# Select worlds which SimpleTowns is active on - needed? could use perms, right? not sure.
 # Toggle dynmap - could be a separate plugin
 # Minimum chunks from other towns (0 effectively disables)
 # Maximum distance (in chunks) from other towns (negative values to disable)
