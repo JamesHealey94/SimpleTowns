@@ -85,15 +85,24 @@ public class PromoteCommand extends STCommand {
             return true;
         }
 
+        // Get player's full name
+        final Player player = plugin.getServer().getPlayer(playername);
+        String fullPlayerName;
+        if (player == null) {
+            fullPlayerName = playername;
+        } else {
+            fullPlayerName = player.getName();
+        }
+
         // Check player is a member of the town
-        if (!town.hasMember(playername)) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_MEMBER, playername, town.getName()));
+        if (!town.hasMember(fullPlayerName)) {
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_MEMBER, fullPlayerName, town.getName()));
             return true;
         }
 
         // Check player isn't already a leader of town (cannot be promoted)
-        if (town.getLeaders().contains(playername)) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_ALREADY_LEADER, playername, town.getName()));
+        if (town.getLeaders().contains(fullPlayerName)) {
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_ALREADY_LEADER, fullPlayerName, town.getName()));
             return true;
         }
 
@@ -102,27 +111,27 @@ public class PromoteCommand extends STCommand {
         final String basePath = "Towns." + town.getName();
         final String citizensPath = basePath + ".Citizens";
         final List<String> citizens = plugin.getConfig().getStringList(citizensPath);
-        citizens.remove(playername);
+        citizens.remove(fullPlayerName);
         plugin.getConfig().set(citizensPath, citizens);
-        plugin.getTown(town.getName()).getCitizens().remove(playername);
+        plugin.getTown(town.getName()).getCitizens().remove(fullPlayerName);
 
         final String leadersPath = basePath + ".Leaders";
         final List<String> leaders = plugin.getConfig().getStringList(leadersPath);
-        leaders.add(playername);
+        leaders.add(fullPlayerName);
         plugin.getConfig().set(leadersPath, leaders);
-        plugin.getTown(town.getName()).getLeaders().add(playername);
+        plugin.getTown(town.getName()).getLeaders().add(fullPlayerName);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_CITIZEN_PROMOTED, town.getName(), sender.getName(), playername), plugin);
+        Logger.log(localisation.get(LocalisationEntry.LOG_CITIZEN_PROMOTED, town.getName(), sender.getName(), fullPlayerName), plugin);
 
         // Save config
         plugin.saveConfig();
 
         // Send confimation message to sender
-        sender.sendMessage(localisation.get(LocalisationEntry.MSG_CITIZEN_PROMOTED, town.getName(), playername));
+        sender.sendMessage(localisation.get(LocalisationEntry.MSG_CITIZEN_PROMOTED, town.getName(), fullPlayerName));
 
         // Send message to citizen, if they're online
-        final Player citizen = plugin.getServer().getPlayer(playername);
+        final Player citizen = plugin.getServer().getPlayer(fullPlayerName);
         if (citizen != null) {
             citizen.sendMessage(localisation.get(LocalisationEntry.MSG_PROMOTED, town.getName(), sender.getName()));
         }

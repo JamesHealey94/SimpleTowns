@@ -85,32 +85,41 @@ public class AddCommand extends STCommand {
             return true;
         }
 
+        // Get player's full name
+        final Player player = plugin.getServer().getPlayer(playername);
+        String fullPlayerName;
+        if (player == null) {
+            fullPlayerName = playername;
+        } else {
+            fullPlayerName = player.getName();
+        }
+
         // Check player isn't already a member of town (citizen or leader)
-        if (town.hasMember(playername)) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_ALREADY_MEMBER, playername, town.getName()));
+        if (town.hasMember(fullPlayerName)) {
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_ALREADY_MEMBER, fullPlayerName, town.getName()));
             return true;
         }
 
         // Add citizen to town locally
-        town.getCitizens().add(playername);
-        
+        town.getCitizens().add(fullPlayerName);
+
         // Add citizen to town in config
         final String path = "Towns." + town.getName() + ".Citizens";
         final List<String> citizens = plugin.getConfig().getStringList(path);
-        citizens.add(playername);
+        citizens.add(fullPlayerName);
         plugin.getConfig().set(path, citizens);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_CITIZEN_ADDED, town.getName(), sender.getName(), playername), plugin);
+        Logger.log(localisation.get(LocalisationEntry.LOG_CITIZEN_ADDED, town.getName(), sender.getName(), fullPlayerName), plugin);
 
         // Save config
         plugin.saveConfig();
 
         // Send confimation message to sender
-        sender.sendMessage(localisation.get(LocalisationEntry.MSG_CITIZEN_ADDED, town.getName(), playername));
+        sender.sendMessage(localisation.get(LocalisationEntry.MSG_CITIZEN_ADDED, town.getName(), fullPlayerName));
 
         // Send message to citizen, if they're online
-        final Player citizen = plugin.getServer().getPlayer(playername);
+        final Player citizen = plugin.getServer().getPlayer(fullPlayerName);
         if (citizen != null) {
             citizen.sendMessage(localisation.get(LocalisationEntry.MSG_ADDED_AS_CITIZEN, town.getName(), sender.getName()));
         }
