@@ -10,6 +10,21 @@ import org.bukkit.permissions.Permission;
 public enum STPermission {
 
     /**
+     * Permission for building in the wilderness above the Mine Y value.
+     */
+    BUILD_WILDERNESS ("simpletowns.build.wilderness"),
+
+    /**
+     * Permission for building below the Mine Y value.
+     */
+    BUILD_MINES ("simpletowns.build.mines"),
+
+    /**
+     * Permission for building in towns that they're a member of.
+     */
+    BUILD_TOWNS ("simpletowns.build.towns"),
+
+    /**
      * Permission for InfoCommand.
      */
     INFO ("simpletowns.info"),

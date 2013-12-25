@@ -4,8 +4,10 @@ import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
+import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import java.util.Objects;
 import org.bukkit.Chunk;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -24,7 +26,7 @@ public class STListener implements Listener {
     /**
      * Plugin associated with the Listener.
      */
-    SimpleTowns plugin;
+    private SimpleTowns plugin;
 
     /**
      * Constructor - Initialises associated plugin.
@@ -43,9 +45,14 @@ public class STListener implements Listener {
     @EventHandler (priority = EventPriority.HIGH)
     public void onBlockBreakEvent(BlockBreakEvent event) {
         final Player player = event.getPlayer();
-        final Chunk chunk = event.getBlock().getChunk();
-        if (!canBuild(player, chunk)) {
-            player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_BREAK_BLOCKS, plugin.getTown(chunk).getName()));
+        final Block block = event.getBlock();
+        if (!canBuild(player, block)) {
+            final Town town = plugin.getTown(block.getChunk());
+            if (town == null) {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CANNOT_BUILD_HERE));
+            } else {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_BREAK_BLOCKS, town.getName()));
+            }
             event.setCancelled(true);
         }
     }
@@ -58,9 +65,14 @@ public class STListener implements Listener {
     @EventHandler (priority = EventPriority.HIGH)
     public void onBlockPlaceEvent(BlockPlaceEvent event) {
         final Player player = event.getPlayer();
-        final Chunk chunk = event.getBlockPlaced().getLocation().getChunk();
-        if (!canBuild(player, chunk)) {
-            player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_PLACE_BLOCKS, plugin.getTown(chunk).getName()));
+        final Block block = event.getBlockPlaced();
+        if (!canBuild(player, block)) {
+            final Town town = plugin.getTown(block.getChunk());
+            if (town == null) {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CANNOT_BUILD_HERE));
+            } else {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_PLACE_BLOCKS, town.getName()));
+            }
             event.setCancelled(true);
         }
     }
@@ -87,15 +99,33 @@ public class STListener implements Listener {
     }
 
     /**
-     * Returns if a player can build in a chunk.
-     * (if the chunk belongs to a town they are a member of)
+     * Returns if a player can break or place a block.
+     * (if the chunk the block is in belongs to a town they are a member of)
      *
      * @param player        player being checked
-     * @param chunk         chunk being checked
+     * @param block         block being checked
      * @return              if the player can build
      */
-    private boolean canBuild(Player player, Chunk chunk) {
-        final Town town = plugin.getTown(chunk);
-        return town == null || town.hasMember(player.getName());
+    private boolean canBuild(Player player, Block block) {
+        final Town town = plugin.getTown(block.getChunk());
+        if (town == null) {
+            if (block.getLocation().getBlockY() <= getMineRoofY()) {
+                return player.hasPermission(STPermission.BUILD_MINES.getPermission());
+            } else {
+                return player.hasPermission(STPermission.BUILD_WILDERNESS.getPermission());
+            }
+        } else {
+            return town.hasMember(player.getName()) && player.hasPermission(STPermission.BUILD_TOWNS.getPermission());
+        }
+    }
+
+    /**
+     * Returns the Y value of the mine roof.
+     * 
+     * @return      Y value of the mine roof,
+     *              or -1 if no value is specified in the config 
+     */
+    public int getMineRoofY() { // TODO improve
+        return plugin.getConfig().getInt("Mine Roof Y Value", -1);
     }
 }

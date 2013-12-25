@@ -497,6 +497,15 @@ public enum LocalisationEntry {
             "&cOnly members of Town '%1$s' can place blocks here"),
 
     /**
+     * Message telling player they cannot place blocks as they do not have
+     * permission.
+     */
+    MSG_CANNOT_BUILD_HERE (
+            "MsgCannotBuildHere",
+            null,
+            "&cSorry, you don't have permission to build here"),
+
+    /**
      * Message telling player they entered a town.
      * %1$s - town name
      */

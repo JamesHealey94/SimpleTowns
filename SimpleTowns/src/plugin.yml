@@ -11,6 +11,21 @@ commands:
         usage: Command used incorrectly! Use /<command> help for help!
 
 permissions:
+    simpletowns.build.wilderness:
+        description: Allows you to build everywhere in the wilderness
+        default: false
+    simpletowns.build.mines:
+        description: Allows you to build in the wilderness below the mine roof Y value in the config
+        default: false
+    simpletowns.build.towns:
+        description: Allows you to build in the towns you're a member of
+        default: false
+    simpletowns.create:
+        description: Allows you to create new towns
+        default: false
+    simpletowns.create:
+        description: Allows you to create new towns
+        default: false
     simpletowns.create:
         description: Allows you to create new towns
         default: false

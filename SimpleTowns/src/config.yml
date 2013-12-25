@@ -8,9 +8,11 @@ Logging:
   Filename: log.txt
   Enabled: true
 
-# Toggle dynmap - could be a separate plugin
-# Minimum chunks from other towns (0 effectively disables)
-# Maximum distance (in chunks) from other towns (negative values to disable)
+# TODO Toggle dynmap - could be a separate plugin
+# TODO Minimum chunks from other towns (0 effectively disables)
+# TODO Maximum distance (in chunks) from other towns (negative values to disable)
+
+Mine Roof Y Value: 30
 
 Towns:
   TestTown:
