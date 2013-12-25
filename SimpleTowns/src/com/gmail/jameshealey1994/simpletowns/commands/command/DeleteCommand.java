@@ -39,16 +39,21 @@ public class DeleteCommand extends STCommand {
         // Check town exists
         final String attemptedTownName = args[0];
         final Town town = plugin.getTown(attemptedTownName);
-        
+
         // Delete town locally
         if (town == null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_NOT_FOUND, attemptedTownName));
             return true;
         }
 
+        if (!town.getLeaders().contains(sender.getName())) { // TODO add override permissions
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_NOT_LEADER, attemptedTownName));
+            return true;
+        }
+
         // Delete town locally
         plugin.getTowns().remove(town.getName().toLowerCase());
-        
+
         // Delete town from config
         final String path = "Towns.";
         plugin.getConfig().set(path + town.getName(), null);
