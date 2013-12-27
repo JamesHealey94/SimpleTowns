@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
+import java.util.regex.Pattern;
 import org.bukkit.plugin.Plugin;
 
 /**
@@ -39,8 +40,8 @@ public abstract class TownUtils {
                 for (String world : chunkWorlds) {
                     final Set<String> chunkKeys = new HashSet<>(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Chunks." + world));
                     for (String chunk : chunkKeys) {
-                        final int chunkX = Integer.parseInt(chunk.substring(0, chunk.indexOf(",")));
-                        final int chunkZ = Integer.parseInt(chunk.substring(chunk.indexOf(",") + 1));
+                        final int chunkX = Integer.parseInt(chunk.substring(0, chunk.indexOf(',')));
+                        final int chunkZ = Integer.parseInt(chunk.substring(chunk.indexOf(',') + 1));
                         final TownChunk townchunk = new TownChunk(chunkX, chunkZ, world);
                         chunks.add(townchunk);
                     }
@@ -52,5 +53,23 @@ public abstract class TownUtils {
             }
         }
         return townsFromConfig;
+    }
+
+    /**
+     * Returns if a string is a valid town name.
+     * Valid town names are between 1 and 16 characters long, and contain
+     * only letters, numbers, and underscores.
+     *
+     * @param possibleName      possible town name to be checked for validity
+     * @return                  if the town name is valid
+     */
+    public static boolean isValidName(String possibleName) {
+        if (1 <= possibleName.length() && possibleName.length() <= 16) {
+            // http://stackoverflow.com/a/8248352/1735524
+            final Pattern p = Pattern.compile("[^a-zA-Z0-9_]");
+            final boolean hasSpecialChar = p.matcher(possibleName).find();
+            return !hasSpecialChar;
+        }
+        return false;
     }
 }

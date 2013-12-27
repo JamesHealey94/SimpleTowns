@@ -5,6 +5,7 @@ import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.utils.Logger;
+import com.gmail.jameshealey1994.simpletowns.utils.TownUtils;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -67,6 +68,12 @@ public class RenameCommand extends STCommand {
             default: {
                 return false;
             }
+        }
+
+        // Validate town name
+        if (!TownUtils.isValidName(townName)) {
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_INVALID_TOWN_NAME, townName));
+            return true;
         }
 
         final Town town = plugin.getTown(townName);

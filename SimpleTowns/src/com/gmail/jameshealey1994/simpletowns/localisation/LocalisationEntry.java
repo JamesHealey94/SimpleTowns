@@ -174,6 +174,24 @@ public enum LocalisationEntry {
             "&cNo town owns chunk: '%1$s (%2$s,%3$s)'"),
 
     /**
+     * Message telling player that a specified town already exists.
+     * %1$s - town name
+     */
+    ERR_TOWN_ALREADY_EXISTS (
+            "MsgTownAlreadyExists",
+            "%1$s - town name",
+            "&cTown named '%1$s' already exists!"),
+
+    /**
+     * Message telling user that the town name they entered is invalid.
+     * %1$s - town name
+     */
+    ERR_INVALID_TOWN_NAME (
+            "MsgTownNameInvalid",
+            "%1$s - town name",
+            "&cTown name '%1$s' is invalid. Town names should be 1-16 characters long and contain letters, numbers, and underscores only"),
+
+    /**
      * Message telling player they attacked another player, and how much damage
      * they inflicted on that player.
      * Only shown when in debug mode.
@@ -328,15 +346,6 @@ public enum LocalisationEntry {
             "LogLoggingDisabled",
             "%1$s - sender name",
             "Logging disabled by '%1$s'"),
-
-    /**
-     * Message telling player that a specified town already exists.
-     * %1$s - town name
-     */
-    ERR_TOWN_ALREADY_EXISTS (
-            "MsgTownAlreadyExists",
-            "%1$s - town name",
-            "&cTown named '%1$s' already exists!"),
 
     /**
      * Message telling sender that a player has been removed from a town.

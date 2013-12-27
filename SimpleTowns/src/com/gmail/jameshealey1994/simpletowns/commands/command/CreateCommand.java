@@ -7,6 +7,7 @@ import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
 import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.utils.Logger;
+import com.gmail.jameshealey1994.simpletowns.utils.TownUtils;
 import java.util.Arrays;
 import org.bukkit.Chunk;
 import org.bukkit.command.CommandSender;
@@ -67,7 +68,11 @@ public class CreateCommand extends STCommand {
             }
         }
 
-        // TODO validate townname?
+        // Validate town name
+        if (!TownUtils.isValidName(townname)) {
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_INVALID_TOWN_NAME, townname));
+            return true;
+        }
 
         // TODO validate leadername?
 
