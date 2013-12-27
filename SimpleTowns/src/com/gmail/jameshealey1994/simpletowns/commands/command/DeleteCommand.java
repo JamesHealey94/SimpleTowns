@@ -7,6 +7,7 @@ import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.utils.Logger;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
  * Class representing a delete command.
@@ -46,7 +47,7 @@ public class DeleteCommand extends STCommand {
             return true;
         }
 
-        if (!town.getLeaders().contains(sender.getName())) { // TODO add override permissions
+        if (sender instanceof Player && !town.getLeaders().contains(sender.getName())) { // TODO add override permissions
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_NOT_LEADER, attemptedTownName));
             return true;
         }
