@@ -575,7 +575,7 @@ public enum LocalisationEntry {
      */
     MSG_LOG_STATUS_SET (
             "MsgLogStatusSet",
-            "%1$s - loggin status",
+            "%1$s - logging status",
             "&7Logging status set to '%1$s'"),
 
     /**
@@ -691,6 +691,14 @@ public enum LocalisationEntry {
             "Display information about a town"),
 
     /**
+     * Description for Info command.
+     */
+    DESCRIPTION_CHUNKS (
+            "DescChunks",
+            null,
+            "Display information about a town's chunks"),
+
+    /**
      * Description for Log command.
      */
     DESCRIPTION_LOG (
@@ -768,12 +776,14 @@ public enum LocalisationEntry {
             "&d - %1$s"),
 
     /**
-     * Displayed above the chunks for a town in the Info command.
+     * Displayed in the results of an Info command showing number of chunks a
+     * town has.
+     * %1$s - chunk count
      */
-    INFO_TOWN_CHUNKS_HEADER (
+    INFO_TOWN_CHUNKS (
             "InfoTownChunksHeader",
-            null,
-            "&dTown Chunks"),
+            "%1$s - chunk count",
+            "&dChunks: %1$s"),
 
     /**
      * Displayed for each chunk in a town in the Info command.

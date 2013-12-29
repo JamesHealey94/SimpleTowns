@@ -4,26 +4,26 @@ import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
+import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
 import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Class representing an Info command.
- * Allows you to view information about a town
- * /... info            Display information about current town
- * /... info <town>     Display information about a town
+ * Class representing an Chunks command.
+ * Allows you to view information about a town's chunks
+ * /... chunks            Display information about current town's chunks
+ * /... chunks <town>     Display information about a town's chunks
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class InfoCommand extends STCommand {
+public class ChunksCommand extends STCommand {
 
     /**
      * Constructor to add aliases and permissions.
      */
-    public InfoCommand() {
-        this.aliases.add("info");
-        this.aliases.add("information");
+    public ChunksCommand() {
+        this.aliases.add("chunks");
 
         this.permissions.add(STPermission.INFO.getPermission());
     }
@@ -56,27 +56,19 @@ public class InfoCommand extends STCommand {
             return true;
         }
 
-        // Display town information
+        // Display chunk information
         // TODO paginate - see ChatPaginator bukkit utility class
         sender.sendMessage(localisation.get(LocalisationEntry.INFO_HEADER, town.getName()));
-        if (!(town.getLeaders().isEmpty())) {
-            sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_LEADERS_HEADER));
-            for (String s : town.getLeaders()) {
-                sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_LEADERS_ENTRY, s));
-            }
-        }
-        if (!(town.getCitizens().isEmpty())) {
-            sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CITIZENS_HEADER));
-            for (String s : town.getCitizens()) {
-                sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CITIZENS_ENTRY, s));
-            }
-        }
         sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CHUNKS, town.getTownChunks().size()));
+        for (TownChunk tc : town.getTownChunks()) {
+            sender.sendMessage(localisation.get(LocalisationEntry.INFO_TOWN_CHUNKS_ENTRY, tc.getWorldname(), tc.getX(), tc.getZ()));
+        }
+
         return true;
     }
 
     @Override
     public String getDescription(Localisation localisation) {
-        return localisation.get(LocalisationEntry.DESCRIPTION_INFO);
+        return localisation.get(LocalisationEntry.DESCRIPTION_CHUNKS);
     }
 }
