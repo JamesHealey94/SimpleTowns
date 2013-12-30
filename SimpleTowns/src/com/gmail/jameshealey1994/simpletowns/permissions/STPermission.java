@@ -62,7 +62,12 @@ public enum STPermission {
     /**
      * Permission for ListCommand.
      */
-    LIST ("simpletowns.list");
+    LIST ("simpletowns.list"),
+
+    /**
+     * Permission used by admins to override.
+     */
+    ADMIN ("simpletowns.admin");
 
     /**
      * The name of the permission.

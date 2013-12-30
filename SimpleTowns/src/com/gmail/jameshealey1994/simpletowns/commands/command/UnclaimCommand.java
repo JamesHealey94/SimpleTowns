@@ -5,6 +5,7 @@ import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
+import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.utils.Logger;
 import java.util.List;
 import org.bukkit.Chunk;
@@ -55,7 +56,7 @@ public class UnclaimCommand extends STCommand {
         }
 
         // Check player is a leader of that town.
-        if (!(town.getLeaders().contains(sender.getName()))) {
+        if (!(town.getLeaders().contains(sender.getName())) && !sender.hasPermission(STPermission.ADMIN.getPermission())) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_NOT_LEADER, town.getName()));
             return true;
         }

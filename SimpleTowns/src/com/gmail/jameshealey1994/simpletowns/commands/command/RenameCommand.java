@@ -4,6 +4,7 @@ import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
+import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.utils.Logger;
 import com.gmail.jameshealey1994.simpletowns.utils.TownUtils;
 import org.bukkit.command.CommandSender;
@@ -85,7 +86,7 @@ public class RenameCommand extends STCommand {
         }
 
         // Check sender is a leader of that town.
-        if ((sender instanceof Player) && (!(town.getLeaders().contains(sender.getName())))) {
+        if ((sender instanceof Player) && (!(town.getLeaders().contains(sender.getName()))) && !sender.hasPermission(STPermission.ADMIN.getPermission())) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_NOT_LEADER, town.getName()));
             return true;
         }

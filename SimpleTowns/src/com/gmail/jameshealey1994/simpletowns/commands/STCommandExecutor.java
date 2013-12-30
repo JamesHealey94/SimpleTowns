@@ -4,6 +4,7 @@ import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
 import com.gmail.jameshealey1994.simpletowns.commands.command.STCommand;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.permissions.PermissionUtils;
+import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import java.util.Arrays;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -43,7 +44,7 @@ public class STCommandExecutor implements CommandExecutor {
         if (args.length > 0) {
             for (STCommand command : plugin.getCommands()) {
                 if (command.getAliases().contains(args[0].toLowerCase())) {
-                    if (PermissionUtils.canExecute(command, sender)) {
+                    if (sender.hasPermission(STPermission.ADMIN.getPermission()) || PermissionUtils.canExecute(command, sender)) {
                         return command.execute(plugin, sender, args[0], Arrays.copyOfRange(args, 1, args.length));
                     } else {
                         sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.ERR_PERMISSION_DENIED));

@@ -47,7 +47,7 @@ public class DeleteCommand extends STCommand {
             return true;
         }
 
-        if (sender instanceof Player && !town.getLeaders().contains(sender.getName())) { // TODO add override permissions
+        if (sender instanceof Player && !town.getLeaders().contains(sender.getName()) && !sender.hasPermission(STPermission.ADMIN.getPermission())) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_NOT_LEADER, attemptedTownName));
             return true;
         }

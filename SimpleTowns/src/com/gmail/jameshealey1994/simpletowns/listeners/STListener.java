@@ -106,6 +106,10 @@ public class STListener implements Listener {
      * @return              if the player can build
      */
     private boolean canBuild(Player player, Block block) {
+        if (player.hasPermission(STPermission.ADMIN.getPermission())) {
+            return true;
+        }
+
         final Town town = plugin.getTown(block.getChunk());
         if (town == null) {
             if (block.getLocation().getBlockY() <= getMineRoofY()) {
@@ -120,9 +124,9 @@ public class STListener implements Listener {
 
     /**
      * Returns the Y value of the mine roof.
-     * 
+     *
      * @return      Y value of the mine roof,
-     *              or -1 if no value is specified in the config 
+     *              or -1 if no value is specified in the config
      */
     public int getMineRoofY() { // TODO improve
         return plugin.getConfig().getInt("Mine Roof Y Value", -1);

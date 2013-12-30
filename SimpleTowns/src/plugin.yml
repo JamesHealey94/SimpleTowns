@@ -50,3 +50,6 @@ permissions:
     simpletowns.reload:
         description: Allows you to reload config values
         default: false
+    simpletowns.admin:
+        description: Allows you to perform all actions in any town, regardless of member status.
+        default: false
