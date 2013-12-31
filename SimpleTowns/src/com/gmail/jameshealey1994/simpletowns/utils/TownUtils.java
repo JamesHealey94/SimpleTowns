@@ -72,4 +72,15 @@ public abstract class TownUtils {
         }
         return false;
     }
+
+    /**
+     * Returns the Y value of the mine roof.
+     *
+     * @param plugin        plugin with config
+     * @return      Y value of the mine roof,
+     *              or -1 if no value is specified in the config
+     */
+    public static int getMineRoofY(Plugin plugin) {
+        return plugin.getConfig().getInt("Mine Roof Y Value", -1);
+    }
 }

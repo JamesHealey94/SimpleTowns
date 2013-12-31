@@ -5,6 +5,7 @@ import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
+import com.gmail.jameshealey1994.simpletowns.utils.TownUtils;
 import java.util.Objects;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -112,7 +113,7 @@ public class STListener implements Listener {
 
         final Town town = plugin.getTown(block.getChunk());
         if (town == null) {
-            if (block.getLocation().getBlockY() <= getMineRoofY()) {
+            if (block.getLocation().getBlockY() <= TownUtils.getMineRoofY(plugin)) {
                 return player.hasPermission(STPermission.BUILD_MINES.getPermission());
             } else {
                 return player.hasPermission(STPermission.BUILD_WILDERNESS.getPermission());
@@ -120,15 +121,5 @@ public class STListener implements Listener {
         } else {
             return town.hasMember(player.getName()) && player.hasPermission(STPermission.BUILD_TOWNS.getPermission());
         }
-    }
-
-    /**
-     * Returns the Y value of the mine roof.
-     *
-     * @return      Y value of the mine roof,
-     *              or -1 if no value is specified in the config
-     */
-    public int getMineRoofY() { // TODO improve
-        return plugin.getConfig().getInt("Mine Roof Y Value", -1);
     }
 }
