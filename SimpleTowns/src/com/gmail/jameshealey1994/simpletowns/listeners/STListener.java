@@ -15,7 +15,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
-import org.bukkit.event.player.PlayerBucketEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -45,7 +44,7 @@ public class STListener implements Listener {
      *
      * @param event     event being handled
      */
-    @EventHandler (priority = EventPriority.HIGH)
+    @EventHandler (priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onBlockBreakEvent(BlockBreakEvent event) {
         final Player player = event.getPlayer();
         final Block block = event.getBlock();
@@ -65,7 +64,7 @@ public class STListener implements Listener {
      *
      * @param event     event being handled
      */
-    @EventHandler (priority = EventPriority.HIGH)
+    @EventHandler (priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onBlockPlaceEvent(BlockPlaceEvent event) {
         final Player player = event.getPlayer();
         final Block block = event.getBlockPlaced();
@@ -85,7 +84,7 @@ public class STListener implements Listener {
      *
      * @param event     event being handled
      */
-    @EventHandler (priority = EventPriority.HIGH)
+    @EventHandler (priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onPlayerBucketFillEvent(PlayerBucketFillEvent event) {
         final Player player = event.getPlayer();
         final Block block = event.getBlockClicked();
@@ -105,7 +104,7 @@ public class STListener implements Listener {
      *
      * @param event     event being handled
      */
-    @EventHandler (priority = EventPriority.HIGH)
+    @EventHandler (priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onPlayerBucketEmptyEvent(PlayerBucketEmptyEvent event) {
         final Player player = event.getPlayer();
         final Block block = event.getBlockClicked();
@@ -125,7 +124,7 @@ public class STListener implements Listener {
      *
      * @param event     event being handled
      */
-    @EventHandler (priority = EventPriority.NORMAL)
+    @EventHandler (priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPlayerMove(PlayerMoveEvent event) {
         final Town exited = plugin.getTown(event.getFrom().getChunk());
         final Town entered = plugin.getTown(event.getTo().getChunk());
