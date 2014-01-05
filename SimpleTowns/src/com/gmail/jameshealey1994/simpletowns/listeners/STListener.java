@@ -14,6 +14,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.event.player.PlayerBucketEvent;
+import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 /**
@@ -66,6 +69,46 @@ public class STListener implements Listener {
     public void onBlockPlaceEvent(BlockPlaceEvent event) {
         final Player player = event.getPlayer();
         final Block block = event.getBlockPlaced();
+        if (!canBuild(player, block)) {
+            final Town town = plugin.getTown(block.getChunk());
+            if (town == null) {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CANNOT_BUILD_HERE));
+            } else {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_PLACE_BLOCKS, town.getName()));
+            }
+            event.setCancelled(true);
+        }
+    }
+
+    /**
+     * Checks the player is allowed to fill the bucket.
+     *
+     * @param event     event being handled
+     */
+    @EventHandler (priority = EventPriority.HIGH)
+    public void onPlayerBucketFillEvent(PlayerBucketFillEvent event) {
+        final Player player = event.getPlayer();
+        final Block block = event.getBlockClicked();
+        if (!canBuild(player, block)) {
+            final Town town = plugin.getTown(block.getChunk());
+            if (town == null) {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CANNOT_BUILD_HERE));
+            } else {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_BREAK_BLOCKS, town.getName()));
+            }
+            event.setCancelled(true);
+        }
+    }
+
+    /**
+     * Checks the player is allowed to empty the bucket.
+     *
+     * @param event     event being handled
+     */
+    @EventHandler (priority = EventPriority.HIGH)
+    public void onPlayerBucketEmptyEvent(PlayerBucketEmptyEvent event) {
+        final Player player = event.getPlayer();
+        final Block block = event.getBlockClicked();
         if (!canBuild(player, block)) {
             final Town town = plugin.getTown(block.getChunk());
             if (town == null) {
