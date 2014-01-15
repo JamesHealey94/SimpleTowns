@@ -28,9 +28,25 @@ public enum LocalisationEntry {
      * Message telling user to specify a valid status ('true' or 'false').
      */
     ERR_SPECIFY_STATUS (
-            "MsgSpecifyPVPStatus",
+            "MsgSpecifyStatus",
             null,
             "&cPlease specify a status ('true' or 'false')"),
+
+    /**
+     * Message telling user that they need to specify a world.
+     */
+    ERR_SPECIFY_WORLD (
+            "MsgSpecifyWorld",
+            null,
+            "&cPlease specify a world"),
+
+    /**
+     * Message telling user that they need to specify a player.
+     */
+    ERR_SPECIFY_PLAYER (
+            "MsgSpecifyPlayer",
+            null,
+            "&cPlease specify a player"),
 
     /**
      * Message telling user to specify a valid town.
@@ -82,22 +98,6 @@ public enum LocalisationEntry {
             "MsgWorldNotFound",
             "%1$s - invalid world name",
             "&cWorld not found: '%1$s'"),
-
-    /**
-     * Message telling user that they need to specify a world.
-     */
-    ERR_SPECIFY_WORLD (
-            "MsgSpecifyWorld",
-            null,
-            "&cPlease specify a world"),
-
-    /**
-     * Message telling user that they need to specify a player.
-     */
-    ERR_SPECIFY_PLAYER (
-            "MsgSpecifyPlayer",
-            null,
-            "&cPlease specify a player"),
 
     /**
      * Message telling user that a certain player is already a member of a
