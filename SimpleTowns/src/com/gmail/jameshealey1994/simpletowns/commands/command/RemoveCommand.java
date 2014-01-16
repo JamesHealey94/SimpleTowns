@@ -115,7 +115,7 @@ public class RemoveCommand extends STCommand {
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_MEMBER_REMOVED, town.getName(), playername));
 
         // Send message to removed player, if they're online
-        final Player removed = plugin.getServer().getPlayer(playername);
+        final Player removed = plugin.getServer().getPlayerExact(playername);
         if (removed != null) {
             removed.sendMessage(localisation.get(LocalisationEntry.MSG_REMOVED_MEMBER, town.getName(), sender.getName()));
         }
