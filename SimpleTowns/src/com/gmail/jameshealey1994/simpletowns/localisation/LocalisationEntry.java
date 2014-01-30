@@ -191,6 +191,16 @@ public enum LocalisationEntry {
             "%1$s - town name",
             "&cTown name '%1$s' is invalid. Town names should be 1-16 characters long and contain letters, numbers, and underscores only"),
 
+
+    /**
+     * Message telling user that the player name they entered is invalid.
+     * %1$s - player name
+     */
+    ERR_INVALID_PLAYER_NAME (
+            "MsgPlayerNameInvalid",
+            "%1$s - player name",
+            "&cPlayer name '%1$s' is invalid"),
+
     /**
      * Message telling player they attacked another player, and how much damage
      * they inflicted on that player.
