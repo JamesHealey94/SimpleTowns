@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.Plugin;
 
 /**
@@ -20,7 +21,7 @@ public abstract class TownUtils {
     /**
      * The path to the values in the config this class is interacting with.
      */
-    public static final String CONFIG_STRING = "Towns";
+    public static final String PATH = "Towns";
 
     /**
      * Returns towns from config.
@@ -30,15 +31,24 @@ public abstract class TownUtils {
      */
     public static Map<String, Town> getTownsFromConfig(Plugin plugin) {
         final Map<String, Town> townsFromConfig = new HashMap<>();
-        final Set<String> townKeys = new HashSet<>(plugin.getConfig().getConfigurationSection(CONFIG_STRING).getKeys(false));
+
+        ConfigurationSection townConfigSection = plugin.getConfig().getConfigurationSection(PATH);
+        if (townConfigSection == null) {
+            plugin.getLogger().log(Level.INFO, "Config section ''{0}'' not found. Creating...", PATH);
+            townConfigSection = plugin.getConfig().createSection(PATH);
+            plugin.saveConfig();
+            plugin.getLogger().log(Level.INFO, "Config section ''{0}'' created", PATH);
+        }
+
+        final Set<String> townKeys = new HashSet<>(townConfigSection.getKeys(false));
         for (String townname : townKeys) {
             try {
-                final Set<String> leaders = new HashSet<>(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Leaders"));
-                final Set<String> citizens = new HashSet<>(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Citizens"));
-                final Set<String> chunkWorlds = new HashSet<>(plugin.getConfig().getConfigurationSection(CONFIG_STRING + "." + townname + ".Chunks").getKeys(false));
+                final Set<String> leaders = new HashSet<>(plugin.getConfig().getStringList(PATH + "." + townname + ".Leaders"));
+                final Set<String> citizens = new HashSet<>(plugin.getConfig().getStringList(PATH + "." + townname + ".Citizens"));
+                final Set<String> chunkWorlds = new HashSet<>(plugin.getConfig().getConfigurationSection(PATH + "." + townname + ".Chunks").getKeys(false));
                 final Set<TownChunk> chunks = new HashSet<>();
                 for (String world : chunkWorlds) {
-                    final Set<String> chunkKeys = new HashSet<>(plugin.getConfig().getStringList(CONFIG_STRING + "." + townname + ".Chunks." + world));
+                    final Set<String> chunkKeys = new HashSet<>(plugin.getConfig().getStringList(PATH + "." + townname + ".Chunks." + world));
                     for (String chunk : chunkKeys) {
                         final int chunkX = Integer.parseInt(chunk.substring(0, chunk.indexOf(',')));
                         final int chunkZ = Integer.parseInt(chunk.substring(chunk.indexOf(',') + 1));
