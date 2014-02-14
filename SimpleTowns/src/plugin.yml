@@ -3,7 +3,7 @@ website: https://github.com/JamesHealey94
 
 name: SimpleTowns
 main: com.gmail.jameshealey1994.simpletowns.SimpleTowns
-version: 0.2
+version: 1.0
 
 commands:
     towns:
@@ -19,12 +19,6 @@ permissions:
         default: false
     simpletowns.build.towns:
         description: Allows you to build in the towns you're a member of
-        default: false
-    simpletowns.create:
-        description: Allows you to create new towns
-        default: false
-    simpletowns.create:
-        description: Allows you to create new towns
         default: false
     simpletowns.create:
         description: Allows you to create new towns

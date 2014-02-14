@@ -1,5 +1,5 @@
 # SimpleTowns Config
-# Generated with 0.2 of the plugin
+# Generated with 1.0 of the plugin
 # For help with the configuration file, please see the plugin BukkitDev page
 
 Localisation Filename: localisation.yml
@@ -8,21 +8,17 @@ Logging:
   Filename: log.txt
   Enabled: true
 
-# TODO Toggle dynmap - could be a separate plugin
-# TODO Minimum chunks from other towns (0 effectively disables)
-# TODO Maximum distance (in chunks) from other towns (negative values to disable)
-
 Mine Roof Y Value: 30
 
 Towns:
   TestTown:
     Leaders:
-      - AS1LV3RN1NJA
+      - SomePlayer
       - anotherPlayer
       - YetAnotherPlayer
     Citizens:
       - skillchickenz75
-      - secondPlayer
+      - Player35
     Chunks:
       world:
         - 1,1
@@ -31,11 +27,11 @@ Towns:
         - 2,2
   Another:
     Leaders:
-      - skillchickenz75
+      - FirstPlayer
       - secondPlayer
     Citizens:
-      - AS1LV3RN1NJA
-      - anotherCitizen
+      - ThirdPlayer
+      - citizen234
     Chunks:
       world:
         - 3,1
