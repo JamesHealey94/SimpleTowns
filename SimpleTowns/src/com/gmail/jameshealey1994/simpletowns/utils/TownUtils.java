@@ -16,7 +16,7 @@ import org.bukkit.plugin.Plugin;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public abstract class TownUtils {
+public final class TownUtils {
 
     /**
      * The path to the values in the config this class is interacting with.
@@ -92,5 +92,11 @@ public abstract class TownUtils {
      */
     public static int getMineRoofY(Plugin plugin) {
         return plugin.getConfig().getInt("Mine Roof Y Value", -1);
+    }
+
+    /**
+     * Private constructor - Objects cannot be created.
+     */
+    private TownUtils() {
     }
 }
