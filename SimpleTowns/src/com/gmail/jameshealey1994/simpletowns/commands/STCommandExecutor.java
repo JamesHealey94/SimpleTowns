@@ -20,13 +20,13 @@ public class STCommandExecutor implements CommandExecutor {
     /**
      * Plugin the commands are executed for.
      */
-    private SimpleTowns plugin;
+    private final SimpleTowns plugin;
 
     /**
      * The default command, executed when no arguments are given.
      * Can be null, in which case no command is executed.
      */
-    private STCommand defaultCommand;
+    private final STCommand defaultCommand;
 
     /**
      * Constructor to set plugin instance variable.
