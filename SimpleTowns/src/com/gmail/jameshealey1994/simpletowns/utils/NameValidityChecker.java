@@ -38,7 +38,7 @@ public class NameValidityChecker {
      * Currently, valid names are between 1 and 16 characters long,
      * and contain only letters, numbers, and underscores.
      *
-     * @return  if the town name is valid
+     * @return  if possibleName is valid
      */
     public boolean isValidName() {
         return isAcceptableLength() && !containsSpecialChar();
