@@ -6,7 +6,7 @@ import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.utils.Logger;
-import com.gmail.jameshealey1994.simpletowns.utils.PlayerUtils;
+import com.gmail.jameshealey1994.simpletowns.utils.NameValidityChecker;
 import java.util.List;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -88,11 +88,11 @@ public class AddCommand extends STCommand {
         }
 
         // Validate player name
-        if (!PlayerUtils.isValidName(playername)) {
+        if (!new NameValidityChecker(playername).isValidName()) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_INVALID_PLAYER_NAME, playername));
             return true;
         }
-        
+
         // Get player's full name
         final Player player = plugin.getServer().getPlayer(playername);
         String fullPlayerName;

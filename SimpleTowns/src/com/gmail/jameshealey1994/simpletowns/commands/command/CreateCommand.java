@@ -7,7 +7,7 @@ import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
 import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.utils.Logger;
-import com.gmail.jameshealey1994.simpletowns.utils.PlayerUtils;
+import com.gmail.jameshealey1994.simpletowns.utils.NameValidityChecker;
 import com.gmail.jameshealey1994.simpletowns.utils.TownUtils;
 import java.util.Arrays;
 import org.bukkit.Chunk;
@@ -76,7 +76,7 @@ public class CreateCommand extends STCommand {
         }
 
         // Validate leader name
-        if (!PlayerUtils.isValidName(leadername)) {
+        if (!new NameValidityChecker(leadername).isValidName()) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_INVALID_PLAYER_NAME, leadername));
             return true;
         }
