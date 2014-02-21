@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
-import java.util.regex.Pattern;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.Plugin;
 
@@ -74,21 +73,15 @@ public final class TownUtils {
      * @return                  if the town name is valid
      */
     public static boolean isValidName(String possibleName) {
-        if (1 <= possibleName.length() && possibleName.length() <= 16) {
-            // http://stackoverflow.com/a/8248352/1735524
-            final Pattern p = Pattern.compile("[^a-zA-Z0-9_]");
-            final boolean hasSpecialChar = p.matcher(possibleName).find();
-            return !hasSpecialChar;
-        }
-        return false;
+        return new NameValidityChecker(possibleName).isValidName();
     }
 
     /**
      * Returns the Y value of the mine roof.
      *
      * @param plugin        plugin with config
-     * @return      Y value of the mine roof,
-     *              or -1 if no value is specified in the config
+     * @return              Y value of the mine roof,
+     *                      or -1 if no value is specified in the config
      */
     public static int getMineRoofY(Plugin plugin) {
         return plugin.getConfig().getInt("Mine Roof Y Value", -1);
