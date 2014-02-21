@@ -55,6 +55,8 @@ public class NameValidityChecker {
 
     /**
      * Returns if possibleName contains a special character.
+     * A special character, in this case, is defined as a character that is not
+     * a letter, number, or underscore.
      *
      * @return  if possibleName contains a special character
      */
