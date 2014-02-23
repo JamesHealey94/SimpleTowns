@@ -15,7 +15,7 @@ import org.bukkit.plugin.Plugin;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public final class TownUtils {
+public class TownUtils {
 
     /**
      * The path to the values in the config this class is interacting with.
@@ -29,7 +29,7 @@ public final class TownUtils {
      * @return              towns from config
      */
     public static Map<String, Town> getTownsFromConfig(Plugin plugin) {
-        final ConfigurationSection townConfigSection = getConfigSection(plugin, PATH);
+        final ConfigurationSection townConfigSection = ConfigUtils.getConfigSection(plugin, PATH);
         final Map<String, Town> townsFromConfig = new HashMap<>();
         final Set<String> townKeys = new HashSet<>(townConfigSection.getKeys(false));
 
@@ -55,45 +55,6 @@ public final class TownUtils {
             }
         }
         return townsFromConfig;
-    }
-
-    /**
-     * Returns a configuration section from a passed plugin and path.
-     * If no configuration section is found, an empty configuration section
-     * is created, saved, and returned.
-     *
-     * @param plugin    plugin with a configuration
-     * @param path      path to the configuration section to return
-     * @return          configuration section in config of passed plugin
-     *                  with passed path
-     */
-    private static ConfigurationSection getConfigSection(Plugin plugin, String path) {
-        ConfigurationSection configSection = plugin.getConfig().getConfigurationSection(path);
-        if (configSection == null) {
-            configSection = createEmptyConfigSection(plugin, path);
-        }
-        return configSection;
-    }
-
-    /**
-     * Creates an empty ConfigurationSection
-     * at the passed path in the config of the passed plugin.
-     * The config is then saved, and the empty ConfigurationSection returned.
-     *
-     * Any value that was previously set at this path will be overwritten.
-     * If the previous value was itself a ConfigurationSection,
-     * it will be orphaned.
-     *
-     * @param plugin    plugin with a configuration
-     * @param path      path to the configuration section to create or overwrite
-     * @return          an empty configuration section
-     */
-    private static ConfigurationSection createEmptyConfigSection(Plugin plugin, String path) {
-        plugin.getLogger().log(Level.INFO, "Config section ''{0}'' not found. Creating...", path);
-        final ConfigurationSection emptyConfigSection = plugin.getConfig().createSection(path);
-        plugin.saveConfig();
-        plugin.getLogger().log(Level.INFO, "Config section ''{0}'' created", path);
-        return emptyConfigSection;
     }
 
     /**
