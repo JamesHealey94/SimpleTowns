@@ -8,6 +8,7 @@ import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.utils.Logger;
 import com.gmail.jameshealey1994.simpletowns.utils.NameValidityChecker;
 import java.util.List;
+import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -94,13 +95,7 @@ public class AddCommand extends STCommand {
         }
 
         // Get player's full name
-        final Player player = plugin.getServer().getPlayer(playername);
-        String fullPlayerName;
-        if (player == null) {
-            fullPlayerName = playername;
-        } else {
-            fullPlayerName = player.getName();
-        }
+        final String fullPlayerName = getFullName(plugin.getServer(), playername);
 
         // Check player isn't already a member of town (citizen or leader)
         if (town.hasMember(fullPlayerName)) {
@@ -132,6 +127,28 @@ public class AddCommand extends STCommand {
             citizen.sendMessage(localisation.get(LocalisationEntry.MSG_ADDED_AS_CITIZEN, town.getName(), sender.getName()));
         }
         return true;
+    }
+
+    /**
+     * Get full name of a player.
+     * The name with either match a player in the passed server,
+     * or, if no match is found, the passed playername will be used.
+     *
+     * @param server        server containing players
+     * @param playername    name possibly matching a player in the server
+     * @return              If the passed playername matches the start of a
+     *                      name from a player in the passed server, the full
+     *                      name of that player will be returned.
+     *                      If no names match, the original passed playername
+     *                      will be returned.
+     */
+    private String getFullName(Server server, final String playername) {
+        final Player player = server.getPlayer(playername);
+        if (player == null) {
+            return playername;
+        } else {
+            return player.getName();
+        }
     }
 
     @Override
