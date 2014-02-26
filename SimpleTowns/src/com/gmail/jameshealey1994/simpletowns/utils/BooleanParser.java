@@ -6,7 +6,7 @@ package com.gmail.jameshealey1994.simpletowns.utils;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public abstract class BooleanParser {
+public class BooleanParser {
 
     /**
      * Strings used to signify a toggle.
@@ -24,19 +24,32 @@ public abstract class BooleanParser {
     public static final String[] NEGATIVE_VALUES = new String[] {"false", "f", "no", "n", "off"};
 
     /**
+     * String being parsed.
+     */
+    private final String string;
+
+    /**
+     * Constructor - Sets String to be parsed.
+     *
+     * @param string    string being parsed
+     */
+    public BooleanParser(String string) {
+        this.string = string;
+    }
+
+    /**
      * Converts a string to a Boolean depending on the contents of the String.
      * Case insensitive.
      * Supports toggling.
      * Can be null.
      *
-     * @param string    string being parsed
      * @param current   the current status
-     * @return          the opposite of current if the string passed is a toggle
-     *                  true        if the passed String is a positive string
-     *                  false       if the passed String is a negative values
+     * @return          the opposite of current if the string is in the toggle array
+     *                  true        if string is in the positive string array
+     *                  false       if string is in the negative string array
      *                  null        if no matches are found
      */
-    public static Boolean parse(String string, boolean current) {
+    public Boolean parse(final boolean current) {
         for (String s : TOGGLE_VALUES) {
             if (string.equalsIgnoreCase(s)) {
                 return !current;

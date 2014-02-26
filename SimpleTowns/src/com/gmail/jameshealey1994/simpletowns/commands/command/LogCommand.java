@@ -39,7 +39,7 @@ public class LogCommand extends STCommand {
         }
 
         final boolean current = LogUtils.isEnabled(plugin);
-        final Boolean status = BooleanParser.parse(args[0], current);
+        final Boolean status = new BooleanParser(args[0]).parse(current);
         if (status == null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;
@@ -47,13 +47,13 @@ public class LogCommand extends STCommand {
         if (current && !status) { // If logging was enabled, and it's being disabled
             Logger.log(localisation.get(LocalisationEntry.LOG_LOGGING_DISABLED, sender.getName()), plugin);
         }
-        
+
         LogUtils.setEnabled(sender, status, plugin);
-        
+
         if (!current && status) { // If logging was disabled, and it's been enabled
             Logger.log(localisation.get(LocalisationEntry.LOG_LOGGING_ENABLED, sender.getName()), plugin);
         }
-        
+
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_LOG_STATUS_SET, LogUtils.isEnabled(plugin)));
         return true;
     }

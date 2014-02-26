@@ -37,7 +37,7 @@ public class DebugCommand extends STCommand {
         }
 
         final boolean current = DebugUtils.isEnabled(plugin);
-        final Boolean debugStatus = BooleanParser.parse(args[0], current);
+        final Boolean debugStatus = new BooleanParser(args[0]).parse(current);
         if (debugStatus == null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;
