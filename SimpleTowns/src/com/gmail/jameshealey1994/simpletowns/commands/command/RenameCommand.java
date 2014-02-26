@@ -91,7 +91,8 @@ public class RenameCommand extends STCommand {
             return true;
         }
 
-        if (plugin.getTowns().containsKey(newName.toLowerCase())) {
+        // Check a town with the new name doesn't already exist
+        if (plugin.getTowns().containsKey(newName)) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_ALREADY_EXISTS, townName));
             return true;
         }
