@@ -29,7 +29,7 @@ public class TownUtils {
      * @return              towns from config
      */
     public static Map<String, Town> getTownsFromConfig(Plugin plugin) {
-        final ConfigurationSection townConfigSection = ConfigUtils.getConfigSection(plugin, PATH);
+        final ConfigurationSection townConfigSection = new ConfigUtils(plugin).getConfigSection(PATH);
         final Map<String, Town> townsFromConfig = new HashMap<>();
         final Set<String> townKeys = new HashSet<>(townConfigSection.getKeys(false));
 
