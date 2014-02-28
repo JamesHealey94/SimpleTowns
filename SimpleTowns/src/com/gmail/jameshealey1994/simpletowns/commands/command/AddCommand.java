@@ -113,7 +113,7 @@ public class AddCommand extends STCommand {
         plugin.getConfig().set(path, citizens);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_CITIZEN_ADDED, town.getName(), sender.getName(), fullPlayerName), plugin);
+        new Logger(plugin).log(localisation.get(LocalisationEntry.LOG_CITIZEN_ADDED, town.getName(), sender.getName(), fullPlayerName));
 
         // Save config
         plugin.saveConfig();

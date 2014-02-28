@@ -106,7 +106,7 @@ public class RemoveCommand extends STCommand {
         plugin.getTown(town.getName()).getLeaders().remove(playername);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_TOWN_MEMBER_REMOVED, town.getName(), sender.getName(), playername), plugin);
+        new Logger(plugin).log(localisation.get(LocalisationEntry.LOG_TOWN_MEMBER_REMOVED, town.getName(), sender.getName(), playername));
 
         // Save config
         plugin.saveConfig();

@@ -107,15 +107,16 @@ public class CreateCommand extends STCommand {
         plugin.getConfig().set(path + townname + ".Leaders", Arrays.asList(leadername));
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_TOWN_CREATED, townname, player.getName()), plugin);
-        Logger.log(localisation.get(LocalisationEntry.LOG_TOWN_LEADER_ADDED, townname, leadername, player.getName()), plugin);
+        final Logger logger = new Logger(plugin);
+        logger.log(localisation.get(LocalisationEntry.LOG_TOWN_CREATED, townname, player.getName()));
+        logger.log(localisation.get(LocalisationEntry.LOG_TOWN_LEADER_ADDED, townname, leadername, player.getName()));
 
         // Add first chunk to town
         plugin.getConfig().set(path + townname + ".Chunks." + worldname, Arrays.asList(chunkX + "," + chunkZ));
         plugin.getTowns().put(townname.toLowerCase(), new Town(townname, leadername, townchunk));
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_CHUNK_CLAIMED, townname, player.getName(), worldname, chunkX, chunkZ), plugin);
+        logger.log(localisation.get(LocalisationEntry.LOG_CHUNK_CLAIMED, townname, player.getName(), worldname, chunkX, chunkZ));
 
         // Save config
         plugin.saveConfig();

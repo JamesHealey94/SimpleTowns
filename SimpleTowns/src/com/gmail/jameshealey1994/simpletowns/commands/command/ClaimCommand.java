@@ -82,7 +82,7 @@ public class ClaimCommand extends STCommand {
         town.getTownChunks().add(townchunk);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_CHUNK_CLAIMED, town.getName(), sender.getName(), worldname, chunkX, chunkZ), plugin);
+        new Logger(plugin).log(localisation.get(LocalisationEntry.LOG_CHUNK_CLAIMED, town.getName(), sender.getName(), worldname, chunkX, chunkZ));
 
         // Save config
         plugin.saveConfig();

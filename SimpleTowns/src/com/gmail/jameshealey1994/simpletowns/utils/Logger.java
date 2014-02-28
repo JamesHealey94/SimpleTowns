@@ -13,15 +13,28 @@ import org.bukkit.plugin.Plugin;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public abstract class Logger {
+public class Logger {
+
+    /**
+     * Plugin with config and data folder.
+     */
+    private final Plugin plugin;
+
+    /**
+     * Constructor - Sets plugin.
+     *
+     * @param plugin    plugin with config and data folder
+     */
+    public Logger(Plugin plugin) {
+        this.plugin = plugin;
+    }
 
     /**
      * Logs message to file.
      *
      * @param message       message to be logged to file
-     * @param plugin        plugin with config
      */
-    public static void log(String message, Plugin plugin) {
+    public void log(String message) {
         if (LogUtils.isEnabled(plugin)) {
             final File dataFolder = plugin.getDataFolder();
             final String filename = LogUtils.getFilename(plugin);

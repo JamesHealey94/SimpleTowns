@@ -123,7 +123,7 @@ public class PromoteCommand extends STCommand {
         plugin.getTown(town.getName()).getLeaders().add(fullPlayerName);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_CITIZEN_PROMOTED, town.getName(), sender.getName(), fullPlayerName), plugin);
+        new Logger(plugin).log(localisation.get(LocalisationEntry.LOG_CITIZEN_PROMOTED, town.getName(), sender.getName(), fullPlayerName));
 
         // Save config
         plugin.saveConfig();

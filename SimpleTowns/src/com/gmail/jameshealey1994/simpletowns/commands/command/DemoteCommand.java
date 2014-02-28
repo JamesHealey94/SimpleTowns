@@ -114,7 +114,7 @@ public class DemoteCommand extends STCommand {
         plugin.getTown(town.getName()).getCitizens().add(playername);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_LEADER_DEMOTED, town.getName(), sender.getName(), playername), plugin);
+        new Logger(plugin).log(localisation.get(LocalisationEntry.LOG_LEADER_DEMOTED, town.getName(), sender.getName(), playername));
 
         // Save config
         plugin.saveConfig();

@@ -115,7 +115,7 @@ public class RenameCommand extends STCommand {
         plugin.getTowns().put(newName.toLowerCase(), town);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_TOWN_RENAMED, oldName, town.getName(), sender.getName()), plugin);
+        new Logger(plugin).log(localisation.get(LocalisationEntry.LOG_TOWN_RENAMED, oldName, town.getName(), sender.getName()));
 
         // Send confimation message to sender
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_RENAMED_TOWN, oldName, town.getName()));

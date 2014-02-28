@@ -44,14 +44,16 @@ public class LogCommand extends STCommand {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;
         }
+
+        final Logger logger = new Logger(plugin);
         if (current && !status) { // If logging was enabled, and it's being disabled
-            Logger.log(localisation.get(LocalisationEntry.LOG_LOGGING_DISABLED, sender.getName()), plugin);
+            logger.log(localisation.get(LocalisationEntry.LOG_LOGGING_DISABLED, sender.getName()));
         }
 
         LogUtils.setEnabled(sender, status, plugin);
 
         if (!current && status) { // If logging was disabled, and it's been enabled
-            Logger.log(localisation.get(LocalisationEntry.LOG_LOGGING_ENABLED, sender.getName()), plugin);
+            logger.log(localisation.get(LocalisationEntry.LOG_LOGGING_ENABLED, sender.getName()));
         }
 
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_LOG_STATUS_SET, LogUtils.isEnabled(plugin)));

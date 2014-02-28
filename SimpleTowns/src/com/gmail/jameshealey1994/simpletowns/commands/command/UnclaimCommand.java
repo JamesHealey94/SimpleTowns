@@ -73,7 +73,7 @@ public class UnclaimCommand extends STCommand {
         town.getTownChunks().remove(townchunk);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_CHUNK_UNCLAIMED, town.getName(), sender.getName(), worldname, chunkX, chunkZ), plugin);
+        new Logger(plugin).log(localisation.get(LocalisationEntry.LOG_CHUNK_UNCLAIMED, town.getName(), sender.getName(), worldname, chunkX, chunkZ));
 
         // Save config
         plugin.saveConfig();

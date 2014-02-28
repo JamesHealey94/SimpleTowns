@@ -60,7 +60,7 @@ public class DeleteCommand extends STCommand {
         plugin.getConfig().set(path + town.getName(), null);
 
         // Log to file
-        Logger.log(localisation.get(LocalisationEntry.LOG_TOWN_DELETED, town.getName(), sender.getName()), plugin);
+        new Logger(plugin).log(localisation.get(LocalisationEntry.LOG_TOWN_DELETED, town.getName(), sender.getName()));
 
         // Save config
         plugin.saveConfig();
