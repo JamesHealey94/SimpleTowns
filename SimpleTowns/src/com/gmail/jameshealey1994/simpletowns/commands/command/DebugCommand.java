@@ -36,14 +36,15 @@ public class DebugCommand extends STCommand {
             return false;
         }
 
-        final boolean current = DebugUtils.isEnabled(plugin);
+        final DebugUtils debugUtils = new DebugUtils(plugin);
+        final boolean current = debugUtils.isEnabled();
         final Boolean debugStatus = new BooleanParser(args[0]).parse(current);
         if (debugStatus == null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;
         }
-        DebugUtils.setEnabled(sender, debugStatus, plugin);
-        sender.sendMessage(localisation.get(LocalisationEntry.MSG_DEBUG_SET_TO_STATUS, DebugUtils.isEnabled(plugin)));
+        debugUtils.setEnabled(debugStatus);
+        sender.sendMessage(localisation.get(LocalisationEntry.MSG_DEBUG_SET_TO_STATUS, debugUtils.isEnabled()));
         return true;
     }
 

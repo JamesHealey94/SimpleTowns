@@ -1,6 +1,5 @@
 package com.gmail.jameshealey1994.simpletowns.utils;
 
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
 /**
@@ -8,7 +7,7 @@ import org.bukkit.plugin.Plugin;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public abstract class DebugUtils {
+public class DebugUtils {
 
     /**
      * The path to the Debug value in the config.
@@ -21,23 +20,34 @@ public abstract class DebugUtils {
     public static final boolean DEFAULT = false;
 
     /**
+     * Plugin with associated config file.
+     */
+    private final Plugin plugin;
+
+    /**
+     * Constructor - Sets plugin.
+     *
+     * @param plugin    plugin with associated config file
+     */
+    public DebugUtils(Plugin plugin) {
+        this.plugin = plugin;
+    }
+
+    /**
      * Returns if debug mode is enabled, by checking the configuration file.
      *
-     * @param plugin    plugin with associated configuration file
-     * @return          if debug mode is enabled
+     * @return  if debug mode is enabled
      */
-    public static boolean isEnabled(Plugin plugin) {
+    public boolean isEnabled() {
         return plugin.getConfig().getBoolean(PATH_DEBUG, DEFAULT);
     }
 
     /**
      * Sets the debug mode for the plugin, then saves the config file.
      *
-     * @param sender        sender of the status
-     * @param status        new status
-     * @param plugin        plugin with associated config file
+     * @param status    new status
      */
-    public static void setEnabled(CommandSender sender, boolean status, Plugin plugin) {
+    public void setEnabled(boolean status) {
         plugin.getConfig().set(PATH_DEBUG, status);
         plugin.saveConfig();
     }
