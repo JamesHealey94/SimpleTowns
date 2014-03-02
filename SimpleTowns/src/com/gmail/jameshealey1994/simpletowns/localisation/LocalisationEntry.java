@@ -200,7 +200,15 @@ public enum LocalisationEntry {
             "MsgPlayerNameInvalid",
             "%1$s - player name",
             "&cPlayer name '%1$s' is invalid"),
-
+            
+    /**
+      * Message telling user that there is no town at their current location.
+      */
+    ERR_NO_TOWN_HERE (
+            "MsgNoTownHere",
+            null,
+            "&cThere is no town here."),
+           
     /**
      * Message telling player they attacked another player, and how much damage
      * they inflicted on that player.
@@ -524,6 +532,35 @@ public enum LocalisationEntry {
             null,
             "&cSorry, you don't have permission to build here"),
 
+
+
+    /**
+      * Message telling player a player that the home has been set.
+      */
+    MSG_HOME_SET (
+            "MsgHomeSet",
+            "%1$s - town name",
+            "&7Home location for town '&6%1$s&7' has been set here!"),
+
+            
+
+    /**
+      * Message telling player they've been sent home.
+      */
+    MSG_SENT_HOME (
+            "MsgSentHome",
+            "%1$s - town name",
+            "&7You've been sent to the home of &6%1$s&7!"),
+
+    /**
+     * Messing telling the player that no home location is set.
+     */
+    MSG_NO_HOME_SET (
+    		"MsgNoHomeSet",
+    		"%1$s - town name",
+    		"&cThe town &6%1$s&c has no home location set."),
+    
+    
     /**
      * Message telling player they entered a town.
      * %1$s - town name
@@ -595,7 +632,25 @@ public enum LocalisationEntry {
             "DescHelp",
             null,
             "Shows help menu"),
-
+            
+    /**
+     * Description for the Home command.
+     */
+    DESCRIPTION_HOME (
+    		"DescHome",
+    		null,
+    		"Teleports you to a town home."
+    		),
+    
+    /**
+     * Description of the SetHome command		
+     */
+    DESCRIPTION_SETHOME (
+    		"DescSetHome",
+    		null,
+    		"Sets the home location of the current town."
+    		),
+    		
     /**
      * Description for Reload command.
      */
