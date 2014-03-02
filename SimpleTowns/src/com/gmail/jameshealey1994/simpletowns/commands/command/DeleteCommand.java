@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.commands.command;
 
 import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
+import com.gmail.jameshealey1994.simpletowns.events.TownDeleteEvent;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
@@ -64,6 +65,10 @@ public class DeleteCommand extends STCommand {
 
         // Save config
         plugin.saveConfig();
+
+        //Create and call TownDeleteEvent
+        final TownDeleteEvent event = new TownDeleteEvent(town.getName());
+        plugin.getServer().getPluginManager().callEvent(event);
 
         // Send confimation message to sender
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_TOWN_DELETED, town.getName()));
