@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import org.bukkit.Location;
+
 /**
  * Class representing a Town.
  *
@@ -27,7 +29,12 @@ public class Town {
      * A Player should only be a citizen or a leader, not both.
      */
     private Set<String> citizens = new HashSet<>();
-
+    
+    /**
+     * The home location of the Town.
+     */
+    private Location home;
+    
     /**
      * The TownChunks belonging to the Town.
      * A chunk should only belong to 1 Town at a time.
@@ -58,11 +65,12 @@ public class Town {
      * @param citizens      the citizens of the Town
      * @param chunks        the TownChunks of the Town
      */
-    public Town(String name, Set<String> leaders, Set<String> citizens, Set<TownChunk> chunks) {
+    public Town(String name, Set<String> leaders, Set<String> citizens, Set<TownChunk> chunks, Location home) {
         this.name = name;
         this.leaders = leaders;
         this.citizens = citizens;
         this.chunks = chunks;
+        this.home = home;
     }
 
     /**
@@ -81,6 +89,20 @@ public class Town {
      */
     public void setName(String name) {
         this.name = name;
+    }
+    
+    /**
+     * Returns the Home location of the town
+     */
+    public Location getHome() {
+    	return home;
+    }
+    
+    /**
+     * Sets the home location of the Town
+     */
+    public void setHome(Location home) {
+    	this.home = home;
     }
 
     /**
