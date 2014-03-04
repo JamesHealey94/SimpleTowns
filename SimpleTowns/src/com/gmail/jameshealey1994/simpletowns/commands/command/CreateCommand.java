@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.commands.command;
 
 import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
+import com.gmail.jameshealey1994.simpletowns.events.TownCreateEvent;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
@@ -120,6 +121,10 @@ public class CreateCommand extends STCommand {
 
         // Save config
         plugin.saveConfig();
+
+        //Create and call TownCreateEvent
+        final TownCreateEvent event = new TownCreateEvent(town);
+        plugin.getServer().getPluginManager().callEvent(event);
 
         // Send confimation message to sender
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_TOWN_CREATED, townname));
