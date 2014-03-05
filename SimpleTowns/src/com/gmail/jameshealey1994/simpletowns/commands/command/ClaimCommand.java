@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.commands.command;
 
 import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
+import com.gmail.jameshealey1994.simpletowns.events.TownClaimEvent;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
@@ -86,6 +87,10 @@ public class ClaimCommand extends STCommand {
 
         // Save config
         plugin.saveConfig();
+
+        //Create and call TownClaimEvent
+        final TownClaimEvent event = new TownClaimEvent(town, chunk);
+        plugin.getServer().getPluginManager().callEvent(event);
 
         // Send confimation message to sender
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_CLAIMED, town.getName()));
