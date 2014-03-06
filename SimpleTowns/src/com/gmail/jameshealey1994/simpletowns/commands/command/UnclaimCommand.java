@@ -69,7 +69,7 @@ public class UnclaimCommand extends STCommand {
         plugin.getConfig().set(path + town.getName() + ".Chunks." + worldname, chunks);
 
         // Remove chunk from local town
-        final TownChunk townchunk = new TownChunk(chunkX, chunkZ, worldname);
+        final TownChunk townchunk = new TownChunk(chunk);
         town.getTownChunks().remove(townchunk);
 
         // Log to file

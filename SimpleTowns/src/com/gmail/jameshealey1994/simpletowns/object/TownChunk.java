@@ -29,6 +29,17 @@ public class TownChunk {
     /**
      * Constructor - Initialises x, z, and worldname.
      *
+     * @param chunk     chunk with x, z and world name values
+     */
+    public TownChunk(Chunk chunk) {
+        this.x = chunk.getX();
+        this.z = chunk.getZ();
+        this.worldname = chunk.getWorld().getName();
+    }
+
+    /**
+     * Constructor - Initialises x, z, and worldname.
+     *
      * @param x             The x coordinate of the TownChunk
      * @param z             The z coordinate of the TownChunk
      * @param worldname     The name of the world of the TownChunk

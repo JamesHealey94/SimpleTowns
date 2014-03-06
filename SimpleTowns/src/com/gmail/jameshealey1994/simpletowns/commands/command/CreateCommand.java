@@ -101,7 +101,7 @@ public class CreateCommand extends STCommand {
         final int chunkX = chunk.getX();
         final int chunkZ = chunk.getZ();
         final String worldname = chunk.getWorld().getName();
-        final TownChunk townchunk = new TownChunk(chunkX, chunkZ, worldname);
+        final TownChunk townchunk = new TownChunk(chunk);
 
         // Create town
         final String path = "Towns.";
