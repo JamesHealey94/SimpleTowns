@@ -1,15 +1,17 @@
 package com.gmail.jameshealey1994.simpletowns.events;
 
+import com.gmail.jameshealey1994.simpletowns.object.Town;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 /**
  * Town Delete Event.
- * Triggered after a town is deleted.
+ * Triggered when a town is about to be deleted.
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class TownDeleteEvent extends Event {
+public class TownDeleteEvent extends Event implements Cancellable {
 
     /**
      * List of event handlers.
@@ -17,17 +19,22 @@ public class TownDeleteEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
 
     /**
-     * Name of the deleted town.
+     * Town about to be deleted.
      */
-    private final String townName;
+    private final Town town;
 
     /**
-     * Constructor - Sets the name of the deleted town.
-     *
-     * @param townName name of the deleted town
+     * If the event is cancelled.
      */
-    public TownDeleteEvent(String townName) {
-        this.townName = townName;
+    private boolean cancelled;
+
+    /**
+     * Constructor - Sets the town about to be deleted.
+     *
+     * @param town  town about to be deleted
+     */
+    public TownDeleteEvent(Town town) {
+        this.town = town;
     }
 
     /**
@@ -40,16 +47,26 @@ public class TownDeleteEvent extends Event {
     }
 
     /**
-     * Returns the name of the deleted town.
+     * Returns the town about to be deleted.
      *
-     * @return  name of the deleted town
+     * @return  town about to be deleted
      */
-    public String getTownName() {
-        return townName;
+    public Town getTown() {
+        return town;
     }
 
     @Override
     public HandlerList getHandlers() {
         return handlers;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean cancel) {
+        cancelled = cancel;
     }
 }

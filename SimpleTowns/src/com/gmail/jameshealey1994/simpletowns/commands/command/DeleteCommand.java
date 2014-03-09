@@ -52,6 +52,15 @@ public class DeleteCommand extends STCommand {
             return true;
         }
 
+        //Create and call TownDeleteEvent
+        final TownDeleteEvent event = new TownDeleteEvent(town);
+        plugin.getServer().getPluginManager().callEvent(event);
+
+        // Check event has not been cancelled by event listeners
+        if (event.isCancelled()) {
+            return true;
+        }
+
         // Delete town locally
         plugin.getTowns().remove(town.getName().toLowerCase());
 
@@ -64,10 +73,6 @@ public class DeleteCommand extends STCommand {
 
         // Save config
         plugin.saveConfig();
-
-        //Create and call TownDeleteEvent
-        final TownDeleteEvent event = new TownDeleteEvent(town.getName());
-        plugin.getServer().getPluginManager().callEvent(event);
 
         // Send confimation message to sender
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_TOWN_DELETED, town.getName()));
