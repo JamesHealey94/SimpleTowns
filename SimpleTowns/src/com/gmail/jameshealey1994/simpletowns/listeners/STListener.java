@@ -28,7 +28,7 @@ public class STListener implements Listener {
     /**
      * Plugin associated with the Listener.
      */
-    private SimpleTowns plugin;
+    private final SimpleTowns plugin;
 
     /**
      * Constructor - Initialises associated plugin.
