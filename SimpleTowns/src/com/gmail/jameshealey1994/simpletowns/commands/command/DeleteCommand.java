@@ -41,13 +41,12 @@ public class DeleteCommand extends STCommand {
         // Check town exists
         final String attemptedTownName = args[0];
         final Town town = plugin.getTown(attemptedTownName);
-
-        // Delete town locally
         if (town == null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOWN_NOT_FOUND, attemptedTownName));
             return true;
         }
 
+        // Check player is town leader or admin
         if (sender instanceof Player && !town.getLeaders().contains(sender.getName()) && !sender.hasPermission(STPermission.ADMIN.getPermission())) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_NOT_LEADER, attemptedTownName));
             return true;
