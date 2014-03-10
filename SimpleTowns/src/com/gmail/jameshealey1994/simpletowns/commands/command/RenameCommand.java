@@ -117,8 +117,8 @@ public class RenameCommand extends STCommand {
         // Log to file
         new Logger(plugin).log(localisation.get(LocalisationEntry.LOG_TOWN_RENAMED, oldName, town.getName(), sender.getName()));
 
-        // Send confimation message to sender
-        sender.sendMessage(localisation.get(LocalisationEntry.MSG_RENAMED_TOWN, oldName, town.getName()));
+        // Broadcast to server
+        plugin.getServer().broadcastMessage(localisation.get(LocalisationEntry.MSG_RENAMED_TOWN, oldName, town.getName()));
 
         return true;
     }
