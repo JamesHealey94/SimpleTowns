@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.events;
 
 import com.gmail.jameshealey1994.simpletowns.object.Town;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
@@ -10,7 +11,7 @@ import org.bukkit.event.HandlerList;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class TownCreateEvent extends Event {
+public class TownCreateEvent extends Event implements Cancellable {
 
     /**
      * List of event handlers.
@@ -21,6 +22,11 @@ public class TownCreateEvent extends Event {
      * The newly created town.
      */
     private final Town town;
+
+    /**
+     * If the event is cancelled.
+     */
+    private boolean cancelled;
 
     /**
      * Constructor - Sets the newly created town.
@@ -52,5 +58,15 @@ public class TownCreateEvent extends Event {
     @Override
     public HandlerList getHandlers() {
         return handlers;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean cancel) {
+        cancelled = cancel;
     }
 }

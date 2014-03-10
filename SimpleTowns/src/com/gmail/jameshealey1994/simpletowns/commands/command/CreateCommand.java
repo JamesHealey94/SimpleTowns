@@ -98,6 +98,15 @@ public class CreateCommand extends STCommand {
             return true;
         }
 
+        //Create and call TownCreateEvent
+        final TownCreateEvent event = new TownCreateEvent(town);
+        plugin.getServer().getPluginManager().callEvent(event);
+
+        // Check event has not been cancelled by event listeners
+        if (event.isCancelled()) {
+            return true;
+        }
+
         final int chunkX = chunk.getX();
         final int chunkZ = chunk.getZ();
         final String worldname = chunk.getWorld().getName();
@@ -121,10 +130,6 @@ public class CreateCommand extends STCommand {
 
         // Save config
         plugin.saveConfig();
-
-        //Create and call TownCreateEvent
-        final TownCreateEvent event = new TownCreateEvent(town);
-        plugin.getServer().getPluginManager().callEvent(event);
 
         // Send confimation message to sender
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_TOWN_CREATED, townname));
