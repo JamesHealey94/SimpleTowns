@@ -2,6 +2,7 @@ package com.gmail.jameshealey1994.simpletowns.events;
 
 import com.gmail.jameshealey1994.simpletowns.object.Town;
 import org.bukkit.Chunk;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
@@ -11,7 +12,7 @@ import org.bukkit.event.HandlerList;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class TownClaimEvent extends Event {
+public class TownClaimEvent extends Event implements Cancellable {
 
     /**
      * List of event handlers.
@@ -27,6 +28,11 @@ public class TownClaimEvent extends Event {
      * The chunk the town just claimed.
      */
     private final Chunk chunk;
+
+    /**
+     * If the event is cancelled.
+     */
+    private boolean cancelled;
 
     /**
      * Constructor - Sets the member variables.
@@ -69,5 +75,15 @@ public class TownClaimEvent extends Event {
     @Override
     public HandlerList getHandlers() {
         return handlers;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean cancel) {
+        cancelled = cancel;
     }
 }

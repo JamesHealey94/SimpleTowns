@@ -68,6 +68,15 @@ public class ClaimCommand extends STCommand {
             return true;
         }
 
+        //Create and call TownClaimEvent
+        final TownClaimEvent event = new TownClaimEvent(town, chunk);
+        plugin.getServer().getPluginManager().callEvent(event);
+
+        // Check event has not been cancelled by event listeners
+        if (event.isCancelled()) {
+            return true;
+        }
+
         final int chunkX = chunk.getX();
         final int chunkZ = chunk.getZ();
         final String worldname = chunk.getWorld().getName();
@@ -87,10 +96,6 @@ public class ClaimCommand extends STCommand {
 
         // Save config
         plugin.saveConfig();
-
-        //Create and call TownClaimEvent
-        final TownClaimEvent event = new TownClaimEvent(town, chunk);
-        plugin.getServer().getPluginManager().callEvent(event);
 
         // Send confimation message to sender
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_CLAIMED, town.getName()));
