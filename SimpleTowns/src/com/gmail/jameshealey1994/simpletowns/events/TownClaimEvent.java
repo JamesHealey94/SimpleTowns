@@ -32,7 +32,7 @@ public class TownClaimEvent extends Event implements Cancellable {
     /**
      * If the event is cancelled.
      */
-    private boolean cancelled;
+    private boolean cancelled = false;
 
     /**
      * Constructor - Sets the member variables.

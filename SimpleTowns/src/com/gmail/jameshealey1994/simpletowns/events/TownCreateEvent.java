@@ -26,7 +26,7 @@ public class TownCreateEvent extends Event implements Cancellable {
     /**
      * If the event is cancelled.
      */
-    private boolean cancelled;
+    private boolean cancelled = false;
 
     /**
      * Constructor - Sets the newly created town.
