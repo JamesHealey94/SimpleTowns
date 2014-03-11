@@ -8,7 +8,7 @@ import org.bukkit.event.HandlerList;
 
 /**
  * Town Claim Event.
- * Triggered after a town claims a chunk.
+ * Triggered before a town claims a chunk.
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
@@ -20,12 +20,12 @@ public class TownClaimEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
 
     /**
-     * The town that just claimed a chunk.
+     * The town that is about to claim a chunk.
      */
     private final Town town;
 
     /**
-     * The chunk the town just claimed.
+     * The chunk the town is about to claim.
      */
     private final Chunk chunk;
 
@@ -37,8 +37,8 @@ public class TownClaimEvent extends Event implements Cancellable {
     /**
      * Constructor - Sets the member variables.
      *
-     * @param town          the town that claimed a chunk
-     * @param chunk         the chunk the town just claimed
+     * @param town          town that is about to claim a chunk
+     * @param chunk         chunk the town is about to claim
      */
     public TownClaimEvent(Town town, Chunk chunk) {
         this.town = town;
@@ -55,18 +55,18 @@ public class TownClaimEvent extends Event implements Cancellable {
     }
 
     /**
-     * Returns the town that just claimed a chunk.
+     * Returns the town that is about to claim a chunk.
      *
-     * @return  the town that just claimed a chunk
+     * @return  the town that is about to claim a chunk
      */
     public Town getTown() {
         return town;
     }
 
     /**
-     * Returns the chunk the town just claimed.
+     * Returns chunk the town is about to claim.
      *
-     * @return  chunk the town just claimed
+     * @return  chunk the town is about to claim
      */
     public Chunk getChunk() {
         return chunk;
