@@ -2,16 +2,17 @@ package com.gmail.jameshealey1994.simpletowns.events;
 
 import com.gmail.jameshealey1994.simpletowns.object.Town;
 import org.bukkit.Chunk;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 /**
  * Town Unclaim Event.
- * Triggered after a town removes a claim to a chunk.
+ * Triggered before a town removes a claim to a chunk.
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class TownUnclaimEvent extends Event {
+public class TownUnclaimEvent extends Event implements Cancellable {
 
     /**
      * List of event handlers.
@@ -19,20 +20,25 @@ public class TownUnclaimEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
 
     /**
-     * The town that just removed a claim to a chunk.
+     * The town that is about to remove a claim to a chunk.
      */
     private final Town town;
 
     /**
-     * The chunk the town previously claimed.
+     * The chunk the town is about to be unclaimed.
      */
     private final Chunk chunk;
 
     /**
+     * If the event is cancelled.
+     */
+    private boolean cancelled;
+
+    /**
      * Constructor - Sets the member variables.
      *
-     * @param town          town that just removed a claim to a chunk
-     * @param chunk         chunk the town previously claimed
+     * @param town          town that is about to remove a claim to a chunk
+     * @param chunk         chunk the town is about to be unclaimed
      */
     public TownUnclaimEvent(Town town, Chunk chunk) {
         this.town = town;
@@ -49,18 +55,18 @@ public class TownUnclaimEvent extends Event {
     }
 
     /**
-     * Returns town that just removed a claim to a chunk.
+     * Returns town that is about to remove a claim to a chunk.
      *
-     * @return  the town that just removed a claim to a chunk
+     * @return  the town that is about to remove a claim to a chunk
      */
     public Town getTown() {
         return town;
     }
 
     /**
-     * Returns the chunk the town previously claimed.
+     * Returns the chunk the town is about to be unclaimed.
      *
-     * @return  chunk the town previously claimed
+     * @return  chunk the town is about to be unclaimed
      */
     public Chunk getChunk() {
         return chunk;
@@ -69,5 +75,15 @@ public class TownUnclaimEvent extends Event {
     @Override
     public HandlerList getHandlers() {
         return handlers;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean cancel) {
+        cancelled = cancel;
     }
 }

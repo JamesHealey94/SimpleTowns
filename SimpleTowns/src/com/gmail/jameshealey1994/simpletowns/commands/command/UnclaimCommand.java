@@ -62,6 +62,15 @@ public class UnclaimCommand extends STCommand {
             return true;
         }
 
+        //Create and call TownUnclaimEvent
+        final TownUnclaimEvent event = new TownUnclaimEvent(town, chunk);
+        plugin.getServer().getPluginManager().callEvent(event);
+
+        // Check event has not been cancelled by event listeners
+        if (event.isCancelled()) {
+            return true;
+        }
+
         // Remove chunk from config town
         final String path = "Towns.";
         final List<String> chunks = plugin.getConfig().getStringList(path + town.getName() + ".Chunks." + worldname);
@@ -78,10 +87,6 @@ public class UnclaimCommand extends STCommand {
 
         // Save config
         plugin.saveConfig();
-
-        //Create and call TownClaimEvent
-        final TownUnclaimEvent event = new TownUnclaimEvent(town, chunk);
-        plugin.getServer().getPluginManager().callEvent(event);
 
         // Send confimation message to sender
         sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHUNK_UNCLAIMED, town.getName()));
