@@ -53,7 +53,7 @@ public class DeleteCommand extends STCommand {
         }
 
         //Create and call TownDeleteEvent
-        final TownDeleteEvent event = new TownDeleteEvent(town);
+        final TownDeleteEvent event = new TownDeleteEvent(town, sender);
         plugin.getServer().getPluginManager().callEvent(event);
 
         // Check event has not been cancelled by event listeners
