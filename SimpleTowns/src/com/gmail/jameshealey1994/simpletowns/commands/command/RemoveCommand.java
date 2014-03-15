@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.commands.command;
 
 import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
+import com.gmail.jameshealey1994.simpletowns.events.TownRemoveEvent;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
@@ -88,6 +89,15 @@ public class RemoveCommand extends STCommand {
         // Check player is a member of town (citizen or leader)
         if (!town.hasMember(playername)) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_MEMBER, playername, town.getName()));
+            return true;
+        }
+
+        //Create and call event
+        final TownRemoveEvent event = new TownRemoveEvent(town, sender, playername);
+        plugin.getServer().getPluginManager().callEvent(event);
+
+        // Check event has not been cancelled by event listeners
+        if (event.isCancelled()) {
             return true;
         }
 
