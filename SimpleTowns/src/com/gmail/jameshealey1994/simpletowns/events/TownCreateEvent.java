@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.events;
 
 import com.gmail.jameshealey1994.simpletowns.object.Town;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -24,6 +25,12 @@ public class TownCreateEvent extends Event implements Cancellable {
     private final Town town;
 
     /**
+     * The sender of the command.
+     * May be an admin or the console.
+     */
+    private final CommandSender sender;
+
+    /**
      * If the event is cancelled.
      */
     private boolean cancelled = false;
@@ -33,8 +40,9 @@ public class TownCreateEvent extends Event implements Cancellable {
      *
      * @param town  the newly created town
      */
-    public TownCreateEvent(Town town) {
+    public TownCreateEvent(Town town, CommandSender sender) {
         this.town = town;
+        this.sender = sender;
     }
 
     /**
@@ -53,6 +61,15 @@ public class TownCreateEvent extends Event implements Cancellable {
      */
     public Town getTown() {
         return town;
+    }
+
+    /**
+     * Returns the sender of the command.
+     *
+     * @return  sender of the command
+     */
+    public CommandSender getSender() {
+        return sender;
     }
 
     @Override

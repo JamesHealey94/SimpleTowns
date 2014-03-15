@@ -99,7 +99,7 @@ public class CreateCommand extends STCommand {
         }
 
         //Create and call TownCreateEvent
-        final TownCreateEvent event = new TownCreateEvent(town);
+        final TownCreateEvent event = new TownCreateEvent(town, sender);
         plugin.getServer().getPluginManager().callEvent(event);
 
         // Check event has not been cancelled by event listeners
