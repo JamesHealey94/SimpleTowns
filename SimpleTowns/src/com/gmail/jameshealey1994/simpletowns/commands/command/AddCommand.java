@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.commands.command;
 
 import com.gmail.jameshealey1994.simpletowns.SimpleTowns;
+import com.gmail.jameshealey1994.simpletowns.events.TownAddEvent;
 import com.gmail.jameshealey1994.simpletowns.localisation.Localisation;
 import com.gmail.jameshealey1994.simpletowns.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simpletowns.object.Town;
@@ -100,6 +101,15 @@ public class AddCommand extends STCommand {
         // Check player isn't already a member of town (citizen or leader)
         if (town.hasMember(fullPlayerName)) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_ALREADY_MEMBER, fullPlayerName, town.getName()));
+            return true;
+        }
+
+        //Create and call event
+        final TownAddEvent event = new TownAddEvent(town, sender, fullPlayerName);
+        plugin.getServer().getPluginManager().callEvent(event);
+
+        // Check event has not been cancelled by event listeners
+        if (event.isCancelled()) {
             return true;
         }
 
