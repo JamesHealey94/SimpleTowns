@@ -63,7 +63,7 @@ public class UnclaimCommand extends STCommand {
         }
 
         //Create and call TownUnclaimEvent
-        final TownUnclaimEvent event = new TownUnclaimEvent(town, chunk);
+        final TownUnclaimEvent event = new TownUnclaimEvent(town, chunk, sender);
         plugin.getServer().getPluginManager().callEvent(event);
 
         // Check event has not been cancelled by event listeners
