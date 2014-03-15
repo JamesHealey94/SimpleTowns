@@ -83,6 +83,7 @@ public class TownClaimEvent extends Event implements Cancellable {
 
     /**
      * Returns the sender of the command.
+     * May be an admin or the console.
      *
      * @return  sender of the command
      */

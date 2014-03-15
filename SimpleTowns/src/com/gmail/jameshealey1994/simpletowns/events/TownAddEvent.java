@@ -25,9 +25,10 @@ public class TownAddEvent extends Event implements Cancellable {
     private final Town town;
 
     /**
-     * The sender of the command to add the player.
+     * The sender of the command.
+     * May be an admin or the console.
      */
-    private final CommandSender adder;
+    private final CommandSender sender;
 
     /**
      * The name of the player about to be added to the town.
@@ -43,12 +44,12 @@ public class TownAddEvent extends Event implements Cancellable {
      * Constructor - Sets the member variables.
      *
      * @param town          town the player is about to be added to
-     * @param adder         sender of the command to add the player
+     * @param sender        sender of the command to add the player
      * @param addedName     name of the player about to be added to the town
      */
-    public TownAddEvent(Town town, CommandSender adder, String addedName) {
+    public TownAddEvent(Town town, CommandSender sender, String addedName) {
         this.town = town;
-        this.adder = adder;
+        this.sender = sender;
         this.addedName = addedName;
     }
 
@@ -72,11 +73,12 @@ public class TownAddEvent extends Event implements Cancellable {
 
     /**
      * Returns the sender of the command to add the player.
+     * May be an admin or the console.
      *
      * @return  the sender of the command to add the player
      */
-    public CommandSender getAdder() {
-        return adder;
+    public CommandSender getSender() {
+        return sender;
     }
 
     /**

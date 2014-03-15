@@ -25,9 +25,10 @@ public class TownRemoveEvent extends Event implements Cancellable {
     private final Town town;
 
     /**
-     * The sender of the command to remove the player.
+     * The sender of the command.
+     * May be an admin or the console.
      */
-    private final CommandSender remover;
+    private final CommandSender sender;
 
     /**
      * The name of the player about to be removed from the town.
@@ -43,12 +44,12 @@ public class TownRemoveEvent extends Event implements Cancellable {
      * Constructor - Sets the member variables.
      *
      * @param town          town the player is about to be removed from
-     * @param remover       sender of the command to remove the player
+     * @param sender        sender of the command to remove the player
      * @param removedName   name of the player about to be removed from the town
      */
-    public TownRemoveEvent(Town town, CommandSender remover, String removedName) {
+    public TownRemoveEvent(Town town, CommandSender sender, String removedName) {
         this.town = town;
-        this.remover = remover;
+        this.sender = sender;
         this.removedName = removedName;
     }
 
@@ -72,11 +73,12 @@ public class TownRemoveEvent extends Event implements Cancellable {
 
     /**
      * Returns the sender of the command to remove the player.
+     * May be an admin or the console.
      *
      * @return  the sender of the command to remove the player
      */
-    public CommandSender getRemover() {
-        return remover;
+    public CommandSender getSender() {
+        return sender;
     }
 
     /**

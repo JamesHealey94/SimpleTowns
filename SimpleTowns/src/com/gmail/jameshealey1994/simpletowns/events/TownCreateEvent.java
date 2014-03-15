@@ -38,7 +38,8 @@ public class TownCreateEvent extends Event implements Cancellable {
     /**
      * Constructor - Sets the newly created town.
      *
-     * @param town  the newly created town
+     * @param town      the newly created town
+     * @param sender    the sender of the command
      */
     public TownCreateEvent(Town town, CommandSender sender) {
         this.town = town;
@@ -65,6 +66,7 @@ public class TownCreateEvent extends Event implements Cancellable {
 
     /**
      * Returns the sender of the command.
+     * May be an admin or the console.
      *
      * @return  sender of the command
      */
