@@ -2,6 +2,7 @@ package com.gmail.jameshealey1994.simpletowns.events;
 
 import com.gmail.jameshealey1994.simpletowns.object.Town;
 import org.bukkit.Chunk;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -30,6 +31,12 @@ public class TownClaimEvent extends Event implements Cancellable {
     private final Chunk chunk;
 
     /**
+     * The sender of the command.
+     * May be an admin or the console.
+     */
+    private final CommandSender sender;
+
+    /**
      * If the event is cancelled.
      */
     private boolean cancelled = false;
@@ -39,10 +46,12 @@ public class TownClaimEvent extends Event implements Cancellable {
      *
      * @param town          town that is about to claim a chunk
      * @param chunk         chunk the town is about to claim
+     * @param sender        sender of the command
      */
-    public TownClaimEvent(Town town, Chunk chunk) {
+    public TownClaimEvent(Town town, Chunk chunk, CommandSender sender) {
         this.town = town;
         this.chunk = chunk;
+        this.sender = sender;
     }
 
     /**
@@ -70,6 +79,15 @@ public class TownClaimEvent extends Event implements Cancellable {
      */
     public Chunk getChunk() {
         return chunk;
+    }
+
+    /**
+     * Returns the sender of the command.
+     *
+     * @return  sender of the command
+     */
+    public CommandSender getSender() {
+        return sender;
     }
 
     @Override

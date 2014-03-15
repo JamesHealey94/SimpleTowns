@@ -69,7 +69,7 @@ public class ClaimCommand extends STCommand {
         }
 
         //Create and call TownClaimEvent
-        final TownClaimEvent event = new TownClaimEvent(town, chunk);
+        final TownClaimEvent event = new TownClaimEvent(town, chunk, sender);
         plugin.getServer().getPluginManager().callEvent(event);
 
         // Check event has not been cancelled by event listeners
