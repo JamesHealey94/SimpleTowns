@@ -34,7 +34,12 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
      * The current localisation for the plugin.
      */
     private Localisation localisation = new Localisation(this);
-
+    
+    /**
+     * The current plugin.
+     */
+    private static SimpleTowns plugin;
+    
     /**
      * Towns from config.
      */
@@ -42,7 +47,10 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
 
     @Override
     public void onEnable() {
-
+    	
+    	// This is so we can access this from get() 
+    	plugin = this;
+    	
         // Save a copy of the default config.yml if one is not there
         saveDefaultConfig();
 
@@ -140,5 +148,13 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
             }
         }
         return null;
+    }
+    
+    /**
+     * Returns the current SimpleTowns class.
+     * Useful for add-ons. 
+     */
+    public static SimpleTowns get() {
+        return plugin; 
     }
 }

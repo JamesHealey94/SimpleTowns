@@ -27,6 +27,8 @@ public class DefaultSTCommandEnvironment extends STCommandEnvironment {
             new InfoCommand(),
             new ChunksCommand(),
             new DeleteCommand(),
+            new HomeCommand(),
+            new SetHomeCommand(),
             new HelpCommand(),
             new ReloadCommand(),
             new LogCommand(),

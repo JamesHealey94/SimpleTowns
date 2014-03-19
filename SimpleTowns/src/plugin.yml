@@ -20,6 +20,12 @@ permissions:
     simpletowns.build.towns:
         description: Allows you to build in the towns you're a member of
         default: false
+    simpletowns.home:
+        description: Allows you to teleport to the town home
+        default: false
+    simpletowns.sethome:
+        description: Allows you to set the town home
+        default: false
     simpletowns.create:
         description: Allows you to create new towns
         default: false

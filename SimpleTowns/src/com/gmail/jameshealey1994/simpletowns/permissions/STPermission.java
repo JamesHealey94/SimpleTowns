@@ -10,6 +10,16 @@ import org.bukkit.permissions.Permission;
 public enum STPermission {
 
     /**
+     * Permission for setting homes.
+     */
+    SET_HOME ("simpletowns.sethome"),
+    
+    /**
+     * Permission for accessing the home of a town.
+     */
+    HOME ("simpletowns.home"),
+    
+    /**
      * Permission for building in the wilderness above the Mine Y value.
      */
     BUILD_WILDERNESS ("simpletowns.build.wilderness"),
