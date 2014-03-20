@@ -155,7 +155,7 @@ public class STListener implements Listener {
 
         final Town town = plugin.getTown(block.getChunk());
         if (town == null) {
-            if (block.getLocation().getBlockY() <= TownUtils.getMineRoofY(plugin)) {
+            if (block.getLocation().getBlockY() <= new TownUtils(plugin).getMineRoofY()) {
                 return player.hasPermission(STPermission.BUILD_MINES.getPermission());
             } else {
                 return player.hasPermission(STPermission.BUILD_WILDERNESS.getPermission());

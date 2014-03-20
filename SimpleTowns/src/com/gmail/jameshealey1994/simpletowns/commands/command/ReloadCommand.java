@@ -41,7 +41,7 @@ public class ReloadCommand extends STCommand {
         }
 
         plugin.reloadConfig();
-        plugin.setTowns(TownUtils.getTownsFromConfig(plugin));
+        plugin.setTowns(new TownUtils(plugin).getTownsFromConfig());
         sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CONFIG_RELOADED));
 
         //Create and call TownAfterReloadEvent

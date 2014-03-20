@@ -23,12 +23,47 @@ public class TownUtils {
     public static final String PATH = "Towns";
 
     /**
+     * Plugin with associated config file.
+     */
+    private final Plugin plugin;
+
+    /**
+     * Constructor - Sets plugin.
+     *
+     * @param plugin    plugin with config and logger
+     */
+    public TownUtils(Plugin plugin) {
+        this.plugin = plugin;
+    }
+
+    /**
+     * Returns if a string is a valid town name.
+     * Valid town names are between 1 and 16 characters long, and contain
+     * only letters, numbers, and underscores.
+     *
+     * @param possibleName      possible town name to be checked for validity
+     * @return                  if the town name is valid
+     */
+    public static boolean isValidName(String possibleName) {
+        return new NameValidityChecker(possibleName).isValidName();
+    }
+
+    /**
+     * Returns the Y value of the mine roof.
+     *
+     * @return  Y value of the mine roof,
+     *          or -1 if no value is specified in the config
+     */
+    public int getMineRoofY() {
+        return plugin.getConfig().getInt("Mine Roof Y Value", -1);
+    }
+
+    /**
      * Returns towns from config.
      *
-     * @param plugin        plugin with config and logger
-     * @return              towns from config
+     * @return  towns from config
      */
-    public static Map<String, Town> getTownsFromConfig(Plugin plugin) {
+    public Map<String, Town> getTownsFromConfig() {
         final ConfigurationSection townConfigSection = new ConfigUtils(plugin).getConfigSection(PATH);
         final Map<String, Town> townsFromConfig = new HashMap<>();
         final Set<String> townKeys = new HashSet<>(townConfigSection.getKeys(false));
@@ -55,34 +90,5 @@ public class TownUtils {
             }
         }
         return townsFromConfig;
-    }
-
-    /**
-     * Returns if a string is a valid town name.
-     * Valid town names are between 1 and 16 characters long, and contain
-     * only letters, numbers, and underscores.
-     *
-     * @param possibleName      possible town name to be checked for validity
-     * @return                  if the town name is valid
-     */
-    public static boolean isValidName(String possibleName) {
-        return new NameValidityChecker(possibleName).isValidName();
-    }
-
-    /**
-     * Returns the Y value of the mine roof.
-     *
-     * @param plugin        plugin with config
-     * @return              Y value of the mine roof,
-     *                      or -1 if no value is specified in the config
-     */
-    public static int getMineRoofY(Plugin plugin) {
-        return plugin.getConfig().getInt("Mine Roof Y Value", -1);
-    }
-
-    /**
-     * Private constructor - Objects cannot be created.
-     */
-    private TownUtils() {
     }
 }

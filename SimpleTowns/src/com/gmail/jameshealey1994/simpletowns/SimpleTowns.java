@@ -47,7 +47,7 @@ public class SimpleTowns extends JavaPlugin implements Localisable {
         saveDefaultConfig();
 
         // Load towns from config
-        this.towns = TownUtils.getTownsFromConfig(this);
+        this.towns = new TownUtils(this).getTownsFromConfig();
 
         // Register events
         getServer().getPluginManager().registerEvents(new STListener(this), this);
