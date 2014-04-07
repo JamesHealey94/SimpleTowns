@@ -14,6 +14,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -74,6 +75,30 @@ public class STListener implements Listener {
                 player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CANNOT_BUILD_HERE));
             } else {
                 player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_PLACE_BLOCKS, town.getName()));
+            }
+            event.setCancelled(true);
+        }
+    }
+
+    /**
+     * Checks the player is allowed to break the hanging entity.
+     *
+     * @param event     event being handled
+     */
+    @EventHandler (priority = EventPriority.HIGH, ignoreCancelled = true)
+    public void onBreakEvent(HangingBreakByEntityEvent event) {
+        if (!(event.getRemover() instanceof Player)) {
+            return;
+        }
+
+        final Player player = (Player) event.getRemover();
+        final Block block = event.getEntity().getLocation().getBlock();
+        if (!canBuild(player, block)) {
+            final Town town = plugin.getTown(block.getChunk());
+            if (town == null) {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CANNOT_BUILD_HERE));
+            } else {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_BREAK_BLOCKS, town.getName()));
             }
             event.setCancelled(true);
         }
