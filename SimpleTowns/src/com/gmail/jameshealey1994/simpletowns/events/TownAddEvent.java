@@ -1,5 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.events;
 
+import java.util.List;
+
 import com.gmail.jameshealey1994.simpletowns.object.Town;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Cancellable;
@@ -34,12 +36,18 @@ public class TownAddEvent extends Event implements Cancellable {
      * The name of the player about to be added to the town.
      */
     private final String addedName;
-
+    
+    /**
+     * The messages that the plugin will be sending to the executer
+     * of the event.
+     */
+    private List<String> messages;
+    
     /**
      * If the event is cancelled.
      */
     private boolean cancelled = false;
-
+    
     /**
      * Constructor - Sets the member variables.
      *
@@ -47,10 +55,11 @@ public class TownAddEvent extends Event implements Cancellable {
      * @param sender        sender of the command to add the player
      * @param addedName     name of the player about to be added to the town
      */
-    public TownAddEvent(Town town, CommandSender sender, String addedName) {
+    public TownAddEvent(Town town, CommandSender sender, String addedName, List<String> messages) {
         this.town = town;
         this.sender = sender;
         this.addedName = addedName;
+        this.messages = messages;
     }
 
     /**
@@ -88,6 +97,10 @@ public class TownAddEvent extends Event implements Cancellable {
      */
     public String getAddedName() {
         return addedName;
+    }
+    
+    public List<String> getMessages() {
+    	return messages;
     }
 
     @Override
