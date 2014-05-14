@@ -1,5 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.permissions;
 
+import java.util.HashMap;
+
 import org.bukkit.permissions.Permission;
 
 /**
@@ -8,7 +10,7 @@ import org.bukkit.permissions.Permission;
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public enum STPermission {
-
+		
     /**
      * Permission for building in the wilderness above the Mine Y value.
      */
@@ -70,6 +72,11 @@ public enum STPermission {
     ADMIN ("simpletowns.admin");
 
     /**
+     * A hashmap of already create permission objects
+     */
+	private HashMap<String, Permission> registeredPermissions = new HashMap<String, Permission>();
+	
+    /**
      * The name of the permission.
      */
     private String name;
@@ -98,6 +105,14 @@ public enum STPermission {
      * @return  Permission of the enum
      */
     public Permission getPermission() {
-        return new Permission(this.getName());
+    	
+    	// Check if our HashMap doesn't contain the Permission object
+    	if(!this.registeredPermissions.containsKey(this.getName())) {
+    		// Add the permission object
+    		this.registeredPermissions.put(this.getName(), new Permission(this.getName()));
+    	}
+    	
+    	// Send back an already created permission object
+        return this.registeredPermissions.get(this.getName());
     }
 }
