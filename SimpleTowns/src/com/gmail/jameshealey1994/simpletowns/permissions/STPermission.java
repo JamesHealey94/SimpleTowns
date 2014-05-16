@@ -1,7 +1,5 @@
 package com.gmail.jameshealey1994.simpletowns.permissions;
 
-import java.util.HashMap;
-
 import org.bukkit.Bukkit;
 import org.bukkit.permissions.Permission;
 
@@ -71,12 +69,7 @@ public enum STPermission {
      * Permission used by admins to override.
      */
     ADMIN ("simpletowns.admin");
-
-    /**
-     * A hashmap of already create permission objects
-     */
-	private HashMap<String, Permission> registeredPermissions = new HashMap<String, Permission>();
-	
+    
     /**
      * The name of the permission.
      */
@@ -114,6 +107,6 @@ public enum STPermission {
     	}
     	
     	// Send back an already created permission object
-        return this.registeredPermissions.get(Bukkit.getServer().getPluginManager().getPermission(this.getName()));
+        return (Bukkit.getServer().getPluginManager().getPermission(this.getName()));
     }
 }
