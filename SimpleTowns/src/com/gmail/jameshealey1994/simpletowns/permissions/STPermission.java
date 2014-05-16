@@ -2,6 +2,7 @@ package com.gmail.jameshealey1994.simpletowns.permissions;
 
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.permissions.Permission;
 
 /**
@@ -106,13 +107,13 @@ public enum STPermission {
      */
     public Permission getPermission() {
     	
-    	// Check if our HashMap doesn't contain the Permission object
-    	if(!this.registeredPermissions.containsKey(this.getName())) {
-    		// Add the permission object
-    		this.registeredPermissions.put(this.getName(), new Permission(this.getName()));
+    	// Check if the permission exists
+    	if(Bukkit.getServer().getPluginManager().getPermission(this.getName()) == null) {
+    		// Add the permission object to bukkit
+    		Bukkit.getServer().getPluginManager().addPermission(new Permission(this.getName()));
     	}
     	
     	// Send back an already created permission object
-        return this.registeredPermissions.get(this.getName());
+        return this.registeredPermissions.get(Bukkit.getServer().getPluginManager().getPermission(this.getName()));
     }
 }
