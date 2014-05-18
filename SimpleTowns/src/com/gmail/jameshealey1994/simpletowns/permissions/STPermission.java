@@ -1,5 +1,7 @@
 package com.gmail.jameshealey1994.simpletowns.permissions;
 
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.permissions.Permission;
 
@@ -92,7 +94,9 @@ public enum STPermission {
     public String getName() {
         return name;
     }
-
+    
+    private HashMap<String, Permission> permissionMap = new HashMap<String, Permission>();
+    
     /**
      * Returns Permission of the enum.
      *
@@ -100,13 +104,28 @@ public enum STPermission {
      */
     public Permission getPermission() {
     	
+    	if(!permissionMap.containsKey(this.getName().toLowerCase())) {
+    		permissionMap.put(this.getName().toLowerCase(), new Permission(this.getName()));
+    	}
+    	
+    	return permissionMap.get(this.getName().toLowerCase());
+    	
+    	// I couldn't find a way to detect if a permission was already registered, so I'm using
+    	// our own HashMap to store this data.
+    	
+    	/*
     	// Check if the permission exists
     	if(Bukkit.getServer().getPluginManager().getPermission(this.getName()) == null) {
     		// Add the permission object to bukkit
-    		Bukkit.getServer().getPluginManager().addPermission(new Permission(this.getName()));
+    		try { 
+    			Bukkit.getServer().getPluginManager().addPermission();
+    		} catch(IllegalArgumentException e) {
+    			
+    		}
     	}
     	
     	// Send back an already created permission object
         return (Bukkit.getServer().getPluginManager().getPermission(this.getName()));
+        */
     }
 }
