@@ -304,7 +304,7 @@ public enum LocalisationEntry {
     LOG_CITIZEN_ADDED (
             "LogCitizenAdded",
             "%1$s - town name\n# %2$s - sender name\n# %3$s - citizen name",
-            "Citizen '%2$s' added to '%1$s' by '%3$s'"),
+            "Citizen '%3$s' added to '%1$s' by '%2$s'"),
 
     /**
      * Message logged to file when a citizen is promoted to leader in a town.
