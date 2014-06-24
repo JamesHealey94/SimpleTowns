@@ -8,6 +8,8 @@ import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.utils.Logger;
 import com.gmail.jameshealey1994.simpletowns.utils.NameValidityChecker;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
@@ -104,8 +106,14 @@ public class AddCommand extends STCommand {
             return true;
         }
 
-        //Create and call event
-        final TownAddEvent event = new TownAddEvent(town, sender, fullPlayerName);
+        // The messages to be sent to the event
+        List<String> preparedMessages = new ArrayList<>();
+        
+        // The confirmation messages to send to the sender 
+        preparedMessages.add(localisation.get(LocalisationEntry.MSG_CITIZEN_ADDED, town.getName(), fullPlayerName));
+        
+        // Create and call event
+        final TownAddEvent event = new TownAddEvent(town, sender, fullPlayerName, preparedMessages);
         plugin.getServer().getPluginManager().callEvent(event);
 
         // Check event has not been cancelled by event listeners
@@ -128,8 +136,10 @@ public class AddCommand extends STCommand {
         // Save config
         plugin.saveConfig();
 
-        // Send confimation message to sender
-        sender.sendMessage(localisation.get(LocalisationEntry.MSG_CITIZEN_ADDED, town.getName(), fullPlayerName));
+        // Send messages to sender
+        for(String message : preparedMessages) {
+            sender.sendMessage(message);
+        }
 
         // Send message to citizen, if they're online
         final Player citizen = plugin.getServer().getPlayer(fullPlayerName);

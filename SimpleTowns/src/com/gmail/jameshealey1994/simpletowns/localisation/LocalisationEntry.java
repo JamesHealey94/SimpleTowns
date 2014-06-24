@@ -466,7 +466,17 @@ public enum LocalisationEntry {
             "MsgChunkAlreadyClaimed",
             "%1$s - town name",
             "&cChunk already claimed by Town '%1$s'"),
-
+            
+   /**
+    * Message telling player that that they're the leader of multiple chunks next
+    * to the chunk they're claiming in, so they have to specify which town.
+    * %1$s - town name
+    */
+    MSG_MULTIPLE_TOWNS_NEARBY (
+    		"MsgMultipleTownsNearby",
+    		"%1$s - list of towns",
+    		"&cYou are the leader of multiple towns next to this chunk, please specify which one: %1$s"),
+    
     /**
      * Message to confirm to sender that a town has been created.
      * %1$s - town name

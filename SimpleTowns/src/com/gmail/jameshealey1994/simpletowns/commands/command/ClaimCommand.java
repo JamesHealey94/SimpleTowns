@@ -8,8 +8,11 @@ import com.gmail.jameshealey1994.simpletowns.object.Town;
 import com.gmail.jameshealey1994.simpletowns.object.TownChunk;
 import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.utils.Logger;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -40,13 +43,88 @@ public class ClaimCommand extends STCommand {
             return true;
         }
 
+        Town decidedTown = null;
+        final Player player = (Player) sender;
+        
         if (args.length == 0) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_TOWN));
-            return false;
+        	
+        	int countLeaderOf = 0;
+        	Town townLeaderOf = null;
+        	
+        	for(Town checkingTown : plugin.getTowns().values()) {
+        		if(checkingTown.getLeaders().contains(player.getName())) {
+        			countLeaderOf++;
+        			townLeaderOf = checkingTown;
+        		}
+        	}
+        	
+        	if(countLeaderOf == 1) {
+        		decidedTown = townLeaderOf;
+        	} else {
+	        	Location loc = player.getLocation();
+	        	Chunk c = loc.getChunk();
+	        	
+	        	Town townA = plugin.getTown(loc.getWorld().getChunkAt(c.getX()+1, c.getZ()));
+	        	Town townB = plugin.getTown(loc.getWorld().getChunkAt(c.getX()-1, c.getZ()));
+	        	Town townC = plugin.getTown(loc.getWorld().getChunkAt(c.getX(), c.getZ()+1));
+	        	Town townD = plugin.getTown(loc.getWorld().getChunkAt(c.getX(), c.getZ()-1));
+	        	
+	        	List<Town> towns = new ArrayList<Town>();
+	        	
+	        	if(townA != null) { 
+	        		if(townA.getLeaders().contains(sender.getName()) && !towns.contains(townA)) {
+	        			towns.add(townA);
+	        		}
+	        	}
+	        	
+	        	if(townB != null) {
+	        		if(townB.getLeaders().contains(sender.getName()) && !towns.contains(townB)) {
+	        			towns.add(townB);
+	        		}
+	        	}
+	        	
+	        	if(townC != null) {
+	        		if(townC.getLeaders().contains(sender.getName()) && !towns.contains(townC)) {
+	        			towns.add(townC);
+	        		}
+	        	}
+	        	
+	        	if(townD != null) {
+	        		if(townD.getLeaders().contains(sender.getName()) && !towns.contains(townD)) {
+	        			towns.add(townD);
+	        		}
+	        	}
+	        	
+	        	if(towns.size() == 0) {
+	        		sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_TOWN));
+	        		
+	        		return false;
+	        	} else if(towns.size() == 1) {
+	        		decidedTown = towns.get(0);
+	        	} else {
+	        		String townList = "";
+	        		
+	        		int i = 0;
+	        		for(Town currentTown : towns) {
+	        			i++;
+	        			if(i == towns.size()) {
+	        				townList += currentTown.getName()+".";
+	        			} else {
+	        				townList += currentTown.getName()+", ";
+	        			}
+	        		}
+	        		
+	        		sender.sendMessage(localisation.get(LocalisationEntry.MSG_MULTIPLE_TOWNS_NEARBY, townList));
+	        		
+	                return true;
+	        	}
+        	}
+        } else {
+        	decidedTown = plugin.getTown(args[0]);
         }
 
-        final Player player = (Player) sender;
-        final Town town = plugin.getTown(args[0]);
+        
+        final Town town = decidedTown;
 
         // Check town exists
         if (town == null) {

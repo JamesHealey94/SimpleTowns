@@ -1,5 +1,8 @@
 package com.gmail.jameshealey1994.simpletowns.permissions;
 
+import java.util.HashMap;
+
+import org.bukkit.Bukkit;
 import org.bukkit.permissions.Permission;
 
 /**
@@ -8,7 +11,7 @@ import org.bukkit.permissions.Permission;
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public enum STPermission {
-
+		
     /**
      * Permission for building in the wilderness above the Mine Y value.
      */
@@ -68,7 +71,7 @@ public enum STPermission {
      * Permission used by admins to override.
      */
     ADMIN ("simpletowns.admin");
-
+    
     /**
      * The name of the permission.
      */
@@ -91,13 +94,38 @@ public enum STPermission {
     public String getName() {
         return name;
     }
-
+    
+    private HashMap<String, Permission> permissionMap = new HashMap<String, Permission>();
+    
     /**
      * Returns Permission of the enum.
      *
      * @return  Permission of the enum
      */
     public Permission getPermission() {
-        return new Permission(this.getName());
+    	
+    	if(!permissionMap.containsKey(this.getName().toLowerCase())) {
+    		permissionMap.put(this.getName().toLowerCase(), new Permission(this.getName()));
+    	}
+    	
+    	return permissionMap.get(this.getName().toLowerCase());
+    	
+    	// I couldn't find a way to detect if a permission was already registered, so I'm using
+    	// our own HashMap to store this data.
+    	
+    	/*
+    	// Check if the permission exists
+    	if(Bukkit.getServer().getPluginManager().getPermission(this.getName()) == null) {
+    		// Add the permission object to bukkit
+    		try { 
+    			Bukkit.getServer().getPluginManager().addPermission();
+    		} catch(IllegalArgumentException e) {
+    			
+    		}
+    	}
+    	
+    	// Send back an already created permission object
+        return (Bukkit.getServer().getPluginManager().getPermission(this.getName()));
+        */
     }
 }
