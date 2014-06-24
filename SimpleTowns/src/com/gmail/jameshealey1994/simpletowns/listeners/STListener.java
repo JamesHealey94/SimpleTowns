@@ -8,12 +8,15 @@ import com.gmail.jameshealey1994.simpletowns.permissions.STPermission;
 import com.gmail.jameshealey1994.simpletowns.utils.TownUtils;
 import java.util.Objects;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
@@ -75,6 +78,45 @@ public class STListener implements Listener {
                 player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CANNOT_BUILD_HERE));
             } else {
                 player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_PLACE_BLOCKS, town.getName()));
+            }
+            event.setCancelled(true);
+        }
+    }
+
+    /**
+     * Checks the player is allowed to break the item in an ItemFrame.
+     *
+     *
+     * @param event     event being handled
+     */
+    @EventHandler (priority = EventPriority.HIGH, ignoreCancelled = true)
+    public void onItemFrameBreakEvent(EntityDamageByEntityEvent event) {
+
+        if (event.getEntityType() != EntityType.ITEM_FRAME) {
+            return;
+        }
+
+        final Player player;
+        if (event.getDamager() instanceof Arrow) {
+            final Arrow arrow = (Arrow) event.getDamager();
+            if ((arrow.getShooter() != null) && (arrow.getShooter() instanceof Player)) {
+                player = (Player) arrow.getShooter();
+            } else {
+                return;
+            }
+        } else if (event.getDamager() instanceof Player) {
+            player = (Player) event.getDamager();
+        } else {
+            return;
+        }
+
+        final Block block = event.getEntity().getLocation().getBlock();
+        if (!canBuild(player, block)) {
+            final Town town = plugin.getTown(block.getChunk());
+            if (town == null) {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CANNOT_BUILD_HERE));
+            } else {
+                player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_TOWN_MEMBERS_CAN_BREAK_BLOCKS, town.getName()));
             }
             event.setCancelled(true);
         }
